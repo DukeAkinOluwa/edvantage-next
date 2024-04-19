@@ -1,0 +1,49 @@
+{
+    "data" : [
+        {
+            "question" : "How do I join a study group?",
+            "answer": "To join a study group, navigate to the Groups section in the app, explore available groups, and click on Join Group for the group you're interested in.",
+            "title" : "Signals and Systems"
+        },
+        {
+            "question" : "Can I create my own study group?",
+            "answer": "Yes, you can create your own study group! Click on Create New Group in the Groups section, fill out the details, and become the group administrator.",
+            "title" : "Mechatronics Virtual Lab"
+        },
+        {
+            "question" : "How do I earn badges and points in the app?",
+            "answer": "Badges and points are earned through various achievements such as completing assignments, performing well in exams, and actively participating in study groups. Explore the Gamification Hub to track your progress.",
+            "title" : "Mechanics of Machines"
+        },
+        {
+            "question" : "Is there a notification system in the app?",
+            "answer": "Yes, the app provides real-time notifications. You'll be notified about new group invitations, achievements, shared resources, and other important updates.",
+            "title" : "Smart Glass Engineers"
+        },
+        {
+            "question" : "How do I earn badges and points here?",
+            "answer": "Badges and points are earned through various achievements such as completing assignments, performing well in exams, and actively participating in study groups. Explore the Gamification Hub to track your progress.",
+            "title" : "Akin"
+        },
+        {
+            "question" : "Can I communicate with other group members?",
+            "answer": "Yes, you can! Engage in discussions by posting messages, questions, or announcements in the group's discussion board. Reply to posts and actively participate in group conversations.",
+            "title" : "Debo"
+        },
+        {
+            "question" : "Report a problem in the map",
+            "answer": "We’re always looking for ways to improve the accuracy of our maps. If you’ve identified a map error, please report it by adding the details below.",
+            "title" : "Daniel"
+        },
+        {
+            "question" : "Help with a trip",
+            "answer": "This page is for reporting issues with cancellation fee. If you would like to report a driver for not wearing a face mask, click ....",
+            "title" : "Ayo"
+        },
+        {
+            "question" : "How was my fare calculated?",
+            "answer": "To understand what fare you should have been charged on this trip, go to your receipt and check the fare break-up. To get your receipt: Go to Your trips by tapping on the...",
+            "title" : "Ayo"
+        }
+    ]
+}

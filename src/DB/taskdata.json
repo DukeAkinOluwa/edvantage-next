@@ -1,0 +1,290 @@
+{
+    "courses" : [
+        {
+            "coursename" : "Eng Mathematics",
+            "coursecode" : "Eng 301",
+            "duedate" : "Tue",
+            "status" : "Completed"
+        },
+        {
+            "coursename" : "Eng Drawing",
+            "coursecode" : "Eng 303",
+            "duedate" : "Fri",
+            "status" : "Pending"
+        },
+        {
+            "coursename" : "Machine Drawing",
+            "coursecode" : "Eng 305",
+            "duedate" : "Sat",
+            "status" : "Pending"
+        },
+        {
+            "coursename" : "Eng Mathematics",
+            "coursecode" : "Eng 305",
+            "duedate" : "Tue",
+            "status" : "Completed"
+        },
+        {
+            "coursename" : "Eng Drawing",
+            "coursecode" : "Eng 307",
+            "duedate" : "Fri",
+            "status" : "Pending"
+        },
+        {
+            "coursename" : "Machine Drawing",
+            "coursecode" : "Eng 309",
+            "duedate" : "Sat",
+            "status" : "Completed"
+        },
+        {
+            "coursename" : "Machine Drawing",
+            "coursecode" : "Eng 311",
+            "duedate" : "Sat",
+            "status" : "Pending"
+        },
+        {
+            "coursename" : "Eng Mathematics",
+            "coursecode" : "Eng 313",
+            "duedate" : "Tue",
+            "status" : "Completed"
+        },
+        {
+            "coursename" : "Eng Drawing",
+            "coursecode" : "Eng 315",
+            "duedate" : "Fri",
+            "status" : "Pending"
+        },
+        {
+            "coursename" : "Machine Drawing",
+            "coursecode" : "Eng 317",
+            "duedate" : "Sat",
+            "status" : "Completed"
+        },
+        {
+            "coursename" : "Machine Drawing",
+            "coursecode" : "Eng 319",
+            "duedate" : "Sat",
+            "status" : "Pending"
+        },
+        {
+            "coursename" : "Eng Mathematics",
+            "coursecode" : "Eng 321",
+            "duedate" : "Tue",
+            "status" : "Completed"
+        },
+        {
+            "coursename" : "Eng Drawing",
+            "coursecode" : "Eng 323",
+            "duedate" : "Fri",
+            "status" : "Pending"
+        },
+        {
+            "coursename" : "Machine Drawing",
+            "coursecode" : "Eng 325",
+            "duedate" : "Sat",
+            "status" : "Completed"
+        }
+    ],
+    "todaystasks" : [
+        {
+            "taskname" : "Signals and Systems",
+            "taskdetail" : "Class at ELT",
+            "starttime" : "10:00",
+            "endtime" : "12:00"
+        },
+        {
+            "taskname" : "Mechatronics Virtual Lab",
+            "taskdetail" : "Class Mech Virt Lab",
+            "starttime" : "13:00",
+            "endtime" : "15:00"
+        }
+    ],
+    "groups" : [
+        {
+            "groupname" : "Signals and Systems",
+            "groupdetail" : "ENG303",
+            "noofmembers" : 25,
+            "number" : 1
+        },
+        {
+            "groupname" : "Mechatronics Virtual Lab",
+            "groupdetail" : "ENG305",
+            "noofmembers" : 86,
+            "number" : 2
+        },
+        {
+            "groupname" : "Mechanics of Machines",
+            "groupdetail" : "ENG307",
+            "noofmembers" : 12,
+            "number" : 3
+        },
+        {
+            "groupname" : "Smart Glass Engineers",
+            "groupdetail" : "A community of like minded engineers focused on the developement of the smart eye glasses",
+            "noofmembers" : 18,
+            "number" : 4
+        }
+    ],
+    "assignments" : [
+        {
+            "coursecode" : "CSC 301",
+            "status" : "Completed",
+            "duedate" : 25,
+            "progress" : 1,
+            "priority" : "High"
+        },
+        {
+            "coursecode" : "ENG 303",
+            "status" : "Pending",
+            "duedate" : 86,
+            "progress" : 2,
+            "priority" : "Low"
+        },
+        {
+            "coursecode" : "MEE 305",
+            "status" : "Pending",
+            "duedate" : 12,
+            "progress" : 3,
+            "priority" : "High"
+        },
+        {
+            "coursecode" : "ENG 307",
+            "status" : "Completed",
+            "duedate" : 18,
+            "progress" : 4,
+            "priority" : "Low"
+        },
+        {
+            "coursecode" : "ICT 301",
+            "status" : "Completed",
+            "duedate" : 23,
+            "progress" : 1,
+            "priority" : "High"
+        },
+        {
+            "coursecode" : "AMS 303",
+            "status" : "Pending",
+            "duedate" : 32,
+            "progress" : 2,
+            "priority" : "Low"
+        },
+        {
+            "coursecode" : "TCE 305",
+            "status" : "Pending",
+            "duedate" : 85,
+            "progress" : 3,
+            "priority" : "High"
+        },
+        {
+            "coursecode" : "ENG 307",
+            "status" : "Completed",
+            "duedate" : 97,
+            "progress" : 4,
+            "priority" : "Low"
+        }
+    ],
+    "notifications" : [
+        {
+            "type" : "PrivateMessage",
+            "text" : "Selena comments on your posts about Algorithm tasks",
+            "time" : "10:00",
+            "endtime" : "12:00"
+        },
+        {
+            "type" : "AssignmentReminder",
+            "text" : "Well done! You have submitted your tasks of Javascript 1",
+            "time" : "13:00",
+            "endtime" : "15:00"
+        },
+        {
+            "type" : "OverdueReminder",
+            "text" : "Your task is overdue for 13 hours and 25 minutes",
+            "time" : "10:00",
+            "endtime" : "12:00"
+        },
+        {
+            "type" : "Progress",
+            "text" : "Well done! You have submitted your tasks of Javascript 1",
+            "time" : "13:00",
+            "endtime" : "15:00"
+        },
+        {
+            "type" : "GroupMessage",
+            "text" : "Mr. Dika shared some new resources on Cos101",
+            "time" : "13:00",
+            "endtime" : "15:00"
+        },
+        {
+            "type" : "PrivateMessage",
+            "text" : "Selena comments on your posts about Algorithm tasks",
+            "time" : "10:00",
+            "endtime" : "12:00"
+        },
+        {
+            "type" : "AssignmentReminder",
+            "text" : "Well done! You have submitted your tasks of Javascript 1",
+            "time" : "13:00",
+            "endtime" : "15:00"
+        },
+        {
+            "type" : "OverdueReminder",
+            "text" : "Your task is overdue for 13 hours and 25 minutes",
+            "time" : "10:00",
+            "endtime" : "12:00"
+        },
+        {
+            "type" : "Progress",
+            "text" : "Well done! You have submitted your tasks of Javascript 1",
+            "time" : "13:00",
+            "endtime" : "15:00"
+        },
+        {
+            "type" : "AssignmentReminder",
+            "text" : "Well done! You have submitted your tasks of Javascript 1",
+            "time" : "13:00",
+            "endtime" : "15:00"
+        },
+        {
+            "type" : "OverdueReminder",
+            "text" : "Your task is overdue for 13 hours and 25 minutes",
+            "time" : "10:00",
+            "endtime" : "12:00"
+        },
+        {
+            "type" : "Progress",
+            "text" : "Well done! You have submitted your tasks of Javascript 1",
+            "time" : "13:00",
+            "endtime" : "15:00"
+        },
+        {
+            "type" : "GroupMessage",
+            "text" : "Mr. Dika shared some new resources on Cos101",
+            "time" : "13:00",
+            "endtime" : "15:00"
+        },
+        {
+            "type" : "PrivateMessage",
+            "text" : "Selena comments on your posts about Algorithm tasks",
+            "time" : "10:00",
+            "endtime" : "12:00"
+        },
+        {
+            "type" : "AssignmentReminder",
+            "text" : "Well done! You have submitted your tasks of Javascript 1",
+            "time" : "13:00",
+            "endtime" : "15:00"
+        },
+        {
+            "type" : "OverdueReminder",
+            "text" : "Your task is overdue for 13 hours and 25 minutes",
+            "time" : "10:00",
+            "endtime" : "12:00"
+        },
+        {
+            "type" : "Progress",
+            "text" : "Well done! You have submitted your tasks of Javascript 1",
+            "time" : "13:00",
+            "endtime" : "15:00"
+        }
+    ]
+}

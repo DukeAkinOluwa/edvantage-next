@@ -1,0 +1,107 @@
+{
+    "userData": [
+        {
+            "id": 1,
+            "name": "Signals and Systems"
+        },
+        {
+            "id": 2,
+            "name": "Mechatronics Virtual Lab"
+        },
+        {
+            "id": 3,
+            "name": "Doe"
+        }
+    ],
+    "chat": [
+        {
+            "type": "Group",
+            "imageid": "SignalsAndSystems.png",
+            "title": "SignalsandSystems",
+            "lasttext": "ENG303",
+            "SignalsandSystems": {
+                "about": [
+                    {
+                        "type": "Group",
+                        "imageid": "SignalsAndSystems.png",
+                        "title": "Signals and Systems",
+                        "lasttext": "ENG303",
+                        "noofmembers": 25,
+                        "number": 1,
+                        "chat": "Heyy Guys"
+                    }
+                ],
+                "chat": [
+                    {
+                        "id": 1,
+                        "sender": "John",
+                        "message": "Hello"
+                    },
+                    {
+                        "id": 2,
+                        "sender": "Jane",
+                        "message": "Hi"
+                    }
+                ]
+            }
+        },
+        {
+            "type": "Group",
+            "imageid": "MechatronicsVirtualLab.png",
+            "title": "Mechatronics Virtual Lab",
+            "lasttext": "ENG305",
+            "Mechatronics Virtual Lab": {
+                "about": [
+                    {
+                        "type": "Group",
+                        "imageid": "MechatronicsVirtualLab.png",
+                        "title": "Mechatronics Virtual Lab",
+                        "lasttext": "ENG305",
+                        "noofmembers": 86,
+                        "number": 2
+                    }
+                ],
+                "chat": [
+                    {
+                        "id": 1,
+                        "sender": "John",
+                        "message": "Holla"
+                    },
+                    {
+                        "id": 2,
+                        "sender": "Jane",
+                        "message": "Holla"
+                    }
+                ]
+            }
+        },
+        {
+            "3": [
+                {
+                    "id": 1,
+                    "sender": "Doe",
+                    "message": "Hey"
+                },
+                {
+                    "id": 2,
+                    "sender": "John",
+                    "message": "Hi there"
+                }
+            ]
+        }
+    ],
+    "chatData": {
+        "SignalsandSystems": [
+          { "id": 1, "sender": "John", "message": "Hello" },
+          { "id": 2, "sender": "Jane", "message": "Hi" }
+        ],
+        "2": [
+          { "id": 1, "sender": "John", "message": "Hi" },
+          { "id": 2, "sender": "Jane", "message": "Hello" }
+        ],
+        "3": [
+          { "id": 1, "sender": "Doe", "message": "Hey" },
+          { "id": 2, "sender": "John", "message": "Hi there" }
+        ]
+      }
+}

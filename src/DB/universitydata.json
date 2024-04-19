@@ -1,0 +1,322 @@
+{
+    "universities": [
+      {
+        "name": "Bells University Of Technology",
+        "programs": [
+          {
+            "name": "Food Technology",
+            "description": "Description of Program 1"
+          },
+          {
+            "name": "Nutrition and Dietetics",
+            "description": "Description of Program 2"
+          },
+          {
+            "name": "Agriculture and Agricultural Technology",
+            "description": "Description of Program 3"
+          },
+          {
+            "name": "Microbiology",
+            "description": "Description of Program 4"
+          },
+          {
+            "name": "Biochemistry",
+            "description": "Description of Program 5"
+          },
+          {
+            "name": "Industrial Chemistry",
+            "description": "Description of Program 6"
+          },
+          {
+            "name": "Physics with Electronics",
+            "description": "Description of Program 2"
+          },
+          {
+            "name": "Applied Mathematics",
+            "description": "Description of Program 3"
+          },
+          {
+            "name": "Statistics",
+            "description": "Description of Program 4"
+          },
+          {
+            "name": "Biotechnology",
+            "description": "Description of Program 5"
+          },
+          {
+            "name": "Computer Science",
+            "description": "Description of Program 6"
+          },
+          {
+            "name": "Information Technology",
+            "description": "Description of Program 2"
+          },
+          {
+            "name": "Business Administration",
+            "description": "Description of Program 3"
+          },
+          {
+            "name": "Human Resource Management",
+            "description": "Description of Program 4"
+          },
+          {
+            "name": "Marketing",
+            "description": "Description of Program 5"
+          },
+          {
+            "name": "Accounting",
+            "description": "Description of Program 6"
+          },
+          {
+            "name": "Economics",
+            "description": "Description of Program 2"
+          },
+          {
+            "name": "Banking and Finance",
+            "description": "Description of Program 3"
+          },
+          {
+            "name": "Project Management",
+            "description": "Description of Program 4"
+          },
+          {
+            "name": "Transport Management",
+            "description": "Description of Program 5"
+          },
+          {
+            "name": "Architecture",
+            "description": "Description of Program 6"
+          },
+          {
+            "name": "Building Technology",
+            "description": "Description of Program 5"
+          },
+          {
+            "name": "Estate Management",
+            "description": "Description of Program 6"
+          },
+          {
+            "name": "Quantity Surveying",
+            "description": "Description of Program 2"
+          },
+          {
+            "name": "Surveying and Geoinformatics",
+            "description": "Description of Program 3"
+          },
+          {
+            "name": "Urban and Regional Planning",
+            "description": "Description of Program 4"
+          },
+          {
+            "name": "Agricultural and Bio-Resources Engineering",
+            "description": "Description of Program 5"
+          },
+          {
+            "name": "Mechanical Engineering",
+            "description": "Description of Program 6"
+          },
+          {
+            "name": "Mechatronics Engineering",
+            "description": "Description of Program 2"
+          },
+          {
+            "name": "Civil Engineering",
+            "description": "Description of Program 3"
+          },
+          {
+            "name": "Biomedical Engineering",
+            "description": "Description of Program 4"
+          },
+          {
+            "name": "Computer Engineering",
+            "description": "Description of Program 5"
+          },
+          {
+            "name": "Electrical and Electronics Engineering",
+            "description": "Description of Program 6"
+          },
+          {
+            "name": "Telecommunication Engineering",
+            "description": "Description of Program 2"
+          }
+        ]
+      },
+      {
+        "name": "Afe Babalola University",
+        "programs": [
+          {
+            "name": "Clinical Pharmacy and Public Health",
+            "description": "Description of Program 1"
+          },
+          {
+            "name": "Pharmaceutical and Medicinal Chemistry",
+            "description": "Description of Program 2"
+          },
+          {
+            "name": "Pharmacognosy and Natural Products",
+            "description": "Description of Program 3"
+          },
+          {
+            "name": "Pharmaceutics and Pharmaceutical Technology",
+            "description": "Description of Program 4"
+          },
+          {
+            "name": "Pharmaceutical Microbiology and Biotechnology",
+            "description": "Description of Program 5"
+          },
+          {
+            "name": "Pharmacology and Toxicology",
+            "description": "Description of Program 6"
+          },
+          {
+            "name": "Social and Administrative Pharmacy",
+            "description": "Description of Program 1"
+          },
+          {
+            "name": "Aeronautical and Astronautical Engineering",
+            "description": "Description of Program 2"
+          },
+          {
+            "name": "Biomedical Engineering",
+            "description": "Description of Program 3"
+          },
+          {
+            "name": "Chemical Engineering",
+            "description": "Description of Program 4"
+          },
+          {
+            "name": "Petroleum Engineering",
+            "description": "Description of Program 5"
+          },
+          {
+            "name": "Civil Engineering",
+            "description": "Description of Program 6"
+          },
+          {
+            "name": "Computer Engineering",
+            "description": "Description of Program 1"
+          },
+          {
+            "name": "Electrical and Electronics Engineering",
+            "description": "Description of Program 2"
+          },
+          {
+            "name": "Mechanical Engineering",
+            "description": "Description of Program 3"
+          },
+          {
+            "name": "Mechatronics Engineering",
+            "description": "Description of Program 4"
+          },
+          {
+            "name": "Economics",
+            "description": "Description of Program 5"
+          },
+          {
+            "name": "Politica; Science",
+            "description": "Description of Program 6"
+          },
+          {
+            "name": "Inteligence and Security Studies",
+            "description": "Description of Program 1"
+          },
+          {
+            "name": "Media and Communication Studies",
+            "description": "Description of Program 2"
+          },
+          {
+            "name": "Sociology and Social Justice",
+            "description": "Description of Program 3"
+          },
+          {
+            "name": "Conflict, Peace, and Strategic Studies",
+            "description": "Description of Program 4"
+          },
+          {
+            "name": "International Relations and Deplomacy",
+            "description": "Description of Program 5"
+          },
+          {
+            "name": "Tourism and Event Management",
+            "description": "Description of Program 6"
+          },
+          {
+            "name": "Management and Entrepreneurship",
+            "description": "Description of Program 3"
+          },
+          {
+            "name": "Banking and Finance",
+            "description": "Description of Program 4"
+          },
+          {
+            "name": "Accounting",
+            "description": "Description of Program 5"
+          },
+          {
+            "name": "Performing Arts",
+            "description": "Description of Program 6"
+          },
+          {
+            "name": "Foreign Languages",
+            "description": "Description of Program 6"
+          }
+        ]
+      },
+      {
+        "name": "University C",
+        "programs": [
+          {
+            "name": "Program 1",
+            "description": "Description of Program 1"
+          },
+          {
+            "name": "Program 2",
+            "description": "Description of Program 2"
+          },
+          {
+            "name": "Program 3",
+            "description": "Description of Program 3"
+          },
+          {
+            "name": "Program 4",
+            "description": "Description of Program 4"
+          },
+          {
+            "name": "Program 5",
+            "description": "Description of Program 5"
+          },
+          {
+            "name": "Program 6",
+            "description": "Description of Program 6"
+          }
+        ]
+      }
+    ],
+    "academicLevels": [
+        {
+            "name": "100L"
+        },
+        {
+            "name": "200L"
+        },
+        {
+            "name": "200L (Direct Entry)"
+        },
+        {
+            "name": "300L"
+        },
+        {
+            "name": "400L"
+        },
+        {
+            "name": "400L (Final year)"
+        },
+        {
+            "name": "500L (Final year)"
+        },
+        {
+            "name": "Post Graduate Studies"
+        }
+    ]
+}
+  

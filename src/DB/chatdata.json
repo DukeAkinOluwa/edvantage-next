@@ -1,0 +1,211 @@
+{
+    "chats" : [
+        {
+            "type" : "Group",
+            "imageid": "SignalsAndSystems.png",
+            "title" : "Signals and Systems",
+            "lasttext" : "ENG303",
+            "noofmembers" : 25,
+            "chat": [
+                {
+                    "sender": "John",
+                    "message": "Hello"
+                },
+                {
+                    "sender": "Jane",
+                    "message": "Hi"
+                }
+            ]
+        },
+        {
+            "type" : "Group",
+            "imageid": "MechatronicsVirtualLab.png",
+            "title" : "Mechatronics Virtual Lab",
+            "lasttext" : "ENG305",
+            "noofmembers" : 86
+        },
+        {
+            "type" : "Group",
+            "imageid": "MechanicsOfMachines.png",
+            "title" : "Mechanics of Machines",
+            "lasttext" : "ENG307",
+            "noofmembers" : 12,
+            "chat": [
+                {
+                    "sender": "John",
+                    "message": "Hello"
+                },
+                {
+                    "sender": "Jane",
+                    "message": "Hi"
+                }
+            ]
+        },
+        {
+            "type" : "Group",
+            "imageid": "SmartGlassEngineers.png",
+            "title" : "Smart Glass Engineers",
+            "lasttext" : "A community of like minded engineers focused",
+            "noofmembers" : 18
+        },
+        {
+            "type" : "Private",
+            "imageid": "Akin.png",
+            "title" : "Akin",
+            "lasttext" : "ENG303",
+            "noofmembers" : 25,
+            "chat": [
+                {
+                    "sender": "John",
+                    "message": "Hello"
+                },
+                {
+                    "sender": "Akin",
+                    "message": "Hi"
+                },
+                {
+                    "sender": "Akin",
+                    "message": "Whatsup good? I saw the text message you sent a few days back but I cheared all my chats by mistake and I kinda forgot to respond to your text."
+                },
+                {
+                    "sender": "John",
+                    "message": "Oooh ooh, that's alright."
+                },
+                {
+                    "sender": "Akin",
+                    "message": "I spoke with the photographer already and he says that he will be free throughout next week."
+                },
+                {
+                    "sender": "John",
+                    "message": "Thank God o."
+                },
+                {
+                    "sender": "John",
+                    "message": "So how much do you think he will request for?."
+                },
+                {
+                    "sender": "John",
+                    "message": "I want him to be available throughout the event and the event should last for about 3 hours."
+                },
+                {
+                    "sender": "Akin",
+                    "message": "He charges about 20k per hour but since you're coming from me, he should charge you about 15 thousand per hour."
+                },
+                {
+                    "sender": "Akin",
+                    "message": "Let's just say 15."
+                }
+            ]
+        },
+        {
+            "type" : "Private",
+            "imageid": "Debo.png",
+            "title" : "Debo",
+            "lasttext" : "ENG305",
+            "noofmembers" : 86
+        },
+        {
+            "type" : "Private",
+            "imageid": "Daniel.png",
+            "title" : "Daniel",
+            "lasttext" : "ENG307",
+            "noofmembers" : 12,
+            "chat": [
+                {
+                    "sender": "John",
+                    "message": "Hello"
+                },
+                {
+                    "sender": "Jane",
+                    "message": "Hi"
+                }
+            ]
+        },
+        {
+            "type" : "Private",
+            "imageid": "Ayo.png",
+            "title" : "Ayo",
+            "lasttext" : "A community of like minded engineers focused",
+            "noofmembers" : 18
+        },
+        {
+            "type" : "Group",
+            "imageid": "MechatronicsVirtualLab.png",
+            "title" : "Mechatronics Virtual Lab",
+            "lasttext" : "ENG3005",
+            "noofmembers" : 86
+        },
+        {
+            "type" : "Group",
+            "imageid": "MechanicsOfMachines.png",
+            "title" : "Mechanics of Machines",
+            "lasttext" : "ENG3007",
+            "noofmembers" : 12,
+            "chat": [
+                {
+                    "sender": "John",
+                    "message": "Hello"
+                },
+                {
+                    "sender": "Jane",
+                    "message": "Hi"
+                }
+            ]
+        },
+        {
+            "type" : "Group",
+            "imageid": "SmartGlassEngineers.png",
+            "title" : "Smart Glass Engineers",
+            "lasttext" : "A coommunity of like minded engineers focused",
+            "noofmembers" : 18
+        },
+        {
+            "type" : "Private",
+            "imageid": "Akin.png",
+            "title" : "Akin",
+            "lasttext" : "ENG3003",
+            "noofmembers" : 25,
+            "chat": [
+                {
+                    "sender": "John",
+                    "message": "Hello"
+                },
+                {
+                    "sender": "Jane",
+                    "message": "Hi"
+                }
+            ]
+        },
+        {
+            "type" : "Private",
+            "imageid": "Debo.png",
+            "title" : "Debo",
+            "lasttext" : "ENG3005",
+            "noofmembers" : 86
+        },
+        {
+            "type" : "Private",
+            "imageid": "Daniel.png",
+            "title" : "Daniel",
+            "lasttext" : "ENG3007",
+            "noofmembers" : 12,
+            "chat": [
+                {
+                    "sender": "John",
+                    "message": "Hello"
+                },
+                {
+                    "sender": "Jane",
+                    "message": "Hi"
+                }
+            ]
+        },
+        {
+            "type" : "Private",
+            "imageid": "Ayo.png",
+            "title" : "Ayo",
+            "lasttext" : "A communityy of like minded engineers focused",
+            "noofmembers" : 18
+        }
+    ]
+}
