@@ -1,6 +1,5 @@
 'use client'
 
-import SideMenu from "@/components/SideMenu";
 import PageRightHeader from "@/components/PageRightHeader"
 import { useEffect, useState } from "react";
 
@@ -34,9 +33,7 @@ export default function Assignments(props){
 
 
     return(
-        <div className="pages">
-            <SideMenu />
-            <span className="page-right assignments-page">
+            <>
                 <PageRightHeader page_title={props.page_title} userlevel="23"/>
                 <div className="assignment-task-overview-table table">
                     <div className="assignment-header row">
@@ -55,8 +52,7 @@ export default function Assignments(props){
                         <div>No Data</div>
                     )}
                 </div>
-            </span>
-        </div>
+            </>
     )
     function ATTemplate(props){
 

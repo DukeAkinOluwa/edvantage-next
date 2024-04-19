@@ -41,7 +41,7 @@ export default function RootLayout({ children }) {
       <body>
         <div className="pages">
           <SideMenu />
-          <div className="page-right">
+          <div className={`page-right `}>
             {children}
           </div>
         </div>
