@@ -19,8 +19,8 @@ export default function SilverMedal(){
             <path id="Vector" d="M63.159 27.9316L72.7377 47.0891L91.8952 49.4838L78.7404 64.235L82.3164 85.404L63.159 75.8252L44.0016 85.404L47.6096 64.235L34.4229 49.4838L53.5803 47.0891L63.159 27.9316Z" fill="url(#paint1_linear_271_6484)"/>
             </g>
             <defs>
-            <filter id="filter0_d_271_6484" x="0.443065" y="0.285838" width="135.974" height="177.71" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-            <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+            <filter id="filter0_d_271_6484" x="0.443065" y="0.285838" width="135.974" height="177.71" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+            <feFlood floodOpacity="0" result="BackgroundImageFix"/>
             <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
             <feOffset dx="5.48449" dy="5.48449"/>
             <feGaussianBlur stdDeviation="3.13399"/>
@@ -30,13 +30,13 @@ export default function SilverMedal(){
             <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_271_6484" result="shape"/>
             </filter>
             <linearGradient id="paint0_linear_271_6484" x1="62.9184" y1="14.4189" x2="62.9184" y2="103.228" gradientUnits="userSpaceOnUse">
-            <stop stop-color="#9CA1A3"/>
-            <stop offset="1" stop-color="#9CA1A3" stop-opacity="0"/>
+            <stop stopColor="#9CA1A3"/>
+            <stop offset="1" stopColor="#9CA1A3" stopOpacity="0"/>
             </linearGradient>
             <linearGradient id="paint1_linear_271_6484" x1="63.159" y1="27.9316" x2="63.159" y2="85.404" gradientUnits="userSpaceOnUse">
-            <stop stop-color="#F1F5F5"/>
-            <stop offset="0.0001" stop-color="white"/>
-            <stop offset="1" stop-color="#F1F5F5"/>
+            <stop stopColor="#F1F5F5"/>
+            <stop offset="0.0001" stopColor="white"/>
+            <stop offset="1" stopColor="#F1F5F5"/>
             </linearGradient>
             </defs>
         </svg>

@@ -30,7 +30,7 @@
 <path id="Rectangle 25" opacity="0.5" d="M95.8115 50.3887L17.4408 50.3886L17.4408 15.94L95.8115 15.94L95.8115 50.3887Z" fill="url(#paint2_linear_271_6601)"/>
 </g>
 <defs>
-<filter id="filter0_d_271_6601" x="0.758494" y="0.51533" width="122.405" height="221.32" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<filter id="filter0_d_271_6601" x="0.758494" y="0.51533" width="122.405" height="221.32" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
 <feFlood flood-opacity="0" result="BackgroundImageFix"/>
 <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
 <feOffset dx="5.48449" dy="5.48449"/>

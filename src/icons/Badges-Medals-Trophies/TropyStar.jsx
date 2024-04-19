@@ -14,8 +14,8 @@ export default function TrophyStar(){
             <path id="Vector_4" d="M14.4286 26.4841L15.0339 25.152L14.4286 23.8199L15.7607 24.4252L17.0928 23.8199L16.4876 25.152L17.0928 26.4841L15.7607 25.8788L14.4286 26.4841Z" fill="white"/>
             </g>
             <defs>
-            <filter id="filter0_d_271_6890" x="0.915326" y="0.915326" width="21.3548" height="32.0555" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-            <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+            <filter id="filter0_d_271_6890" x="0.915326" y="0.915326" width="21.3548" height="32.0555" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+            <feFlood floodOpacity="0" result="BackgroundImageFix"/>
             <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
             <feOffset dx="0.59272" dy="0.59272"/>
             <feGaussianBlur stdDeviation="0.338697"/>

@@ -37,8 +37,8 @@ export default function Award2(){
         <path id="Vector_2" d="M114.13 49.6341L124.649 70.0806L124.892 70.5519L125.418 70.6158L146.304 73.153L131.951 88.7936L131.619 89.1561L131.703 89.6409L135.628 112.22L114.567 101.986L114.13 101.774L113.693 101.986L92.6351 112.218L96.5944 89.6424L96.6797 89.1561L96.3455 88.7927L81.959 73.1526L102.842 70.6158L103.368 70.5519L103.61 70.0806L114.13 49.6341Z" fill="url(#paint0_linear_271_6526)" stroke="#7E6200" stroke-width="2"/>
         </g>
         <defs>
-        <filter id="filter0_d_271_6526" x="0.634471" y="0.176463" width="236.605" height="153.509" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-        <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+        <filter id="filter0_d_271_6526" x="0.634471" y="0.176463" width="236.605" height="153.509" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+        <feFlood floodOpacity="0" result="BackgroundImageFix"/>
         <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
         <feOffset dx="5.48449" dy="5.48449"/>
         <feGaussianBlur stdDeviation="3.13399"/>
@@ -48,8 +48,8 @@ export default function Award2(){
         <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_271_6526" result="shape"/>
         </filter>
         <linearGradient id="paint0_linear_271_6526" x1="114.13" y1="47.4482" x2="114.13" y2="113.973" gradientUnits="userSpaceOnUse">
-        <stop stop-color="#FFF5D3"/>
-        <stop offset="1" stop-color="#FFE178"/>
+        <stop stopColor="#FFF5D3"/>
+        <stop offset="1" stopColor="#FFE178"/>
         </linearGradient>
         </defs>
         </svg>

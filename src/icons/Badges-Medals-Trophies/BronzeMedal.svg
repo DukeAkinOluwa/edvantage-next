@@ -17,7 +17,7 @@
 <path id="Vector" d="M63.4315 27.9316L73.0102 47.0891L92.1676 49.4838L79.0129 64.235L82.5889 85.404L63.4315 75.8252L44.274 85.404L47.882 64.235L34.6953 49.4838L53.8528 47.0891L63.4315 27.9316Z" fill="url(#paint0_linear_271_6495)"/>
 </g>
 <defs>
-<filter id="filter0_d_271_6495" x="0.715526" y="0.285838" width="135.974" height="177.71" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<filter id="filter0_d_271_6495" x="0.715526" y="0.285838" width="135.974" height="177.71" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
 <feFlood flood-opacity="0" result="BackgroundImageFix"/>
 <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
 <feOffset dx="5.48449" dy="5.48449"/>

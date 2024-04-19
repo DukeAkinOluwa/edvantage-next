@@ -30,8 +30,8 @@ export default function Award1(){
             <path id="Vector_2" d="M96.2267 34.4506L101.364 23.1452L96.2267 11.8397L107.532 16.9766L118.838 11.8397L113.701 23.1452L118.838 34.4506L107.532 29.3137L96.2267 34.4506Z" fill="white"/>
             </g>
             <defs>
-            <filter id="filter0_d_271_6506" x="0.758494" y="8.36299" width="132.245" height="180.163" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-            <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+            <filter id="filter0_d_271_6506" x="0.758494" y="8.36299" width="132.245" height="180.163" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+            <feFlood floodOpacity="0" result="BackgroundImageFix"/>
             <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
             <feOffset dx="5.48449" dy="5.48449"/>
             <feGaussianBlur stdDeviation="3.13399"/>
@@ -41,12 +41,12 @@ export default function Award1(){
             <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_271_6506" result="shape"/>
             </filter>
             <linearGradient id="paint0_linear_271_6506" x1="61.3964" y1="98.7129" x2="61.3964" y2="154.692" gradientUnits="userSpaceOnUse">
-            <stop stop-color="#4A0D0D"/>
-            <stop offset="1" stop-color="#983535" stop-opacity="0"/>
+            <stop stopColor="#4A0D0D"/>
+            <stop offset="1" stopColor="#983535" stopOpacity="0"/>
             </linearGradient>
             <linearGradient id="paint1_linear_271_6506" x1="61.8274" y1="32.3994" x2="61.8274" y2="103.88" gradientUnits="userSpaceOnUse">
-            <stop stop-color="#FFF5D3"/>
-            <stop offset="1" stop-color="#FFE178"/>
+            <stop stopColor="#FFF5D3"/>
+            <stop offset="1" stopColor="#FFE178"/>
             </linearGradient>
             </defs>
         </svg>
