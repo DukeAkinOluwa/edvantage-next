@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function AddAssignment(){
+export default function AddAssignment({ handleAddAssignment }){
     const [assignmentData, setAssignmentData] = useState({
         coursecode: '',
         duedate: ''
@@ -16,6 +16,7 @@ export default function AddAssignment(){
 
     function handleSubmit(){
         console.log(assignmentData)
+        handleAddAssignment()
     }
     return(
         <div className="add">

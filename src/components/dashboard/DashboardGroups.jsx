@@ -28,7 +28,7 @@ export default function DashboardGroup(){
             {taskinfo.slice(0, 4).map((groups, index) => (
                  <DGTemplate key={index} groupdata={groups} index={index} />
              ))}
-             {isAddGroupVisible === true ? (<div className="add-item"><div className="invisible-background" onClick={handleAddGroup}></div><AddGroup /></div>) : (<></>) }
+             {isAddGroupVisible === true ? (<div className="add-item"><div className="invisible-background" onClick={handleAddGroup}></div><AddGroup handleAddGroup={handleAddGroup} /></div>) : (<></>) }
         </div>
     )
 }

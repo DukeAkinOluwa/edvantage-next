@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-export default function AddGroup(){
+export default function AddGroup({ handleAddGroup }){
     const [groupData, setGroupData] = useState({
         
     });
@@ -17,6 +17,7 @@ export default function AddGroup(){
 
     function handleSubmit(){
         console.log(groupData)
+        handleAddGroup()
     }
     return(
         <div className="add">

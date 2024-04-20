@@ -51,7 +51,7 @@ const DashboardTasksOverview = () =>{
                  <DTOTemplate key={index} taskdata={tasks} />
              ))}
             </div>
-            {isAddAssignmentVisible === true ? (<div className="add-item"><div className="invisible-background" onClick={handleAddAssignment}></div><AddAssignment /></div>) : (<></>) }
+            {isAddAssignmentVisible === true ? (<div className="add-item"><div className="invisible-background" onClick={handleAddAssignment}></div><AddAssignment handleAddAssignment={handleAddAssignment} /></div>) : (<></>) }
         </div>
     )
     function DTOTemplate(props){
