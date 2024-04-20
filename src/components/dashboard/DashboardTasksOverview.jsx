@@ -22,7 +22,7 @@ const DashboardTasksOverview = () =>{
         };
     }, []);
 
-    const taskinfo = windowWidth >= 575.98 ? taskdata : taskdata.slice(0, 2);
+    const taskinfo = windowWidth >= 575.98 ? taskdata.slice(0, 12) : taskdata.slice(0, 2);
     
     function handleAddAssignment(){
         if(isAddAssignmentVisible === false){
