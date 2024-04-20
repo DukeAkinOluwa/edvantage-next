@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import SideMenu from "@/components/SideMenu"
 import PageRightHeader from "@/components/PageRightHeader"
 
-export default function Settings(props){
+export default function Settings(){
     const [userData, setUserData] = useState({
         oldPassword: '',
         newPassword: '',
@@ -97,7 +97,7 @@ export default function Settings(props){
 
     return(
         <div className="settings-page">
-            <PageRightHeader page_title={props.page_title} userlevel="23"/>
+            <PageRightHeader page_title={`Settings`} userlevel="23"/>
             <div className="left">
                 <form className="password-reset settings-section">
                     <h3>Password reset</h3>

@@ -3,7 +3,7 @@
 import PageRightHeader from "@/components/PageRightHeader"
 import { useEffect, useState } from "react";
 
-export default function Assignments(props){
+export default function Assignments(){
 
     useEffect(() => {
         // Function to fetch data from local storage asynchronously
@@ -34,7 +34,7 @@ export default function Assignments(props){
 
     return(
             <>
-                <PageRightHeader page_title={props.page_title} userlevel="23"/>
+                <PageRightHeader page_title={`Assignment`} userlevel="23"/>
                 <div className="assignment-task-overview-table table">
                     <div className="assignment-header row">
                         <div className="column1"><h5>Course Title</h5></div>

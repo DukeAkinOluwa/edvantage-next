@@ -4,13 +4,13 @@ import SideMenu from "@/components/SideMenu"
 import PageRightHeader from "@/components/PageRightHeader"
 import faq_info from "@/DB/faqdata.json"
 
-export default function FAQs(props){
+export default function FAQs(){
     
     const faqinfo = faq_info.data
 
     return(
         <>
-        <PageRightHeader page_title={props.page_title} userlevel="23"/>
+        <PageRightHeader page_title={`FAQs`} userlevel="23"/>
         <div className="faq-table table">
             <div className="faq-header row">
                 <div className="column1"><h5>S/N</h5></div>

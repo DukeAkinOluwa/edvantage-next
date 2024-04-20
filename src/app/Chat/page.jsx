@@ -5,7 +5,7 @@ import PageRightHeader from "@/components/PageRightHeader";
 import CPTemplate from "@/components/templates/CPTemplate";
 import SearchIcon from "@/icons/search";
 
-export default function Chats(props){
+export default function Chats(){
     const [viewportWidth, setViewportWidth] = useState(null);
     const [userData, setUserData] = useState(null);
     const [selectedClassification, setSelectedClassification] = useState(null);
@@ -186,7 +186,7 @@ export default function Chats(props){
               <></>
             ) : (
               <PageRightHeader
-                  page_title={props.page_title}
+                  page_title={`Settings`}
                   userlevel="23"
                   handleShowSearchBar={handleShowSearchBar}
                   handleSetBack={handleSetBack}
