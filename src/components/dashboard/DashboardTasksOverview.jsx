@@ -1,12 +1,12 @@
 'use client'
 
-import task_data from "../../DB/taskdata.json"
+import task_data from "@/DB/taskdata.json"
 import React, { useState, useEffect } from 'react';
 import AddAssignment from "../AddAssignment";
 
 const DashboardTasksOverview = () =>{
     const taskdata = task_data.courses
-    const [windowWidth, setWindowWidth] = useState("600");
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
     const [isAddTaskVisible, setIsAddTaskVisible] = useState(false)
     const [isAddAssignmentVisible, setIsAddAssignmentVisible] = useState(false)
 
@@ -22,7 +22,7 @@ const DashboardTasksOverview = () =>{
         };
     }, []);
 
-    const taskinfo = windowWidth >= 575.98 ? taskdata.slice(0, 12) : taskdata.slice(0, 2);
+    const taskinfo = windowWidth >= 575.98 ? taskdata : taskdata.slice(0, 2);
     
     function handleAddAssignment(){
         if(isAddAssignmentVisible === false){
