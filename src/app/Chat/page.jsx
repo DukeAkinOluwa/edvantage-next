@@ -59,7 +59,6 @@ export default function Chats(){
     function handleSetBack(booleanValue, elementIndex) {
         setBack(booleanValue);
         setElementZIndex(elementIndex);
-        console.log(typeof elementIndex);
     }
       
     const handleClassificationClick = (classification) => {
@@ -177,7 +176,6 @@ export default function Chats(){
           </>
         );
     };
-    console.log(viewportWidth)
       
     
     return (

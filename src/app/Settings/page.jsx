@@ -69,7 +69,6 @@ export default function Settings(){
 
         // Validate email
         if (!isValidEmail(userData.newEmail)) {
-            console.log(userData.newEmail)
             setEmailError('Please enter a valid email address.');
             return;
         }else{
