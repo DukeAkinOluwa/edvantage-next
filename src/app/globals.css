@@ -388,6 +388,9 @@ input[type=file] {
   padding: 10px 0px 20px 0px;
   width: 40svw;
 }
+.user-profile-page label {
+  max-width: 450px;
+}
 .user-profile-page .upload-file {
   height: 90px;
   width: 90px;
@@ -1025,7 +1028,6 @@ input[type=file] {
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: sticky;
   width: calc(100% - 10px);
   background-color: #FFFFFF;
 }

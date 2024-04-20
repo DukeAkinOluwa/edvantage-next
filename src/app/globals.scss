@@ -488,9 +488,9 @@ input[type="file"] {
         width: 40svw;
     }
 
-    // input{
-    //     // background-color: #4891D30D;
-    // }
+    label{
+        max-width: 450px;
+    }
     .upload-file {
         height: 90px;
         width: 90px;
@@ -1169,7 +1169,6 @@ input[type="file"] {
 // Page Right
 .page-right-header {
     @include fda();
-    position: sticky;
     width: calc(100% - 10px);
     background-color: #FFFFFF;
 
