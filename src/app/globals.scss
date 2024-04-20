@@ -77,6 +77,8 @@ $page-right-header-height: 55px;
 
 html, body, .pages{
     height: 100dvh;
+    top: 0px;
+    position: relative;
 }
 
 body{
@@ -1967,7 +1969,7 @@ input[type="file"] {
     @include fda;
     border: solid 1px rgb(45, 46, 46, .4);
     border-radius: 10px;
-    width: calc(100% - 80px);
+    width: calc(100% - 40px);
     color: #282828;
 
     .faq-header {
