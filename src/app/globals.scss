@@ -75,6 +75,10 @@ $page-right-header-height: 55px;
     width: 2px;
 }
 
+html, body, .pages{
+    height: 100dvh;
+}
+
 body{
     margin: 0px;
 }
@@ -192,7 +196,7 @@ input {
     @include fda;
     gap: 10px;
     position: absolute;
-    left: $side-menu-width;
+    right: 0px;
     width: calc(100dvw - $side-menu-width - 2px);
 }
 
@@ -1678,9 +1682,13 @@ input[type="file"] {
 
 // Chat
 .chat-page {
+    @include fd;
+    position: relative;
     background-color: white;
-    height: 100%;
+    height: 100dvh;
+    width: 100%;
     gap: 0px;
+    right: 0px;
     overflow: hidden;
 }
 
@@ -1688,7 +1696,7 @@ input[type="file"] {
     top: 0px;
     display: grid;
     grid-template-columns: $chat-left-width auto;
-    height: calc(100dvh - 110px);
+    height: calc(100dvh - 122px);
     width: 100%;
     // height: 100%;
     border-top: solid 1px rgb(40, 40, 40, .5);
@@ -1904,8 +1912,7 @@ input[type="file"] {
 
     .empty-chat-body {
         @include fja;
-        border-bottom: solid 1px rgb(40, 40, 40, .5);
-
+        justify-self: center;
         .display-container {
             @include fdja;
             gap: 20px;
@@ -1948,7 +1955,7 @@ input[type="file"] {
 
 .left,
 .right {
-    margin-top: 15px;
+    padding-top: 15px;
     height: calc(100% - 15px);
 }
 
@@ -2057,7 +2064,7 @@ input[type="file"] {
     }
     .right,
     .left{
-        margin: 0px;
+        padding: 0px;
     }
 
     // Components
