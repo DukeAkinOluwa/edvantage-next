@@ -6,6 +6,7 @@ import DashboardBoxes from "@/components/dashboard/DashboardBoxes";
 import DashboardCalendar from "@/components/dashboard/DashboardCalendar";
 import DashboardGroup from "@/components/dashboard/DashboardGroups";
 import DashboardTasksOverview from "@/components/dashboard/DashboardTasksOverview";
+import DashboardTimeTable from "@/components/dashboard/DashboardTimeTable";
 import { useState } from "react";
 
 export default function Home() {
@@ -20,6 +21,7 @@ export default function Home() {
         <DashboardAd />
         <DashboardBoxes />
         <DashboardCalendar />
+        <DashboardTimeTable />
         <DashboardTasksOverview />
         <DashboardGroup />
     </section>

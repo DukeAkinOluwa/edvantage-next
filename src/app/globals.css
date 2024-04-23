@@ -159,8 +159,8 @@ input:focus-visible {
   display: grid;
   gap: 12px;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: 190px 140px 140px 80svh 30svh 40svh;
-  grid-template-areas: "dashboardad dashboardad dashboardcalendar" "dashboardbox dashboardbox dashboardcalendar" "dashboardbox dashboardbox dashboardcalendar" "classandexamschedule classandexamschedule classandexamschedule" "dashboardtasks dashboardtasks dashboardgroups" "dashboardtasks dashboardtasks dashboardgroups";
+  grid-template-rows: 190px 140px 140px 85svh 70svh;
+  grid-template-areas: "dashboardad dashboardad dashboardcalendar" "dashboardbox dashboardbox dashboardcalendar" "dashboardbox dashboardbox dashboardcalendar" "classandexamschedule classandexamschedule classandexamschedule" "dashboardtasks dashboardtasks dashboardgroups";
 }
 .dashboard-main-section .add-item {
   width: 100dvw;
@@ -171,6 +171,7 @@ input:focus-visible {
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 2;
 }
 .dashboard-main-section .add-item .add {
   display: flex;
@@ -189,6 +190,8 @@ input:focus-visible {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 10px 0px;
+  border-radius: 5px;
 }
 .dashboard-main-section .add-item .add input {
   height: fit-content;
@@ -1415,6 +1418,96 @@ input[type=file] {
   align-items: center;
 }
 
+.dashboard-time-table {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  grid-area: classandexamschedule;
+  background-color: #FFFFFF;
+  border-radius: 8px;
+}
+.dashboard-time-table .time-table-header {
+  width: calc(100% - 40px);
+  padding: 0px 0px 10px 0px;
+  gap: 3px;
+}
+.dashboard-time-table .table {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: calc(100% - 20px);
+  height: 100%;
+  margin-top: 10px;
+  gap: 10px;
+}
+.dashboard-time-table .table h3 {
+  justify-self: center;
+  font-weight: 400;
+  color: rgb(132, 133, 133);
+}
+.dashboard-time-table .table .table-header {
+  width: 100%;
+  height: 40px;
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+}
+.dashboard-time-table .table .table-header h3 {
+  font-weight: 400;
+  color: rgb(132, 133, 133);
+}
+.dashboard-time-table .table .table-header .cell {
+  display: flex;
+  justify-content: center;
+}
+.dashboard-time-table .table .table-content {
+  display: grid;
+  grid-template-areas: "left right";
+  grid-template-columns: 1fr 7fr;
+  width: 100%;
+  height: 100%;
+}
+.dashboard-time-table .table .table-content .left,
+.dashboard-time-table .table .table-content .right {
+  margin: 0px;
+  height: 100%;
+}
+.dashboard-time-table .table .table-content .left {
+  grid-area: left;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(6, 1fr);
+  gap: 5px;
+  width: calc(100% - 5px);
+}
+.dashboard-time-table .table .table-content .left .time-cont {
+  display: flex;
+  justify-content: center;
+  border-right: dotted 1px rgb(132, 133, 133);
+}
+.dashboard-time-table .table .table-content .right {
+  position: relative;
+  display: grid;
+  grid-area: right;
+  grid-template-rows: repeat(24, 1fr);
+  grid-template-columns: repeat(7, 1fr);
+  border-top: dotted 1px rgb(196, 199, 199);
+}
+.dashboard-time-table .table .table-content .right .empty-div {
+  border-bottom: dotted 1px rgb(199, 199, 199);
+  border-right: dotted 1px rgb(199, 199, 199);
+}
+.dashboard-time-table .table .table-content .right .event {
+  position: absolute;
+  border-radius: 10px;
+  color: #FFFFFF;
+}
+.dashboard-time-table .table .table-content .right label {
+  color: #2D2E2E;
+}
+
 .dashboard-groups {
   display: flex;
   flex-direction: column;
@@ -1778,7 +1871,7 @@ input[type=file] {
 
 .left,
 .right {
-  padding-top: 15px;
+  margin-top: 15px;
   height: calc(100% - 15px);
 }
 
@@ -1834,8 +1927,50 @@ input[type=file] {
     height: 40px;
     background-color: #2A52BE;
   }
+  .side-menu {
+    display: none;
+  }
+  .page-right {
+    width: 100dvw;
+    left: 0px;
+  }
   .page-right-header .menu-btn {
     display: flex;
+  }
+  .dashboard-main-section {
+    grid-template-rows: 190px 140px 140px 60vh 50svh;
+  }
+  .dashboard-time-table .table {
+    display: grid;
+    grid-template-columns: 50px auto;
+    gap: 0px;
+  }
+  .dashboard-time-table .table .table-header {
+    grid-template-columns: 1fr;
+    grid-template-rows: 40px repeat(7, 1fr);
+    height: 100%;
+    width: 40px;
+  }
+  .dashboard-time-table .table .table-header .cell {
+    border-right: dotted 1px rgb(132, 133, 133);
+    width: 100%;
+  }
+  .dashboard-time-table .table .table-content {
+    grid-template-areas: "left" "right";
+    grid-template-columns: 1fr;
+    grid-template-rows: 40px auto;
+  }
+  .dashboard-time-table .table .table-content .left {
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: 1fr;
+    width: 100%;
+  }
+  .dashboard-time-table .table .table-content .left .time-cont {
+    border: none;
+  }
+  .dashboard-time-table .table .table-content .right {
+    grid-template-columns: repeat(24, 1fr);
+    grid-template-rows: repeat(7, 1fr);
   }
 }
 @media only screen and (max-width: 575.98px) {
@@ -1996,6 +2131,14 @@ input[type=file] {
   .dashboard-boxes {
     grid-template-columns: auto;
   }
+  .dashboard-time-table .table {
+    grid-template-columns: 50px 650px;
+    overflow-x: scroll;
+  }
+  .dashboard-time-table .table .table-content .right {
+    width: 650px;
+    overflow: hidden;
+  }
   .dashboard-t-o-t-header.row {
     display: none;
   }
@@ -2034,9 +2177,9 @@ input[type=file] {
     margin: 0px;
   }
   .dashboard-main-section {
-    grid-template-areas: "dashboardbox dashboardbox" "dashboardbox dashboardbox" "dashboardcalendar dashboardcalendar" "classandexamschedule classandexamschedule" "dashboardtasks dashboardtasks" "dashboardgroups dashboardgroups";
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: auto;
+    grid-template-areas: "dashboardbox" "dashboardcalendar" "classandexamschedule" "dashboardtasks" "dashboardgroups";
+    grid-template-columns: 100%;
+    grid-template-rows: auto auto 70svh auto auto;
     background-color: #FFFFFF;
     margin: 0px;
   }
