@@ -275,7 +275,7 @@ export default function Chats(){
                   <label>
                     <input
                       type="text"
-                      placeholder="Message"
+                      placeholder="Start typing..."
                       name="chat-input"
                       autoComplete="off"
                     />
