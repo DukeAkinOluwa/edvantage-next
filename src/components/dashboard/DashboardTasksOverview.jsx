@@ -6,13 +6,14 @@ import AddAssignment from "../AddAssignment";
 
 const DashboardTasksOverview = () =>{
     const taskdata = task_data.courses
-    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+    const [windowWidth, setWindowWidth] = useState(null);
     const [isAddTaskVisible, setIsAddTaskVisible] = useState(false)
     const [isAddAssignmentVisible, setIsAddAssignmentVisible] = useState(false)
 
     useEffect(() => {
-        const handleResize = () => {
         setWindowWidth(window.innerWidth);
+        const handleResize = () => {
+            setWindowWidth(window.innerWidth);
         };
 
         window.addEventListener('resize', handleResize);
