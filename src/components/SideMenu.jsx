@@ -36,7 +36,6 @@ export default function SideMenu() {
 
   return (
     <div className="side-menu">
-      <div className="side-menu-logo"></div>
       <nav>
         <Link href="/" className={`nav-links ${activeLink === 1 ? "active": ""}`} onClick={() => setActiveLink(1)}>
           <svg className="side-menu-icon">

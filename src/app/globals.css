@@ -109,8 +109,14 @@ input:focus-visible {
 
 .pages {
   width: 100dvw;
-  display: flex;
+  height: 100dvh;
+  display: grid;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  grid-template-areas: "generalHeader generalHeader" "sideMenu pageRight";
   color: #2D2E2E;
+  grid-template-rows: 55px auto;
 }
 
 .page-right {
@@ -121,6 +127,9 @@ input:focus-visible {
   position: absolute;
   right: 0px;
   width: calc(100dvw - 270px - 2px);
+  grid-area: pageRight;
+  overflow-y: scroll;
+  height: 100%;
 }
 
 .app-features {
@@ -1268,9 +1277,10 @@ input[type=file] {
 
 .side-menu {
   width: 270px;
-  height: 100dvh;
+  height: 100%;
   background: #2A52BE;
-  position: fixed;
+  position: absolute;
+  grid-area: sideMenu;
 }
 .side-menu .side-menu-logo {
   display: block;
@@ -1281,7 +1291,7 @@ input[type=file] {
   align-items: center;
   gap: 10px;
   position: relative;
-  top: 60px;
+  top: 20px;
   max-height: calc(100dvh - 136px);
 }
 .side-menu .nav-links {
@@ -1327,44 +1337,47 @@ input[type=file] {
   left: 10%;
 }
 
-.page-right-header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: calc(100% - 10px);
-  background-color: #FFFFFF;
-}
-.page-right-header div {
+.general-header {
+  grid-area: generalHeader;
   display: flex;
   align-items: center;
-}
-.page-right-header .menu-btn {
-  left: 20px;
-}
-.page-right-header .menu-btn .line {
-  background-color: #2D2E2E;
-}
-.page-right-header .page-right-header-a {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  gap: 20px;
+  width: calc(100% - 30px);
+  padding: 0px 20px 0px 10px;
   position: relative;
   height: 55px;
-  justify-content: flex-end;
+  justify-content: space-between;
+  box-shadow: 0px 0px 10px rgba(40, 40, 40, 0.2);
 }
-.page-right-header .page-right-header-a .profile-image-cont {
-  height: 40px;
-  width: 40px;
+.general-header .left h3 {
+  color: #2A52BE;
+}
+.general-header .right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.general-header .right .profile-image-cont {
+  height: 30px;
+  width: 30px;
   overflow: hidden;
 }
-.page-right-header .page-right-header-a .profile-image-cont img {
+.general-header .right .profile-image-cont img {
   border-radius: 50%;
   height: 100%;
   width: 100%;
   object-fit: cover;
 }
-.page-right-header .header-side-menu {
+.general-header div {
+  display: flex;
+  align-items: center;
+}
+.general-header .menu-btn {
+  left: 20px;
+}
+.general-header .menu-btn .line {
+  background-color: #2D2E2E;
+}
+.general-header .header-side-menu {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1377,39 +1390,109 @@ input[type=file] {
   transition: left 0.3s ease;
   z-index: 1;
 }
-.page-right-header .header-side-menu .slide-menu-links {
+.general-header .header-side-menu .slide-menu-links {
   display: flex;
   flex-direction: column;
   width: 100%;
   gap: 20px;
 }
-.page-right-header .header-side-menu .slide-menu-links .space {
+.general-header .header-side-menu .slide-menu-links .space {
   height: 55px;
   width: 100%;
 }
-.page-right-header .header-side-menu .slide-menu-links .nav-links {
+.general-header .header-side-menu .slide-menu-links .nav-links {
   display: flex;
   align-items: center;
   gap: 20px;
   height: max-content;
   margin: 0px 0px 0px 20px;
 }
-.page-right-header .header-side-menu .slide-menu-links svg {
+.general-header .header-side-menu .slide-menu-links svg {
   height: 24px;
   width: 24px;
   stroke: #2A52BE;
   fill: #FFFFFF;
 }
-.page-right-header .header-side-menu .slide-menu-links a {
+.general-header .header-side-menu .slide-menu-links a {
   color: #2A52BE;
   width: 80%;
 }
-.page-right-header .header-side-menu .slide-menu-links .login {
+.general-header .header-side-menu .slide-menu-links .login {
   color: #FEFAFA;
 }
-.page-right-header .header-side-menu.visible {
+.general-header .header-side-menu.visible {
   left: 0;
   /* Show the side menu by setting right to 0 */
+}
+.general-header .header-popup-notification {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: fixed;
+  top: 70px;
+  right: 70px;
+  height: 400px;
+  max-height: 90vh;
+  width: 340px;
+  max-width: 90vw;
+  border-radius: 6px;
+  box-shadow: 0px 0px 17px 1px #9f9e9e;
+  background-color: #FFFFFF;
+  padding: 0px 10px;
+  gap: 10px;
+  z-index: 999;
+  overflow-y: scroll;
+}
+.general-header .header-popup-notification .header-notification {
+  gap: 10px;
+  align-items: flex-start;
+}
+.general-header .header-popup-notification .header-notification .column1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 45px;
+  height: 45px;
+  border-radius: 30px;
+}
+.general-header .header-popup-notification .header-notification .column2 {
+  flex-direction: column;
+  align-items: flex-start;
+  width: calc(100% - 15px - 60px);
+}
+.general-header .header-popup-notification .header-notification .column2 .time {
+  color: rgba(65, 71, 94, 0.6);
+}
+.general-header .header-popup-notification .top-bar {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  height: 70px;
+  min-height: 70px;
+  width: 100%;
+  position: sticky;
+  top: 0px;
+  background-color: #FFFFFF;
+}
+.general-header .header-popup-notification .top-bar .pc-hidden {
+  display: none;
+}
+.general-header .invisible-background {
+  top: 0px;
+  left: 0px;
+  width: 100dvw;
+}
+
+.page-right-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: calc(100% - 10px);
+  background-color: #FFFFFF;
+}
+.page-right-header div {
+  display: flex;
+  align-items: center;
 }
 .page-right-header .page-right-header-b {
   display: flex;
@@ -1442,64 +1525,6 @@ input[type=file] {
 }
 .page-right-header .progress-div:hover {
   cursor: pointer;
-}
-.page-right-header .header-popup-notification {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: fixed;
-  top: 70px;
-  right: 70px;
-  height: 400px;
-  max-height: 90vh;
-  width: 340px;
-  max-width: 90vw;
-  border-radius: 6px;
-  box-shadow: 0px 0px 17px 1px #9f9e9e;
-  background-color: #FFFFFF;
-  padding: 0px 10px;
-  gap: 10px;
-  z-index: 999;
-  overflow-y: scroll;
-}
-.page-right-header .header-popup-notification .header-notification {
-  gap: 10px;
-  align-items: flex-start;
-}
-.page-right-header .header-popup-notification .header-notification .column1 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 45px;
-  height: 45px;
-  border-radius: 30px;
-}
-.page-right-header .header-popup-notification .header-notification .column2 {
-  flex-direction: column;
-  align-items: flex-start;
-  width: calc(100% - 15px - 60px);
-}
-.page-right-header .header-popup-notification .header-notification .column2 .time {
-  color: rgba(65, 71, 94, 0.6);
-}
-.page-right-header .header-popup-notification .top-bar {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  height: 70px;
-  min-height: 70px;
-  width: 100%;
-  position: sticky;
-  top: 0px;
-  background-color: #FFFFFF;
-}
-.page-right-header .header-popup-notification .top-bar .pc-hidden {
-  display: none;
-}
-.page-right-header .invisible-background {
-  top: 0px;
-  left: 0px;
-  width: 100dvw;
 }
 
 .dashboard-task-overview-table {
@@ -1903,6 +1928,9 @@ input[type=file] {
 }
 
 @media only screen and (max-width: 760px) {
+  .pages {
+    grid-template-areas: "generalHeader" "pageRight";
+  }
   .top-navbar {
     justify-content: space-between;
     width: 100dvw;
@@ -2090,10 +2118,7 @@ input[type=file] {
   .landing-testimonial .comment h4, .landing-testimonial .comment p {
     text-align: start;
   }
-  .page-right-header {
-    align-self: flex-start;
-  }
-  .page-right-header .header-popup-notification {
+  .general-header .header-popup-notification {
     left: 0px;
     top: 0px;
     width: calc(100dvw - 30px);
@@ -2104,8 +2129,11 @@ input[type=file] {
     box-shadow: none;
     border-radius: 0px;
   }
-  .page-right-header .header-popup-notification .top-bar .pc-hidden {
+  .general-header .header-popup-notification .top-bar .pc-hidden {
     display: block;
+  }
+  .page-right-header {
+    align-self: flex-start;
   }
   .page-right-header .page-right-header-b {
     display: none;

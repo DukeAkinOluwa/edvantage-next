@@ -190,8 +190,16 @@ input {
 // Pages
 .pages {
     width: 100dvw;
-    display: flex;
+    height: 100dvh;
+    display: grid;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    grid-template-areas: 
+    "generalHeader generalHeader"
+    "sideMenu pageRight";
     color: $text-color;
+    grid-template-rows: 55px auto;
 }
 
 .page-right {
@@ -200,6 +208,9 @@ input {
     position: absolute;
     right: 0px;
     width: calc(100dvw - $side-menu-width - 2px);
+    grid-area: pageRight;
+    overflow-y: scroll;
+    height: 100%;
 }
 
 // Pages - Landing Page
@@ -1419,9 +1430,10 @@ input[type="file"] {
 // Side Menu
 .side-menu {
     width: $side-menu-width;
-    height: 100dvh;
+    height: 100%;
     background: $primary-color;
-    position: fixed;
+    position: absolute;
+    grid-area: sideMenu;
 
     .side-menu-logo {
         display: block;
@@ -1431,7 +1443,7 @@ input[type="file"] {
         @include fda;
         gap: 10px;
         position: relative;
-        top: 60px;
+        top: 20px;
         max-height: calc(100dvh - 136px)
     }
 
@@ -1482,36 +1494,27 @@ input[type="file"] {
     }
 }
 
-// Page Right
-.page-right-header {
-    @include fda();
-    width: calc(100% - 10px);
-    background-color: #FFFFFF;
-
-    // overflow: hidden; //To be removed
-    div {
-        @include fa();
-    }
-
-    .menu-btn {
-        left: 20px;
-
-        .line {
-            background-color: $text-color
+// General Header
+.general-header{
+    grid-area: generalHeader;
+    @include fa();
+    width: calc(100% - 30px);
+    padding: 0px 20px 0px 10px;
+    position: relative;
+    height: $page-right-header-height;
+    justify-content: space-between;
+    box-shadow: 0px 0px 10px #28282833;
+    .left{
+        h3{
+            color: $primary-color;
         }
     }
-
-    .page-right-header-a {
-        @include fa();
-        width: 100%;
+    .right{
+        @include fa;
         gap: 20px;
-        position: relative;
-        height: $page-right-header-height;
-        justify-content: flex-end;
-
         .profile-image-cont {
-            height: 40px;
-            width: 40px;
+            height: 30px;
+            width: 30px;
             overflow: hidden;
             img {
                 border-radius: 50%;
@@ -1519,6 +1522,16 @@ input[type="file"] {
                 width: 100%;
                 object-fit: cover;
             }
+        }
+    }
+    div {
+        @include fa();
+    }
+    .menu-btn {
+        left: 20px;
+
+        .line {
+            background-color: $text-color
         }
     }
 
@@ -1575,40 +1588,6 @@ input[type="file"] {
         /* Show the side menu by setting right to 0 */
     }
 
-    .page-right-header-b {
-        @include fa();
-        justify-content: space-between;
-        position: relative;
-        width: calc(100% - 10px);
-        height: $page-right-header-height;
-        margin: 0px 0px 10px 0px;
-    }
-
-    .progress-status {
-        @include fa();
-        gap: 10px;
-        height: 30px;
-    }
-
-    .progress-div {
-        @include fa();
-        gap: 6px;
-        width: fit-content;
-        height: calc(98% - 16px);
-        padding: 8px;
-        border: solid 1px;
-        border-radius: 4px;
-
-        svg {
-            height: 100%;
-            max-width: 20px;
-        }
-
-        &:hover {
-            cursor: pointer;
-        }
-    }
-
     .header-popup-notification {
         @include fda;
         position: fixed;
@@ -1660,10 +1639,55 @@ input[type="file"] {
             }
         }
     }
+
     .invisible-background{
         top: 0px;
         left: 0px;
         width: 100dvw;
+    }
+}
+
+// Page Right Header
+.page-right-header {
+    @include fda();
+    width: calc(100% - 10px);
+    background-color: #FFFFFF;
+    div {
+        @include fa();
+    }
+
+    .page-right-header-b {
+        @include fa();
+        justify-content: space-between;
+        position: relative;
+        width: calc(100% - 10px);
+        height: $page-right-header-height;
+        margin: 0px 0px 10px 0px;
+    }
+
+    .progress-status {
+        @include fa();
+        gap: 10px;
+        height: 30px;
+    }
+
+    .progress-div {
+        @include fa();
+        gap: 6px;
+        width: fit-content;
+        height: calc(98% - 16px);
+        padding: 8px;
+        border: solid 1px;
+        border-radius: 4px;
+
+        svg {
+            height: 100%;
+            max-width: 20px;
+        }
+
+        &:hover {
+            cursor: pointer;
+        }
     }
 }
 
@@ -2083,6 +2107,11 @@ input[type="file"] {
 
 
 @media only screen and (max-width: 760px) {
+    .pages{
+        grid-template-areas: 
+        "generalHeader"
+        "pageRight";
+    }
     .top-navbar {
         justify-content: space-between;
         width: 100dvw;
@@ -2303,10 +2332,9 @@ input[type="file"] {
             }
         }
     }
-
-    // Components - Page Right Header
-    .page-right-header {
-        align-self: flex-start;
+    
+    // Components - General Header
+    .general-header{
         .header-popup-notification{
             left: 0px;
             top: 0px;
@@ -2323,6 +2351,11 @@ input[type="file"] {
                 }
             }
         }
+    }
+
+    // Components - Page Right Header
+    .page-right-header {
+        align-self: flex-start;
         .page-right-header-b {
             display: none;
             width: calc(100% - 15px);

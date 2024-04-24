@@ -1,5 +1,6 @@
 import { Inter } from "next/font/google";
 import SideMenu from "@/components/SideMenu";
+import GeneralHeader from "@/components/GeneralHeader";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -41,9 +42,10 @@ export default function RootLayout({ children }) {
       <body>
         <div className="pages">
           <SideMenu />
-          <div className={`page-right `}>
+          <div className={`page-right`}>
             {children}
           </div>
+          <GeneralHeader />
         </div>
       </body>
     </html>
