@@ -8,26 +8,38 @@
   "background_color": "#FEFAFA",
   "icons": [
     {
-      "src": "./Images/Logo2.png",
+      "src": "./Images/Manifest/Logos/Logo2.png",
       "sizes": "1080x1080",
       "type": "image/png"
     },
     {
-      "src": "./Images/Logo3.png",
+      "src": "./Images/Manifest/Logos/Logo3.png",
       "sizes": "386x386",
       "type": "image/png"
     }
   ],
   "screenshots": [
     {
-      "src": "./Images/screenshot-wide.png",
-      "sizes": "2220x1080",
+      "src": "./Images/Manifest/Screenshots/screenshot-wide-1.png",
+      "sizes": "1919x1048",
       "type": "image/png",
       "form_factor": "wide"
     },
     {
-      "src": "./Images/screenshot-mobile.png",
-      "sizes": "1080x2220",
+      "src": "./Images/Manifest/Screenshots/screenshot-wide-2.png",
+      "sizes": "1919x1048",
+      "type": "image/png",
+      "form_factor": "wide"
+    },
+    {
+      "src": "./Images/Manifest/Screenshots/screenshot-mobile-1.png",
+      "sizes": "395x862",
+      "type": "image/png",
+      "form factor": "narrow"
+    },
+    {
+      "src": "./Images/Manifest/Screenshots/screenshot-mobile-2.png",
+      "sizes": "390x861",
       "type": "image/png",
       "form factor": "narrow"
     }
