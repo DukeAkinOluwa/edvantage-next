@@ -22,19 +22,6 @@ export default function TopNavBar(){
                 <div className="line" style={{display: `${isSideMenuVisible ? 'none' : ''}`}}></div>
                 <div className="line" style={{transform: `${isSideMenuVisible ? 'rotate(135deg)' : ''}`, width: `${isSideMenuVisible ? '39px' : ''}`}}></div>
             </div>
-            <div className={`header-side-menu ${isSideMenuVisible ? 'visible' : ''}`}>
-                <nav className="slide-menu-links">
-                    <div className="space">
-                        <img src={Logo14Short} alt="Logo" />
-                    </div>
-                    <Link to='/' className="home">Home</Link>
-                    <Link to='/About' className="about">About</Link>
-                    <Link to='/Contact' className="contact">Contact</Link>
-                    <Link to='/Login' className="login">Login</Link>
-                    {/* <Link to='/Dashboard' className="contact">Dashboard</Link> */}
-                </nav>
-            </div>
-            {/* <div className="cancel-menu-btn pc-hidden" onClick={toggleHeaderSideMenu} style={{display: `${isSideMenuVisible ? 'flex' : 'none'}`, position: `${isSideMenuVisible ? 'absolute' : 'fixed'}`}}></div> */}
         </div>
     )
 }

@@ -19,16 +19,18 @@ export default function DashboardGroup(){
     
     return(
         <div className="dashboard-groups">
-            <div className="dashboard-section-header group-header">
-                <div className="dashboard-section-heading">
-                    <h3>Groups</h3>
-                    <div onClick={handleAddGroup} className="action"><p>Create group</p></div>
+            <div className="box">
+                <div className="dashboard-section-header group-header">
+                    <div className="dashboard-section-heading">
+                        <h3>Groups</h3>
+                        <div onClick={handleAddGroup} className="action"><p>Create group</p></div>
+                    </div>
                 </div>
+                {taskinfo.slice(0, 4).map((groups, index) => (
+                    <DGTemplate key={index} groupdata={groups} index={index} />
+                ))}
+                {isAddGroupVisible === true ? (<div className="add-item"><div className="invisible-background" onClick={handleAddGroup}></div><AddGroup handleAddGroup={handleAddGroup} /></div>) : (<></>) }
             </div>
-            {taskinfo.slice(0, 4).map((groups, index) => (
-                 <DGTemplate key={index} groupdata={groups} index={index} />
-             ))}
-             {isAddGroupVisible === true ? (<div className="add-item"><div className="invisible-background" onClick={handleAddGroup}></div><AddGroup handleAddGroup={handleAddGroup} /></div>) : (<></>) }
         </div>
     )
 }

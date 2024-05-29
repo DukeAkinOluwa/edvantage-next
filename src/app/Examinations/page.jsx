@@ -34,23 +34,24 @@ export default function Examinations(){
         <>
         <PageRightHeader page_title={`Examinations`} userlevel="23"/>
         <div className="assignment-task-overview-table table">
-            <div className="assignment-header row">
-                <div className="column1"><h5>Course Title</h5></div>
-                <div className="column2"><h5>Status</h5></div>
-                <div className="column3"><h5>Due Date</h5></div>
-                <div className="column4"><h5>Time</h5></div>
-                <div className="column5"><h5>Venue</h5></div>
+            <div className="box">
+                <div className="assignment-header row">
+                    <div className="column1"><h5>Course Title</h5></div>
+                    <div className="column2"><h5>Status</h5></div>
+                    <div className="column3"><h5>Due Date</h5></div>
+                    <div className="column4"><h5>Time</h5></div>
+                    <div className="column5"><h5>Venue</h5></div>
+                </div>
+                {taskinfo ? (
+                    <>
+                    {taskinfo.map(tasks => (
+                    <ETTemplate key={tasks.coursecode.replace(/ /g, "") + tasks.duedate} data={tasks} />
+                    ))}
+                    </>
+                ) : (
+                    <div>No Data</div>
+                )}
             </div>
-            {taskinfo ? (
-                <>
-                {taskinfo.map(tasks => (
-                <ETTemplate key={tasks.coursecode.replace(/ /g, "") + tasks.duedate} data={tasks} />
-                ))}
-                </>
-            ) : (
-                <div>No Data</div>
-            )}
-            
         </div>
         </>
     )

@@ -33,9 +33,10 @@ export default function Assignments(){
 
 
     return(
-            <>
-                <PageRightHeader page_title={`Assignment`} userlevel="23"/>
-                <div className="assignment-task-overview-table table">
+        <>
+            <PageRightHeader page_title={`Assignment`} userlevel="23"/>
+            <div className="assignment-task-overview-table table">
+                <div className="box">
                     <div className="assignment-header row">
                         <div className="column1"><h5>Course Title</h5></div>
                         <div className="column2"><h5>Status</h5></div>
@@ -52,7 +53,8 @@ export default function Assignments(){
                         <div>No Data</div>
                     )}
                 </div>
-            </>
+            </div>
+        </>
     )
     function ATTemplate(props){
 

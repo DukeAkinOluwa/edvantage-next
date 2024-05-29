@@ -351,28 +351,28 @@ export default function Chats(){
       return(
         <>
         {isChatSlide1Visible && (
-                    <div className="add-new-chat-profile">
-                      <label>
-                        <h4>Group name</h4>
-                        <input type="text" placeholder="Enter group name" name="chat-input" autoComplete="off" />
-                      </label>
-                      <label>
-                        <h4>Course Title</h4>
-                        <input type="text" placeholder="Enter course title" name="chat-input" autoComplete="off" />
-                      </label>
-                      <label className="long-label">
-                        <h4>Group description</h4>
-                        <input type="text" placeholder="Group Description" name="chat-input" autoComplete="off" />
-                      </label>
-                      <div className="action-div">
-                        <div className="button button1" onClick={toggleAddChatSlide2}>
-                          <p>Next</p>
-                        </div>
-                        <div className="button button2" onClick={toggleAddChatSlide1}>
-                          <p>Cancel</p>
-                        </div>
-                      </div>
-                    </div>
+          <div className="add-new-chat-profile">
+            <label>
+              <h4>Group name</h4>
+              <input type="text" placeholder="Enter group name" name="chat-input" autoComplete="off" />
+            </label>
+            <label>
+              <h4>Course Title</h4>
+              <input type="text" placeholder="Enter course title" name="chat-input" autoComplete="off" />
+            </label>
+            <label className="long-label">
+              <h4>Group description</h4>
+              <input type="text" placeholder="Group Description" name="chat-input" autoComplete="off" />
+            </label>
+            <div className="action-div">
+              <div className="button button1" onClick={toggleAddChatSlide2}>
+                <p>Next</p>
+              </div>
+              <div className="button button2" onClick={toggleAddChatSlide1}>
+                <p>Cancel</p>
+              </div>
+            </div>
+          </div>
         )}
         {isChatSlide2Visible && (
           <div className="add-new-chat-profile">
