@@ -216,7 +216,7 @@ export default function DashboardTimeTable(){
             }
             return({ color })
         }
-        function eventStyleLogic(){
+        function EventStyleLogic(){
             function calculateTimeDifferenceInMinutes(time1, time2) {
                 const time1Parts = time1.split(':');
                 const time2Parts = time2.split(':');
@@ -266,7 +266,7 @@ export default function DashboardTimeTable(){
             setIsEventDetailsVisible(!isEventDetailsVisible)
         }
         return(
-            <div className="event" style={eventStyleLogic().eventStyles} onClick={handleToggleShowEventDetails}>
+            <div className="event" style={EventStyleLogic().eventStyles} onClick={handleToggleShowEventDetails}>
                 <p>{info.title}</p>
                 {isEventDetailsVisible === true ? (<div className="add-item" style={{zIndex: `${isEventDetailsVisible ? "2" : ""}`}}><div className="invisible-background" onClick={handleToggleShowEventDetails}></div><EventDetails eventDetailData={info} /></div>) : (<></>) }
             </div>
