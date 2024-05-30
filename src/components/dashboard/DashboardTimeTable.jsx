@@ -153,46 +153,46 @@ export default function DashboardTimeTable(){
 
     return(
         <section className="dashboard-time-table">
-            <div className="dashboard-section-header time-table-header">
-                <div className="dashboard-section-heading">
+            <div className="box">
+                <div className="dashboard-section-header time-table-header">
                     <h3>Timetable</h3>
                     <div onClick={handleAddEvent} className="action"><p>Add Event</p></div>
                 </div>
-            </div>
-            <div className="table">
-                <div className="table-header">
-                    <div className="cell">
-                        <h3>Time</h3>
-                    </div>
-                    {days.map((day) => (
-                        <div key={day} className="cell">
-                            <h3>{formatDate(new Date(startDate.setDate(startDate.getDate() + 1)))}</h3>
+                <div className="table">
+                    <div className="table-header">
+                        <div className="cell">
+                            <h3>Time</h3>
                         </div>
-                    ))}
-                </div>
-                <div className="table-content">
-                    <div className="left">
-                        {times.map((time, index) => (
-                            <div className="time-cont" key={index}>
-                                <h3>{time}</h3>
+                        {days.map((day) => (
+                            <div key={day} className="cell">
+                                <h3>{formatDate(new Date(startDate.setDate(startDate.getDate() + 1)))}</h3>
                             </div>
                         ))}
                     </div>
-                    <div className="right">
-                    { [...Array(24 * 7)].map((_, index) => (
-                        <div key={index} className="empty-div"></div>
-                    ))}
-                        {eventData ? (
-                            eventData.map((info, index) => (
-                                <EventTemplate info={info} key={index} eventIndex={index} />
-                            ))
-                        ) : (
-                            <></>
-                        )}
+                    <div className="table-content">
+                        <div className="left">
+                            {times.map((time, index) => (
+                                <div className="time-cont" key={index}>
+                                    <h3>{time}</h3>
+                                </div>
+                            ))}
+                        </div>
+                        <div className="right">
+                        { [...Array(24 * 7)].map((_, index) => (
+                            <div key={index} className="empty-div"></div>
+                        ))}
+                            {eventData ? (
+                                eventData.map((info, index) => (
+                                    <EventTemplate info={info} key={index} eventIndex={index} />
+                                ))
+                            ) : (
+                                <></>
+                            )}
+                        </div>
                     </div>
                 </div>
+                {isAddEventVisible === true ? (<div className="add-item"><div className="invisible-background" onClick={handleAddEvent}></div><AddEvent /></div>) : (<></>) }
             </div>
-            {isAddEventVisible === true ? (<div className="add-item"><div className="invisible-background" onClick={handleAddEvent}></div><AddEvent /></div>) : (<></>) }
         </section>
     )
     function EventTemplate({ info, eventIndex }){
@@ -267,7 +267,6 @@ export default function DashboardTimeTable(){
         }
         return(
             <div className="event" style={eventStyleLogic().eventStyles} onClick={handleToggleShowEventDetails}>
-                <img src="./Images/EventIcon.png" alt="Event Icon" style={{display: `${eventStyleLogic().eventHeightDifference < 120 && "none"}`}} />
                 <p>{info.title}</p>
                 {isEventDetailsVisible === true ? (<div className="add-item" style={{zIndex: `${isEventDetailsVisible ? "2" : ""}`}}><div className="invisible-background" onClick={handleToggleShowEventDetails}></div><EventDetails eventDetailData={info} /></div>) : (<></>) }
             </div>

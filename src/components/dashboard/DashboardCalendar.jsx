@@ -53,36 +53,38 @@ const DashboardCalendar = () => {
 
   return (
     <div className="dashboard-calendar">
-      <div className="dashboard-section-header calendar-header">
-          <h2>Calendar</h2>
-          <div className="month-info">
-            <h3>{new Intl.DateTimeFormat('en-UK', { month: 'long', year: 'numeric' }).format(calendarViewDate)}</h3>
-            <div className='button' onClick={() => setCalenderViewDate(new Date(calendarViewDate.getFullYear(), calendarViewDate.getMonth() - 1, 1))}>&lt;</div>
-            <div className='button' onClick={() => setCalenderViewDate(new Date(calendarViewDate.getFullYear(), calendarViewDate.getMonth() + 1, 1))}>&gt;</div>
-          </div>
-      </div>
-      <div className="days-of-week">
-        {daysOfWeek.map(day => (
-          <div key={day}>{day}</div>
-        ))}
-      </div>
-      <div className="days">
-        {getDaysInMonth().map((day, index) => (
-          <div
-            key={index}
-            className={`day ${isCurrentDay(day) ? 'current-day' : ''} ${isSelectedDay(day) ? 'task-day' : ''}`}
-            onClick={() => day && handleDateClick(day)}
-            style={{backgroundColor: `${isCurrentDay(day) && isSelectedDay(day) ? '#2A52BE' : ''}`}}
-          >
-            {day}
-          </div>
-        ))}
-      </div>
-      <div className='todays-tasks'>
-        <h2>Today</h2>
-        {taskinfo.map((tasks,index) => (
-          <CalTaskTemplate key={index} taskdata={tasks} />
-        ))}
+      <div className="box">
+        <div className="dashboard-section-header calendar-header">
+            <h3>Calendar</h3>
+            <div className="month-info">
+              <h4>{new Intl.DateTimeFormat('en-UK', { month: 'long', year: 'numeric' }).format(calendarViewDate)}</h4>
+              <div className='button' onClick={() => setCalenderViewDate(new Date(calendarViewDate.getFullYear(), calendarViewDate.getMonth() - 1, 1))}>&lt;</div>
+              <div className='button' onClick={() => setCalenderViewDate(new Date(calendarViewDate.getFullYear(), calendarViewDate.getMonth() + 1, 1))}>&gt;</div>
+            </div>
+        </div>
+        <div className="days-of-week">
+          {daysOfWeek.map(day => (
+            <div key={day}>{day}</div>
+          ))}
+        </div>
+        <div className="days">
+          {getDaysInMonth().map((day, index) => (
+            <div
+              key={index}
+              className={`day ${isCurrentDay(day) ? 'current-day' : ''} ${isSelectedDay(day) ? 'task-day' : ''}`}
+              onClick={() => day && handleDateClick(day)}
+              style={{backgroundColor: `${isCurrentDay(day) && isSelectedDay(day) ? '#2A52BE' : ''}`}}
+            >
+              {day}
+            </div>
+          ))}
+        </div>
+        <div className='todays-tasks'>
+          <h2>Today</h2>
+          {taskinfo.map((tasks,index) => (
+            <CalTaskTemplate key={index} taskdata={tasks} />
+          ))}
+        </div>
       </div>
     </div>
   );

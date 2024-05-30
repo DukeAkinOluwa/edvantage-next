@@ -82,7 +82,7 @@ export default function Assignments(){
                 <div className="column column2"><h3 className="pc-hidden">Status</h3><div className="table-status" style={status_background}><p>{data.status}</p></div></div>
                 <div className="column column3"><h3 className="pc-hidden">Date</h3><p>{data.duedate}</p></div>
                 <div className="column column4"><h3 className="pc-hidden">Progress</h3><p>{data.progress}</p></div>
-                <div className="column column5"><h3 className="pc-hidden">Progress</h3><div className="table-status" style={priority_background}><p style={priority_text}>{data.priority}</p></div></div>
+                <div className="column column5"><h3 className="pc-hidden">Priority</h3><div className="table-status" style={priority_background}><p style={priority_text}>{data.priority}</p></div></div>
             </div>
         )
     }

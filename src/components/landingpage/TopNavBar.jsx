@@ -10,7 +10,7 @@ export default function TopNavBar(){
     };
     return(
         <div className="top-navbar" style={{position: "relative"}}>
-            <img src={Logo14Short} alt="Logo" />
+            <h3>EDVANTAGE</h3>
             <nav className="top-nav-links">
                 <Link to='/' className="home">Home</Link>
                 <Link to='/About' className="about">About</Link>

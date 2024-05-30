@@ -1,3 +1,5 @@
+import Image from "next/image"
+
 export default function DashboardAd(){
     return(
         <>
@@ -10,7 +12,7 @@ export default function DashboardAd(){
                         we have found a new and easier learning process
                     </p>
                 </div>
-                <img src={`./Images/img1.png`} alt="image1" />
+                <Image src={`/Images/img1.png`} alt="image1" width={250} height={180} sizes="auto, (max-height: 90%)" />
             </div>
         </>
     )

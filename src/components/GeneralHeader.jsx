@@ -4,12 +4,11 @@ import Link from "next/link"
 import { useState } from "react"
 import notification_info from "@/DB/taskdata.json"
 import HNTemplate from "./templates/HNTemplate"
+import Image from "next/image"
 
 export default function GeneralHeader(){
-
     let imageid = "AkinProfileImage"
-
-    let UserProfileImage = `./Images/profile/${imageid}.png`
+    let UserProfileImage = `/Images/profile/${imageid}.png`
 
     const [isVisible, setIsVisible] = useState(false)
     const [invissibleBackground, setInvisibleBackground] = useState(false)
@@ -21,27 +20,13 @@ export default function GeneralHeader(){
         setIsVisible(!isVisible)
         setInvisibleBackground(!invissibleBackground)
     }
-    function empty(){
-
-    }
 
     const notificationinfo = notification_info.notifications
-    
-    const [isSideMenuVisible, setIsSideMenuVisible] = useState(false);
-
-    // const toggleHeaderSideMenu = () => {
-    //     setIsSideMenuVisible(!isSideMenuVisible);
-    // };
 
     return(
         <div className="general-header">
-            {/* <div className="menu-btn pc-hidden" onClick={toggleHeaderSideMenu} style={{position: "absolute", left: `${isSideMenuVisible ? '84dvw' : ''}`, justifyContent: `${isSideMenuVisible ? 'center' : ''}`}}>
-                <div className="line" style={{transform: `${isSideMenuVisible ? 'rotate(45deg)' : ''}`, width: `${isSideMenuVisible ? '39px' : ''}`}}></div>
-                <div className="line" style={{display: `${isSideMenuVisible ? 'none' : ''}`}}></div>
-                <div className="line" style={{transform: `${isSideMenuVisible ? 'rotate(135deg)' : ''}`, width: `${isSideMenuVisible ? '39px' : ''}`}}></div>
-            </div> */}
             <div className="left">
-                <h3>Edvantage</h3>
+                <h3>EDVANTAGE</h3>
             </div>
             <div className="right">
                 <div onClick={togglenotification}>
@@ -50,7 +35,7 @@ export default function GeneralHeader(){
                     </svg>
                 </div>
                 <Link href='/Profile' aria-label="Profile Link" className="profile-image-cont">
-                    <img src={UserProfileImage} alt="ProfileImage" />
+                    <Image src={UserProfileImage} alt="ProfileImage" width={35} height={35} />
                 </Link>
             </div>
             {isVisible && (

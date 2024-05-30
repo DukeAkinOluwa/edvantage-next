@@ -1,5 +1,6 @@
 // CPTemplate.js
 import React from "react";
+import Image from "next/image";
 
 export default function CPTemplate({ data, onUserProfileClick }) {
   const handleClick = () => {
@@ -8,12 +9,12 @@ export default function CPTemplate({ data, onUserProfileClick }) {
 
   const { title, lasttext, imageid } = data;
   
-  let UserProfileImage = `./Images/profile/${imageid}`
+  let UserProfileImage = `/Images/profile/${imageid}`
 
   return (
     <div className="chat-profile row" onClick={handleClick}>
       <div className="column1">
-        <img src={UserProfileImage} alt={`Chat ${title}`} />
+        <Image src={UserProfileImage} alt={`Chat ${title}`} width={50} height={50} />
       </div>
       <div className="column2">
         <h4>{title}</h4>

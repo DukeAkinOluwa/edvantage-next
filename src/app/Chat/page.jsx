@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import PageRightHeader from "@/components/PageRightHeader";
 import CPTemplate from "@/components/templates/CPTemplate";
 import SearchIcon from "@/icons/search";
+import Image from "next/image";
 
 export default function Chats(){
     const [viewportWidth, setViewportWidth] = useState(null);
@@ -244,7 +245,7 @@ export default function Chats(){
                       strokeLinejoin="round"
                     />
                   </svg>
-                  <img src={`./Images/profile/${selectedUserProfile.imageid}`} alt="profile" />
+                  <Image src={`/Images/profile/${selectedUserProfile.imageid}`} alt="profile" height={40} width={40} />
                   <h3>{selectedUserProfile.title}</h3>
                 </div>
                 <div className="chat-body">
@@ -264,14 +265,14 @@ export default function Chats(){
                   ) : (
                     <div className="empty-chat-body">
                       <div className="display-container">
-                        <img src={`./Images/svg-alternatives/empty-chat-svg2.png`} alt="chatimage" />
+                        <Image src={`/Images/svg-alternatives/empty-chat-svg2.png`} alt="chatimage" height={250} width={250} sizes="(max-width: 100%), (max-height: 70%)" />
                         <p>Welcome to {selectedUserProfile.title}<br /><br />Start a chat</p>
                       </div>
                     </div>
                   )}
                 </div>
                 <div className="chat-input-box">
-                  <img src={`./Images/svg-alternatives/smiley.png`} alt="emoji" />
+                  {/* <img src={`./Images/svg-alternatives/smiley.png`} alt="emoji" /> */}
                   <label>
                     <input
                       type="text"
@@ -280,14 +281,14 @@ export default function Chats(){
                       autoComplete="off"
                     />
                   </label>
-                  <img src={`./Images/svg-alternatives/mention.png`} alt="mention" />
-                  <img src={`./Images/svg-alternatives/paper-airplane.png`} alt="send" />
+                  {/* <img src={`./Images/svg-alternatives/mention.png`} alt="mention" />
+                  <img src={`./Images/svg-alternatives/paper-airplane.png`} alt="send" /> */}
                 </div>
               </>
             ) : (
               <div className="chat-body empty-chat-body">
                 <div className="display-container">
-                  <img src={`./Images/svg-alternatives/empty-chat-svg.png`} alt="chatimage" />
+                  <Image src={`/Images/svg-alternatives/empty-chat-svg.png`} alt="chatimage" height={211} width={465} sizes="(max-width: 100%), (max-height: 70%)" />
                   <p>Pick a person or group from left sidebar chat list, and start your conversation.</p>
                   <div className="button">
                     <p>Invite People</p>

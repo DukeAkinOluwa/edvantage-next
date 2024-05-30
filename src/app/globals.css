@@ -125,7 +125,7 @@ input:focus-visible {
   grid-template-areas: "generalHeader generalHeader" "sideMenu pageRight" "sideMenu pageRight";
   color: #2D2E2E;
   grid-template-rows: 65px auto 90px;
-  background-color: rgba(72, 145, 211, 0.05);
+  background-color: #FFFFFF;
 }
 
 .page-right {
@@ -177,6 +177,17 @@ input:focus-visible {
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: 190px 140px 140px 85svh 70svh;
   grid-template-areas: "dashboardad dashboardad dashboardcalendar" "dashboardbox dashboardbox dashboardcalendar" "dashboardbox dashboardbox dashboardcalendar" "classandexamschedule classandexamschedule classandexamschedule" "dashboardtasks dashboardtasks dashboardgroups";
+}
+.dashboard-main-section .dashboard-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.dashboard-main-section .dashboard-section-header .action {
+  color: #2A52BE;
+}
+.dashboard-main-section .dashboard-section-header h3 {
+  font-size: 1.25rem;
 }
 .dashboard-main-section .add-item {
   width: 100dvw;
@@ -428,7 +439,6 @@ input:focus-visible {
 }
 .chat-page .whole-chat-section .left,
 .chat-page .whole-chat-section .right {
-  padding: 15px 0px 0px;
   height: calc(100% - 15px);
 }
 .chat-page .whole-chat-section .left {
@@ -437,6 +447,7 @@ input:focus-visible {
   align-items: center;
   gap: 15px;
   border-right: solid 1px rgba(40, 40, 40, 0.2);
+  padding: 15px 0px 0px;
   overflow: hidden;
 }
 .chat-page .whole-chat-section .left .chat-classification {
@@ -524,8 +535,6 @@ input:focus-visible {
   overflow: hidden;
 }
 .chat-page .whole-chat-section .left .chat-profile .column1 img {
-  height: 100%;
-  width: 100%;
   object-fit: cover;
 }
 .chat-page .whole-chat-section .left .chat-profile .column2 {
@@ -581,8 +590,6 @@ input:focus-visible {
   display: none;
 }
 .chat-page .whole-chat-section .right .chat-header img {
-  height: 40px;
-  width: 40px;
   object-fit: cover;
   border-radius: 50%;
   margin: 0px 0px 0px 15px;
@@ -593,6 +600,8 @@ input:focus-visible {
 .chat-page .whole-chat-section .right .chat-body {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   width: calc(100% - 30px);
   gap: 10px;
   height: calc(100% - 50px - 60px);
@@ -623,8 +632,6 @@ input:focus-visible {
   height: 350px;
 }
 .chat-page .whole-chat-section .right .empty-chat-body .display-container img {
-  max-height: 70%;
-  max-width: 100%;
   object-fit: cover;
 }
 .chat-page .whole-chat-section .right .empty-chat-body .display-container p {
@@ -637,7 +644,7 @@ input:focus-visible {
   height: 50px;
   width: calc(100dvw - 270px - 310px - 30px);
   padding: 0px 15px;
-  position: fixed;
+  position: absolute;
   bottom: 0px;
   border-top: solid 1px rgba(40, 40, 40, 0.2);
   gap: 10px;
@@ -789,11 +796,6 @@ input[type=file] {
   display: flex;
   align-items: center;
   justify-content: space-between;
-}
-.top-navbar img {
-  height: 90%;
-  margin: 0px 0px 0px 15px;
-  z-index: 99;
 }
 .top-navbar .top-nav-links {
   display: flex;
@@ -1357,8 +1359,8 @@ input[type=file] {
   grid-area: generalHeader;
   display: flex;
   align-items: center;
-  width: calc(100% - 30px);
-  padding: 0px 20px 0px 10px;
+  width: calc(100% - 40px);
+  padding: 0px 20px;
   position: relative;
   height: 65px;
   justify-content: space-between;
@@ -1374,14 +1376,12 @@ input[type=file] {
   gap: 20px;
 }
 .general-header .right .profile-image-cont {
-  height: 30px;
-  width: 30px;
+  height: 35px;
+  width: 35px;
   overflow: hidden;
 }
 .general-header .right .profile-image-cont img {
   border-radius: 50%;
-  height: 100%;
-  width: 100%;
   object-fit: cover;
 }
 .general-header div {
@@ -1536,47 +1536,6 @@ input[type=file] {
   cursor: pointer;
 }
 
-.dashboard-task-overview-table {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  grid-area: dashboardtasks;
-  max-height: 100%;
-  overflow-x: scroll;
-  background-color: #FFFFFF;
-  border-radius: 14px;
-}
-.dashboard-task-overview-table .box {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.dashboard-task-overview-table .dashboard-section-header {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  position: sticky;
-  top: 0px;
-  background-color: #FFFFFF;
-}
-.dashboard-task-overview-table .dashboard-section-header .dashboard-section-heading {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  padding: 5px 0px 0px 0px;
-}
-.dashboard-task-overview-table .dashboard-section-header .dashboard-section-heading h3 {
-  font-size: 1.25rem;
-}
-.dashboard-task-overview-table .dashboard-section-header .dashboard-section-heading p {
-  color: #2A52BE;
-}
-.dashboard-task-overview-table .dashboard-section-header .dashboard-t-o-t-header {
-  background-color: #ECF7F2;
-}
-
 .column1 {
   width: 37%;
 }
@@ -1591,6 +1550,14 @@ input[type=file] {
 
 .column4 {
   width: 23%;
+}
+
+.dashboard-boxes,
+.dashboard-calendar,
+.dashboard-time-table,
+.dashboard-task-overview-table,
+.dashboard-groups {
+  box-shadow: 0px 0px 10px rgba(40, 40, 40, 0.07);
 }
 
 .dashboard-ad-background {
@@ -1618,16 +1585,24 @@ input[type=file] {
 }
 
 .dashboard-boxes {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  grid-area: dashboardbox;
+  height: 100%;
+  background-color: #FFFFFF;
+  border-radius: 10px;
+}
+.dashboard-boxes .box {
+  height: calc(100% - 20px);
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 10px;
-  grid-area: dashboardbox;
 }
 .dashboard-boxes .dashboard-box {
-  border-radius: 14px;
+  border-radius: 5px;
   width: 100%;
-  height: 140px;
-  background-color: green;
+  height: auto;
 }
 .dashboard-boxes .boxa {
   background: rgba(152, 251, 152, 0.3);
@@ -1644,20 +1619,26 @@ input[type=file] {
 
 .dashboard-calendar {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
   width: 100%;
-  padding: 10px 0px;
   overflow: hidden;
   background-color: white;
   grid-area: dashboardcalendar;
   font-size: 0.7rem;
   border-radius: 8px;
 }
+.dashboard-calendar .box {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: calc(100% - 20px);
+}
 .dashboard-calendar .calendar-header {
-  width: calc(100% - 20px);
+  width: 100%;
   padding: 0px 0px 10px 0px;
   gap: 3px;
+  border-bottom: solid 1px rgba(0, 24, 12, 0.2);
 }
 .dashboard-calendar .month-info {
   display: flex;
@@ -1670,11 +1651,14 @@ input[type=file] {
   cursor: pointer;
   font-size: 18px;
 }
+.dashboard-calendar .month-info h4 {
+  font-size: 1.05rem;
+}
 .dashboard-calendar .days-of-week {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  width: calc(100% - 20px);
-  border-top: solid 1px rgba(0, 24, 12, 0.2);
+  width: 100%;
+  border-bottom: solid 1px rgba(0, 24, 12, 0.2);
 }
 .dashboard-calendar .days-of-week div {
   padding: 10px 0px;
@@ -1684,8 +1668,7 @@ input[type=file] {
   display: grid;
   align-items: center;
   justify-items: center;
-  width: calc(100% - 20px);
-  margin: 0px 0px 10px 0px;
+  width: 100%;
   grid-template-columns: repeat(7, 1fr);
 }
 .dashboard-calendar .day,
@@ -1732,7 +1715,7 @@ input[type=file] {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  width: 90%;
+  width: 100%;
   border-top: solid 1px rgba(0, 24, 12, 0.2);
   padding: 10px 0px 0px 0px;
 }
@@ -1752,17 +1735,17 @@ input[type=file] {
 
 .dashboard-time-table {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
   position: relative;
   width: 100%;
   overflow: hidden;
   grid-area: classandexamschedule;
   background-color: #FFFFFF;
-  border-radius: 8px;
+  border-radius: 10px;
 }
 .dashboard-time-table .time-table-header {
-  width: calc(100% - 40px);
+  width: 100%;
   padding: 0px 0px 10px 0px;
   gap: 3px;
 }
@@ -1770,10 +1753,11 @@ input[type=file] {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: calc(100% - 20px);
-  height: 100%;
+  width: 100%;
+  height: calc(100% - 50px);
   margin-top: 10px;
   gap: 10px;
+  overflow: hidden;
 }
 .dashboard-time-table .table h3 {
   justify-self: center;
@@ -1833,6 +1817,51 @@ input[type=file] {
 }
 .dashboard-time-table .table .table-content .right label {
   color: #2D2E2E;
+}
+.dashboard-time-table .box {
+  height: calc(100% - 20px);
+}
+
+.dashboard-task-overview-table {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  grid-area: dashboardtasks;
+  max-height: 100%;
+  overflow-x: scroll;
+  background-color: #FFFFFF;
+  border-radius: 14px;
+}
+.dashboard-task-overview-table .box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.dashboard-task-overview-table .task-header {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  position: sticky;
+  top: 0px;
+  background-color: #FFFFFF;
+}
+.dashboard-task-overview-table .task-header .dashboard-section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 5px 0px 0px 0px;
+}
+.dashboard-task-overview-table .task-header .dashboard-section-heading h3 {
+  font-size: 1.25rem;
+}
+.dashboard-task-overview-table .task-header .dashboard-section-heading p {
+  color: #2A52BE;
+}
+.dashboard-task-overview-table .task-header .dashboard-t-o-t-header {
+  background-color: #ECF7F2;
 }
 
 .dashboard-groups {
@@ -2135,7 +2164,7 @@ input[type=file] {
     text-align: start;
   }
   .general-header {
-    box-shadow: 0px 0px 10px rgba(219, 219, 219, 0.2);
+    box-shadow: 0px 0px 10px rgba(40, 40, 40, 0.2);
   }
   .general-header .header-popup-notification {
     left: 0px;
@@ -2183,6 +2212,7 @@ input[type=file] {
   }
   .dashboard-boxes {
     grid-template-columns: auto;
+    min-height: 350px;
   }
   .dashboard-time-table .table {
     grid-template-columns: 50px 650px;
@@ -2232,9 +2262,6 @@ input[type=file] {
     grid-template-columns: 100%;
     grid-template-rows: auto auto 70svh auto auto;
     margin: 0px;
-  }
-  .dashboard-main-section .dashboard-box {
-    border-radius: 2px;
   }
   .dashboard-main-section p {
     font-size: 1.05rem;
@@ -2318,7 +2345,7 @@ input[type=file] {
   }
   .chat-page .whole-chat-section {
     grid-template-columns: auto;
-    height: 100dvh;
+    height: 100%;
     border-top: 0px;
   }
   .chat-page .whole-chat-section .left {

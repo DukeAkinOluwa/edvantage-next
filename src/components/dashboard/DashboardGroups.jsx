@@ -21,10 +21,8 @@ export default function DashboardGroup(){
         <div className="dashboard-groups">
             <div className="box">
                 <div className="dashboard-section-header group-header">
-                    <div className="dashboard-section-heading">
-                        <h3>Groups</h3>
-                        <div onClick={handleAddGroup} className="action"><p>Create group</p></div>
-                    </div>
+                    <h3>Groups</h3>
+                    <div onClick={handleAddGroup} className="action"><p>Create group</p></div>
                 </div>
                 {taskinfo.slice(0, 4).map((groups, index) => (
                     <DGTemplate key={index} groupdata={groups} index={index} />
