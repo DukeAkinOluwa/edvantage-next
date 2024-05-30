@@ -2170,12 +2170,13 @@ input[type=file] {
     left: 0px;
     top: 0px;
     width: calc(100dvw - 30px);
-    max-width: 100dvw;
+    max-width: calc(100dvw - 30px);
     height: 100dvh;
     max-height: 100dvh;
     padding: 0px 15px;
     box-shadow: none;
     border-radius: 0px;
+    overflow-x: hidden;
   }
   .general-header .header-popup-notification .top-bar {
     min-height: 60px;
@@ -2251,7 +2252,6 @@ input[type=file] {
   }
   .pages .page-right {
     width: 100%;
-    position: absolute;
     left: 0px;
   }
   .pages .page-right .page-right-header-a p {

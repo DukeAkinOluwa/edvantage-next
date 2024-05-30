@@ -1520,7 +1520,6 @@ input[type="file"] {
         gap: 10px;
         z-index: 999;
         overflow-y: scroll;
-
         .header-notification {
             gap: 10px;
             align-items: flex-start;
@@ -2297,12 +2296,13 @@ input[type="file"] {
             left: 0px;
             top: 0px;
             width: calc(100dvw - 30px);
-            max-width: 100dvw;
+            max-width: calc(100dvw - 30px);
             height: 100dvh;
             max-height: 100dvh;
             padding: 0px 15px;
             box-shadow: none;
             border-radius: 0px;
+            overflow-x: hidden;
             .top-bar{
                 min-height: 60px;
                 box-shadow: 0px 0px 10px rgba(40, 40, 40, 0.2);
@@ -2396,17 +2396,12 @@ input[type="file"] {
     .pages {
         overflow-x: hidden;
         .side-menu,
-        .dashboard-ad-background // .page-right-header-b
-
-            {
+        .dashboard-ad-background{
             display: none;
         }
-
         .page-right {
             width: 100%;
-            position: absolute;
             left: 0px;
-
             .page-right-header-a {
                 p {
                     display: none;
