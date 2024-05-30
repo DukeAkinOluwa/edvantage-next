@@ -72,7 +72,6 @@ const DashboardTasksOverview = () =>{
     
         return(
             <div className="dashboard-t-o-t-task row">
-                <div className="column pc-hidden" style={{justifyContent: "center"}}><h3>Upcoming Task</h3></div>
                 <div className="column column1"><h3 className="pc-hidden">Course name</h3><p>{taskdata.coursename}</p></div>
                 <div className="column column2"><h3 className="pc-hidden">Title</h3><p>{taskdata.coursecode}</p></div>
                 <div className="column column3"><h3 className="pc-hidden">Date</h3><p>{taskdata.duedate}</p></div>

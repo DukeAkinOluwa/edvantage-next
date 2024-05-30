@@ -2343,6 +2343,7 @@ input[type="file"] {
 
     // Components - Dashboard Groups
     .dashboard-groups {
+        display: none;
         padding: 0px;
         width: 100%;
         .box{
@@ -2423,14 +2424,15 @@ input[type="file"] {
 
     .dashboard-main-section {
         grid-template-areas:
-            "dashboardbox"
+            "dashboardtasks"
             "dashboardcalendar"
             "classandexamschedule"
-            "dashboardtasks"
-            "dashboardgroups";
+            "dashboardbox"
+            // "dashboardgroups"
+            ;
         grid-template-columns: 100%;
-        grid-template-rows: auto auto 70svh auto auto;
-        // background-color: $white;
+        // grid-template-rows: auto auto 70svh auto auto;
+        grid-template-rows: auto auto 70svh auto;
         margin: 0px;
         p {
             font-size: 1.05rem;
