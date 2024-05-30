@@ -8,13 +8,13 @@
   "background_color": "#FEFAFA",
   "icons": [
     {
-      "src": "./Images/Manifest/Logos/Logo2.png",
+      "src": "./Images/Manifest/Logos/Edvantage1.png",
       "sizes": "1080x1080",
       "type": "image/png"
     },
     {
-      "src": "./Images/Manifest/Logos/Logo3.png",
-      "sizes": "386x386",
+      "src": "./Images/Manifest/Logos/Edvantage2.png",
+      "sizes": "1080x1080",
       "type": "image/png"
     }
   ],
