@@ -1530,11 +1530,10 @@ input[type="file"] {
                 height: 45px;
                 border-radius: 30px;
             }
-
             .column2 {
                 flex-direction: column;
                 align-items: flex-start;
-                width: calc(100% - 15px - 60px);
+                width: calc(100% - 55px);
                 .time {
                     color: rgba(65, 71, 94, .6);
                 }
@@ -1569,6 +1568,7 @@ input[type="file"] {
     height: 90px;
     width: 100dvw;
     z-index: 1;
+    bottom: 0px;
     .cont{
         @include fja;
         width: calc(100% - 40px);

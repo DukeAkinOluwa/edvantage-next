@@ -1423,7 +1423,7 @@ input[type=file] {
 .general-header .header-popup-notification .header-notification .column2 {
   flex-direction: column;
   align-items: flex-start;
-  width: calc(100% - 15px - 60px);
+  width: calc(100% - 55px);
 }
 .general-header .header-popup-notification .header-notification .column2 .time {
   color: rgba(65, 71, 94, 0.6);
@@ -1455,6 +1455,7 @@ input[type=file] {
   height: 90px;
   width: 100dvw;
   z-index: 1;
+  bottom: 0px;
 }
 .bottom-navigator .cont {
   display: flex;
