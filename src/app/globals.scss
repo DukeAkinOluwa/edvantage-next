@@ -208,6 +208,7 @@ input {
     "sideMenu pageRight";
     color: $text-color;
     grid-template-rows: 65px auto 90px;
+    grid-template-columns: 270px calc(100dvw - 270px);
     background-color: $white;
 }
 

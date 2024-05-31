@@ -1,12 +1,15 @@
-'use client';
+"use client";
 
 import { Inter } from "next/font/google";
 import SideMenu from "@/components/SideMenu";
 import GeneralHeader from "@/components/GeneralHeader";
 import "./globals.css";
 import BottomNavigation from "@/components/BottomNavigation";
-import { BottomNavProvider, BottomNavContext } from "@/contexts/BottomNavContext";
-import { useContext } from 'react';
+import {
+  BottomNavProvider,
+  BottomNavContext,
+} from "@/contexts/BottomNavContext";
+import { useContext, useState, useEffect } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,18 +28,42 @@ export default function RootLayout({ children }) {
 }
 
 function Pages({ children }) {
+  const [viewportWidth, setViewportWidth] = useState(null);
+
+  useEffect(() => {
+    setViewportWidth(window.innerWidth);
+
+    const handleResize = () => {
+      setViewportWidth(window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   const { hideBottomNav } = useContext(BottomNavContext);
 
+  const style = {};
+
   const pagesStyle = hideBottomNav
-    ? { gridTemplateAreas: '"generalHeader" "pageRight"', gridTemplateRows: '65px calc(100dvh - 65px)' }
-    : { gridTemplateAreas: '"generalHeader" "pageRight" "bottomNav"' };
+    ? viewportWidth > 768
+      ? {}
+      : {
+          gridTemplateAreas: '"generalHeader" "pageRight"',
+          gridTemplateRows: "65px calc(100dvh - 65px)",
+          gridTemplateColumns: "auto",
+        }
+    : viewportWidth > 768
+    ? {}
+    : {
+        gridTemplateAreas: '"generalHeader" "pageRight" "bottomNav"',
+        gridTemplateColumns: "auto",
+      };
 
   return (
     <div className="pages" style={pagesStyle}>
       <SideMenu />
-      <div className="page-right">
-        {children}
-      </div>
+      <div className="page-right">{children}</div>
       <GeneralHeader />
       {!hideBottomNav && <BottomNavigation />}
     </div>

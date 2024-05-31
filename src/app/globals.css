@@ -125,6 +125,7 @@ input:focus-visible {
   grid-template-areas: "generalHeader generalHeader" "sideMenu pageRight" "sideMenu pageRight";
   color: #2D2E2E;
   grid-template-rows: 65px auto 90px;
+  grid-template-columns: 270px calc(100dvw - 270px);
   background-color: #FFFFFF;
 }
 
