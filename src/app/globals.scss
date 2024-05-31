@@ -486,7 +486,7 @@ input {
     @include fd;
     position: relative;
     // background-color: white;
-    height: 100dvh;
+    height: 100%;
     width: 100%;
     gap: 0px;
     right: 0px;
@@ -676,7 +676,7 @@ input {
                 }
             }
             .chat-body {
-                @include fdja;
+                @include fda;
                 width: calc(100% - 30px);
                 gap: 10px;
                 height: calc(100% - 50px - 60px); // removed a - 100px. might need to include it later
@@ -716,7 +716,7 @@ input {
                 height: 50px;
                 width: calc(100dvw - $side-menu-width - $chat-left-width - 30px);
                 padding: 0px 15px;
-                position: absolute;
+                position: fixed;
                 bottom: 0px;
                 border-top: solid 1px #28282833;
                 gap: 10px;
@@ -1476,7 +1476,8 @@ input[type="file"] {
     @include fa();
     width: calc(100% - 40px);
     padding: 0px 20px;
-    position: relative;
+    position: fixed;
+    top: 0px;
     height: calc($page-right-header-height + 10px);
     justify-content: space-between;
     box-shadow: 0px 0px 10px rgba(40, 40, 40, 0.2);
@@ -2575,7 +2576,7 @@ input[type="file"] {
             grid-template-columns: auto;
             border-top: 0px;
             .left {
-                height: calc(100dvh - $page-right-header-height);
+                height: calc(100dvh - 60px);
                 .chat-profiles {
                     border: 0px;
                 }

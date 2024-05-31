@@ -5,6 +5,8 @@ import PageRightHeader from "@/components/PageRightHeader";
 import CPTemplate from "@/components/templates/CPTemplate";
 import SearchIcon from "@/icons/search";
 import Image from "next/image";
+import { useContext } from 'react';
+import { BottomNavContext } from '@/contexts/BottomNavContext';
 
 export default function Chats(){
     const [viewportWidth, setViewportWidth] = useState(null);
@@ -296,6 +298,7 @@ export default function Chats(){
         setChatTexts(chatTexts);
         setCurrentPage(2);
         handleReset();
+        hideNav();
         // Add logic to show the chat section
         document.querySelector(".whole-chat-section").classList.add("show-chat");
     };
@@ -377,6 +380,14 @@ export default function Chats(){
         setInvisibleBackground(false);
     };
 
+    const hideNav = () => {
+      toggleBottomNav(true);
+    };
+  
+    const showNav = () => {
+      toggleBottomNav(false);
+    };
+
     function SearchBar() {
         const handleInputClick = () => {
         };
@@ -399,6 +410,8 @@ export default function Chats(){
           </>
         );
     };
+    
+    const { toggleBottomNav } = useContext(BottomNavContext);
       
     
     return (
@@ -447,6 +460,7 @@ export default function Chats(){
         function handleRefreshClick() {
           setCurrentPage(1);
           setSelectedUserProfile(null);
+          showNav();
         }
         return (
           <div className="right">
@@ -477,7 +491,7 @@ export default function Chats(){
                         key={index}
                         className="text"
                         style={{
-                          alignSelf: chat.sender === selectedUserProfile.title ? "flex-end" : "",
+                          alignSelf: chat.sender === selectedUserProfile.title ? "flex-end" : "flex-start",
                           backgroundColor: chat.sender === selectedUserProfile.title ? "#2A52BE" : "#F2F2F7",
                           color: chat.sender === selectedUserProfile.title ? "#FEFAFA" : "",
                         }}>
