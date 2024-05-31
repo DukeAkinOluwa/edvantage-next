@@ -407,7 +407,7 @@ input:focus-visible {
   top: 0px;
   display: grid;
   grid-template-columns: 310px auto;
-  height: calc(100dvh - 122px);
+  height: 100%;
   width: 100%;
   border-top: solid 1px rgba(40, 40, 40, 0.2);
   background-color: #FFFFFF;
@@ -2262,7 +2262,7 @@ input[type=file] {
     margin: 0px;
   }
   .dashboard-main-section {
-    grid-template-areas: "dashboardtasks" "dashboardcalendar" "dashboardbox";
+    grid-template-areas: "dashboardbox" "dashboardtasks" "dashboardcalendar";
     grid-template-columns: 100%;
     grid-template-rows: auto auto auto;
     margin: 0px;
@@ -2349,7 +2349,6 @@ input[type=file] {
   }
   .chat-page .whole-chat-section {
     grid-template-columns: auto;
-    height: 100%;
     border-top: 0px;
   }
   .chat-page .whole-chat-section .left {

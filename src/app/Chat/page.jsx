@@ -24,6 +24,225 @@ export default function Chats(){
     const [elementZIndex, setElementZIndex] = useState("");
     const chatdata = userData && userData.chats;
 
+    const dummyData = {
+            username : "AkinOluwa",
+            password : "AkinAkin",
+            email : "akin@gmail.com",
+            courses : [
+                {
+                    coursename : "Eng Mathematics",
+                    coursecode : "Eng 301",
+                    duedate : "Tue",
+                    status : "Completed"
+                },
+                {
+                    coursename : "Eng Drawing",
+                    coursecode : "Eng 303",
+                    duedate : "Fri",
+                    status : "Pending"
+                },
+                {
+                    coursename : "Machine Drawing",
+                    coursecode : "Eng 305",
+                    duedate : "Sat",
+                    status : "Pending"
+                },
+                {
+                    coursename : "Eng Mathematics",
+                    coursecode : "Eng 305",
+                    duedate : "Tue",
+                    status : "Completed"
+                },
+                {
+                    coursename : "Eng Drawing",
+                    coursecode : "Eng 307",
+                    duedate : "Fri",
+                    status : "Pending"
+                },
+                {
+                    coursename : "Machine Drawing",
+                    coursecode : "Eng 309",
+                    duedate : "Sat",
+                    status : "Completed"
+                },
+                {
+                    coursename : "Machine Drawing",
+                    coursecode : "Eng 311",
+                    duedate : "Sat",
+                    status : "Pending"
+                },
+                {
+                    coursename : "Eng Mathematics",
+                    coursecode : "Eng 313",
+                    duedate : "Tue",
+                    status : "Completed"
+                },
+                {
+                    coursename : "Eng Drawing",
+                    coursecode : "Eng 315",
+                    duedate : "Fri",
+                    status : "Pending"
+                },
+                {
+                    coursename : "Machine Drawing",
+                    coursecode : "Eng 317",
+                    duedate : "Sat",
+                    status : "Completed"
+                },
+                {
+                    coursename : "Machine Drawing",
+                    coursecode : "Eng 319",
+                    duedate : "Sat",
+                    status : "Pending"
+                },
+                {
+                    coursename : "Eng Mathematics",
+                    coursecode : "Eng 321",
+                    duedate : "Tue",
+                    status : "Completed"
+                },
+                {
+                    coursename : "Eng Drawing",
+                    coursecode : "Eng 323",
+                    duedate : "Fri",
+                    status : "Pending"
+                },
+                {
+                    coursename : "Machine Drawing",
+                    coursecode : "Eng 325",
+                    duedate : "Sat",
+                    status : "Completed"
+                }
+            ],
+            assignments : [
+                {
+                    coursecode : "CSC 301",
+                    status : "Completed",
+                    duedate : 25,
+                    progress : 1,
+                    priority : "High"
+                },
+                {
+                    coursecode : "ENG 303",
+                    status : "Pending",
+                    duedate : 86,
+                    progress : 2,
+                    priority : "Low"
+                },
+                {
+                    coursecode : "MEE 305",
+                    status : "Pending",
+                    duedate : 12,
+                    progress : 3,
+                    priority : "High"
+                },
+                {
+                    coursecode : "ENG 307",
+                    status : "Completed",
+                    duedate : 18,
+                    progress : 4,
+                    priority : "Low"
+                },
+                {
+                    coursecode : "ICT 301",
+                    status : "Completed",
+                    duedate : 23,
+                    progress : 1,
+                    priority : "High"
+                },
+                {
+                    coursecode : "AMS 303",
+                    status : "Pending",
+                    duedate : 32,
+                    progress : 2,
+                    priority : "Low"
+                },
+                {
+                    coursecode : "TCE 305",
+                    status : "Pending",
+                    duedate : 85,
+                    progress : 3,
+                    priority : "High"
+                },
+                {
+                    coursecode : "ENG 307",
+                    status : "Completed",
+                    duedate : 97,
+                    progress : 4,
+                    priority : "Low"
+                }
+            ],
+            chats : [
+                {
+                    type : "Group",
+                    imageid: "SmartGlassEngineers.png",
+                    title : "Smart Glass Engineers",
+                    lasttext : "A community of like minded engineers focused",
+                    noofmembers : 18
+                },
+                {
+                    type : "Private",
+                    imageid: "Akin.png",
+                    title : "Akin",
+                    lasttext : "ENG303",
+                    noofmembers : 25,
+                    chat: [
+                        {
+                            sender: "John",
+                            message: "Hello"
+                        },
+                        {
+                            sender: "Akin",
+                            message: "Hi"
+                        },
+                        {
+                            sender: "Akin",
+                            message: "Whatsup good? I saw the text message you sent a few days back but I cheared all my chats by mistake and I kinda forgot to respond to your text."
+                        },
+                        {
+                            sender: "John",
+                            message: "Oooh ooh, that's alright."
+                        },
+                        {
+                            sender: "Akin",
+                            message: "I spoke with the photographer already and he says that he will be free throughout next week."
+                        },
+                        {
+                            sender: "John",
+                            message: "Thank God o."
+                        },
+                        {
+                            sender: "John",
+                            message: "So how much do you think he will request for?."
+                        },
+                        {
+                            sender: "John",
+                            message: "I want him to be available throughout the event and the event should last for about 3 hours."
+                        },
+                        {
+                            sender: "Akin",
+                            message: "He charges about 20k per hour but since you're coming from me, he should charge you about 15 thousand per hour."
+                        },
+                        {
+                            sender: "Akin",
+                            message: "Let's just say 15."
+                        },
+                        {
+                            sender: "John",
+                            message: "Wow."
+                        }
+                    ]
+                },
+                {
+                    type : "Private",
+                    imageid: "Debo.png",
+                    title : "Debo",
+                    lasttext : "ENG305",
+                    noofmembers : 86
+                }
+            ]
+    }
+
     useEffect(() => {
         setViewportWidth(window.innerWidth);
 
@@ -44,6 +263,7 @@ export default function Chats(){
                 setUserData(parsedData);
             } else {
                 console.log("No user data found in local storage.");
+                setUserData(dummyData)
             }
             } catch (error) {
             console.error("Error fetching data from local storage:", error);
@@ -55,6 +275,7 @@ export default function Chats(){
 
     useEffect(() => {
         setCurrentPage(1);
+        setElementZIndex(0)
     }, []);
 
     function handleSetBack(booleanValue, elementIndex) {
@@ -181,7 +402,7 @@ export default function Chats(){
     
     return (
         <span className="chat-page">
-          {viewportWidth < 768 && currentPage === 2 ? (
+          {/* {viewportWidth < 768 && currentPage === 2 ? (
               <></>
             ) : (
               <PageRightHeader
@@ -191,7 +412,7 @@ export default function Chats(){
                   handleSetBack={handleSetBack}
                   elementIndex={"-1"}
               />
-            )}
+            )} */}
             {viewportWidth < 768 ? (
               <>
               {currentPage === 1 && (
@@ -317,7 +538,7 @@ export default function Chats(){
                 <SearchIcon />
               </div>
             </div>
-            <div className="chat-profiles" style={{ zIndex: `${invisibleBackground === true || back || invisibleReset ? elementZIndex : ""}` }}>
+            <div className="chat-profiles" style={{ zIndex: `${elementZIndex}` }}>
               {chatdata && filteredList.length === 0 ? (
                 chatdata
                   .filter((chat) => selectedClassification ? chat.type === selectedClassification : true)

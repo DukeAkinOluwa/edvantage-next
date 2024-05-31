@@ -495,7 +495,7 @@ input {
         top: 0px;
         display: grid;
         grid-template-columns: $chat-left-width auto;
-        height: calc(100dvh - 122px);
+        height: 100%;
         width: 100%;
         // height: 100%;
         border-top: solid 1px #28282833;
@@ -2420,10 +2420,10 @@ input[type="file"] {
 
     .dashboard-main-section {
         grid-template-areas:
+            "dashboardbox"
             "dashboardtasks"
             "dashboardcalendar"
             // "classandexamschedule"
-            "dashboardbox"
             // "dashboardgroups"
             ;
         grid-template-columns: 100%;
@@ -2554,7 +2554,6 @@ input[type="file"] {
     .chat-page{
         .whole-chat-section {
             grid-template-columns: auto;
-            height: 100%;
             border-top: 0px;
             .left {
                 height: calc(100dvh - $page-right-header-height);
