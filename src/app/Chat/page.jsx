@@ -1,11 +1,10 @@
 'use client'
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef, useContext } from "react";
 import PageRightHeader from "@/components/PageRightHeader";
 import CPTemplate from "@/components/templates/CPTemplate";
 import SearchIcon from "@/icons/search";
 import Image from "next/image";
-import { useContext } from 'react';
 import { BottomNavContext } from '@/contexts/BottomNavContext';
 
 export default function Chats(){
@@ -25,6 +24,8 @@ export default function Chats(){
     const [currentPage, setCurrentPage] = useState(1);
     const [elementZIndex, setElementZIndex] = useState("");
     const chatdata = userData && userData.chats;
+      
+    const chatEndRef = useRef(null);
 
     const dummyData = {
             username : "AkinOluwa",
@@ -411,7 +412,10 @@ export default function Chats(){
     };
     
     const { toggleBottomNav } = useContext(BottomNavContext);
-      
+
+    const scrollToBottom = () => {
+      chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    };
     
     return (
         <span className="chat-page">
@@ -456,6 +460,7 @@ export default function Chats(){
         </span>
     );
     function UserProfileDetails({ selectedUserProfile, chatTexts }) {
+      
         useEffect(() => {
           // Function to handle back button click
           const handleBackButton = (event) => {
@@ -481,6 +486,11 @@ export default function Chats(){
             window.removeEventListener('popstate', handleBackButton);
           };
         }, []);
+
+        useEffect(() => {
+          scrollToBottom();
+        }, [selectedUserProfile?.chat]);
+
         function handleRefreshClick() {
           setCurrentPage(1);
           setSelectedUserProfile(null);
@@ -509,20 +519,33 @@ export default function Chats(){
                   <h3>{selectedUserProfile.title}</h3>
                 </div>
                 <div className="chat-body">
-                  {selectedUserProfile.chat ? (
-                    selectedUserProfile.chat.map((chat, index) => (
-                      <div
-                        key={index}
-                        className="text"
-                        style={{
-                          alignSelf: chat.sender === selectedUserProfile.title ? "flex-end" : "flex-start",
-                          backgroundColor: chat.sender === selectedUserProfile.title ? "#2A52BE" : "#F2F2F7",
-                          color: chat.sender === selectedUserProfile.title ? "#FEFAFA" : "",
-                        }}>
-                        <p>{chat.message}</p>
-                      </div>
-                    ))
-                  ) : (
+                {selectedUserProfile.chat ? (
+                <>
+                  {selectedUserProfile.chat.map((chat, index) => (
+                    <div
+                      key={index}
+                      className="text"
+                      style={{
+                        alignSelf:
+                          chat.sender === selectedUserProfile.title
+                            ? "flex-end"
+                            : "flex-start",
+                        backgroundColor:
+                          chat.sender === selectedUserProfile.title
+                            ? "#2A52BE"
+                            : "#F2F2F7",
+                        color:
+                          chat.sender === selectedUserProfile.title
+                            ? "#FEFAFA"
+                            : "",
+                      }}
+                    >
+                      <p>{chat.message}</p>
+                    </div>
+                  ))}
+                  <div ref={chatEndRef} />
+                </>
+              ) : (
                     <div className="empty-chat-body">
                       <div className="display-container">
                         <Image src={`/Images/svg-alternatives/empty-chat-svg2.png`} alt="chatimage" height={250} width={250} sizes="(max-width: 100%), (max-height: 70%)" />
