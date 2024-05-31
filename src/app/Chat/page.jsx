@@ -372,7 +372,6 @@ export default function Chats(){
           handleSetBack(false, 0)
         }
     };
-    console.log(elementZIndex)
     
     const handleClearAll = () => {
         setIsChatSlide1Visible(false);
@@ -457,6 +456,31 @@ export default function Chats(){
         </span>
     );
     function UserProfileDetails({ selectedUserProfile, chatTexts }) {
+        useEffect(() => {
+          // Function to handle back button click
+          const handleBackButton = (event) => {
+            event.preventDefault(); // Prevent the default action
+            console.log('Back button clicked!');
+            // Call your custom function here
+            handleRefreshClick();
+          };
+      
+          // Add a new state to the history stack
+          const addHistoryState = () => {
+            window.history.pushState(null, '', window.location.pathname);
+          };
+      
+          // Add the initial state
+          addHistoryState();
+      
+          // Listen for the popstate event
+          window.addEventListener('popstate', handleBackButton);
+      
+          return () => {
+            // Clean up the event listener on component unmount
+            window.removeEventListener('popstate', handleBackButton);
+          };
+        }, []);
         function handleRefreshClick() {
           setCurrentPage(1);
           setSelectedUserProfile(null);
