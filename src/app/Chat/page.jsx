@@ -352,7 +352,7 @@ export default function Chats(){
         if (isChatSlide1Visible) {
             setIsChatSlide1Visible(null);
             setInvisibleBackground(false);
-            handleSetBack(false, 1)
+            handleSetBack(false, 0)
         } else {
             setIsChatSlide1Visible(true);
             setInvisibleBackground(true);
@@ -366,9 +366,10 @@ export default function Chats(){
         setInvisibleBackground(!isChatSlide2Visible);
         if(isChatSlide1Visible){
         }else{
-          handleSetBack(false, 1)
+          handleSetBack(false, 0)
         }
     };
+    console.log(elementZIndex)
     
     const handleClearAll = () => {
         setIsChatSlide1Visible(false);
