@@ -2353,8 +2353,27 @@ input[type="file"] {
 
     // Components Dashboard Boxes
     .dashboard-boxes {
-        grid-template-columns: auto;
-        min-height: 350px;
+        overflow: hidden;
+        width: 100%;
+        position: relative;
+        min-height: 200px;
+        box-shadow: none;
+        .box{
+            height: 100%;
+            width: 100%;
+            @include fa;
+            transition: transform 1s ease;
+            gap: 20px;
+            padding: 0px 10px;
+            overflow: visible;
+        }
+        .dashboard-box {
+            min-width: 100%;
+            height: calc(100% - 20px);
+            z-index: 2;
+            box-shadow: 0px 0px 10px rgba(40, 40, 40, 0.1);
+            background-color: rgb(42, 82, 190, .1);
+        }
     }
     
     // Components - Dashboard Time Table

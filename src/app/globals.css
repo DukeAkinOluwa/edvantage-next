@@ -2214,8 +2214,28 @@ input[type=file] {
     overflow: hidden;
   }
   .dashboard-boxes {
-    grid-template-columns: auto;
-    min-height: 350px;
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+    min-height: 200px;
+    box-shadow: none;
+  }
+  .dashboard-boxes .box {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    transition: transform 1s ease;
+    gap: 20px;
+    padding: 0px 10px;
+    overflow: visible;
+  }
+  .dashboard-boxes .dashboard-box {
+    min-width: 100%;
+    height: calc(100% - 20px);
+    z-index: 2;
+    box-shadow: 0px 0px 10px rgba(40, 40, 40, 0.1);
+    background-color: rgba(42, 82, 190, 0.1);
   }
   .dashboard-time-table {
     display: none;
