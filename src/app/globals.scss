@@ -733,6 +733,20 @@ input {
                     }
                 }
             }
+            .scroll-to-bottom{
+                @include fja;
+                height: 50px;
+                width: 50px;
+                border-radius: 50%;
+                position: absolute;
+                bottom: calc(50px + 20px);
+                right: 20px;
+                background-color: #f3f1fc;
+                box-shadow: 0px 0px 10px rgba(40, 40, 40, 0.2);
+                path{
+                    fill: $primary-color;
+                }
+            }
         }
     }
 }
