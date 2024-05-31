@@ -1,11 +1,10 @@
 'use client'
 
 import { useState, useEffect } from "react";
-// import './DashboardBoxes.css'; // Make sure to create and import the CSS file
 
 export default function DashboardBoxes() {
     const [activeIndex, setActiveIndex] = useState(0);
-    const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
+    const [viewportWidth, setViewportWidth] = useState(null);
 
     const sections = [
         { id: 1, content: 'Section 1' },
@@ -19,6 +18,7 @@ export default function DashboardBoxes() {
             setViewportWidth(window.innerWidth);
         };
 
+        setViewportWidth(window.innerWidth); // Set initial viewport width
         window.addEventListener("resize", handleResize);
         return () => window.removeEventListener("resize", handleResize);
     }, []);
