@@ -28,7 +28,7 @@ function Pages({ children }) {
   const { hideBottomNav } = useContext(BottomNavContext);
 
   const pagesStyle = hideBottomNav
-    ? { gridTemplateAreas: '"generalHeader" "pageRight"', gridTemplateRows: '65px calc(100dvh - 61px)' }
+    ? { gridTemplateAreas: '"generalHeader" "pageRight"', gridTemplateRows: '65px calc(100dvh - 65px)' }
     : { gridTemplateAreas: '"generalHeader" "pageRight" "bottomNav"' };
 
   return (

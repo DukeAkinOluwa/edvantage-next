@@ -715,7 +715,6 @@ input {
                 justify-content: space-between;
                 height: 50px;
                 width: calc(100dvw - $side-menu-width - $chat-left-width - 30px);
-                padding: 0px 15px;
                 position: fixed;
                 bottom: 0px;
                 border-top: solid 1px #28282833;
@@ -723,10 +722,9 @@ input {
                 img {
                     width: 20px;
                 }
-
                 label {
                     height: 50px;
-                    width: calc(100% - 70px);
+                    width: 100%;
                     input{
                         border: none;
                         padding: 2px 10px 0px 0px;
@@ -2590,15 +2588,24 @@ input[type="file"] {
             .right {
                 height: 100%;
                 .chat-input-box {
-                    width: calc(100dvw - 20px);
+                    width: 100dvw;
                     gap: 10px;
+                    label{
+                        @include fja;
+                        input{
+                            width: calc(100% - 20px);
+                            padding: 0px 10px;
+                        }
+                    }
                 }
                 .chat-header {
-                    gap: 10px;
-    
+                    gap: 15px;
                     svg {
-                        margin: 0px 0px 0px 20px;
+                        margin: 0px 0px 0px 10px;
                         display: block;
+                    }
+                    img, h3{
+                        margin: 0px;
                     }
                 }
             }
