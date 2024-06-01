@@ -46,19 +46,14 @@ function Pages({ children }) {
   const style = {};
 
   const pagesStyle = hideBottomNav
-    ? viewportWidth > 768
+    ? viewportWidth > 1000
       ? {}
       : {
-          gridTemplateAreas: '"generalHeader" "pageRight"',
-          gridTemplateRows: "65px calc(100dvh - 65px)",
-          gridTemplateColumns: "auto",
+          gridTemplateAreas: '"generalHeader generalHeader" "pageRight pageRight" "pageRight pageRight"',
         }
     : viewportWidth > 768
     ? {}
-    : {
-        gridTemplateAreas: '"generalHeader" "pageRight" "bottomNav"',
-        gridTemplateColumns: "auto",
-      };
+    : {};
 
   return (
     <div className="pages" style={pagesStyle}>

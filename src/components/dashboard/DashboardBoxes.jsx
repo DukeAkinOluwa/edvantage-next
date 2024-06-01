@@ -37,7 +37,7 @@ export default function DashboardBoxes() {
 
     return (
         <div className="dashboard-boxes">
-            <div className="box" style={viewportWidth > 768 ? { transform: `translateX(0)` } : style}>
+            <div className="box" style={viewportWidth > 655 ? { transform: `translateX(0)` } : style}>
                 <div className="dashboard-box boxa"></div>
                 <div className="dashboard-box boxb"></div>
                 <div className="dashboard-box boxc"></div>

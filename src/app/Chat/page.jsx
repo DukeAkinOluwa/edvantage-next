@@ -437,7 +437,7 @@ export default function Chats() {
                   elementIndex={"-1"}
               />
             )} */}
-      {viewportWidth < 768 ? (
+      {viewportWidth < 655 ? (
         <>
           {currentPage === 1 && (
             <div className="whole-chat-section">

@@ -2076,12 +2076,21 @@ input[type="file"] {
 }
 
 
-@media only screen and (max-width: 760px) {
+@media only screen and (max-width: 1000px) {
     .pages{
         grid-template-areas: 
-        "generalHeader"
-        "pageRight"
-        "bottomNav";
+        "generalHeader generalHeader"
+        "pageRight pageRight"
+        "bottomNav bottomNav";
+    }
+    .chat-page{
+        .whole-chat-section{
+            .right{
+                .chat-input-box{
+                    width: calc(100dvw - 270px - 50px);
+                }
+            }
+        }
     }
     .top-navbar {
         justify-content: space-between;
@@ -2162,7 +2171,7 @@ input[type="file"] {
 
 // Responsiveness
 // Extra Small Devices (Phones)
-@media only screen and (max-width: 575.98px) {
+@media only screen and (max-width: 655px) {
     // General
     div {
 
