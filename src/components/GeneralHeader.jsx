@@ -1,17 +1,44 @@
 'use client'
 
 import Link from "next/link"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useContext } from "react"
 import notification_info from "@/DB/taskdata.json"
 import HNTemplate from "./templates/HNTemplate"
 import Image from "next/image"
+import { BottomNavContext } from "@/contexts/BottomNavContext"
 
 export default function GeneralHeader() {
     let imageid = "AkinProfileImage"
     let UserProfileImage = `/Images/profile/${imageid}.png`
 
+    const [viewportWidth, setViewportWidth] = useState(null);
     const [isVisible, setIsVisible] = useState(false)
     const [invisibleBackground, setInvisibleBackground] = useState(false)
+
+    const { hideBottomNav, toggleBottomNav } = useContext(BottomNavContext)
+
+    useEffect(() => {
+      setViewportWidth(window.innerWidth);
+  
+      const handleResize = () => {
+        setViewportWidth(window.innerWidth);
+        if ((window.innerWidth > 1000) || ((isVisible === true) && (window.innerWidth > 654)))  {
+            toggleBottomNav(false);
+        }else{
+            toggleBottomNav(true)
+            console.log("hi")
+        }
+      };
+  
+      window.addEventListener("resize", handleResize);
+      return () => window.removeEventListener("resize", handleResize);
+    }, [setViewportWidth, toggleBottomNav]);
+
+    // console.log("viewportWidth = ", viewportWidth)
+    // console.log("notification visibility: ", isVisible)
+    // console.log("is bottom nav hidden? ", hideBottomNav)
+    // console.log("viewport within range? ", (654 < viewportWidth) && (viewportWidth < 1001))
+    // console.log("is condition true? ", ((isVisible === true) && (window.innerWidth < 654)))
 
     useEffect(() => {
         const handleBackButton = (event) => {
@@ -41,6 +68,11 @@ export default function GeneralHeader() {
     function toggleNotification() {
         setIsVisible(!isVisible)
         setInvisibleBackground(!invisibleBackground)
+        if(((hideBottomNav === true) && (viewportWidth < 655)) || ((654 < viewportWidth) && (viewportWidth < 1001))){
+            toggleBottomNav(false)
+        }else(
+            toggleBottomNav(true)
+        )
     }
 
     const notificationInfo = notification_info.notifications

@@ -62,13 +62,7 @@ function Pages({ children }) {
     
   }, []);
 
-  // if (isLoggedIn === true) {
-  //   console.log("true")
-  // }else if (isLoggedIn === null) {
-  //   console.log("null")
-  // }else{
-  //   console.log("false")
-  // }
+  console.log(hideBottomNav)
 
   const style = {};
 
