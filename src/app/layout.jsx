@@ -9,7 +9,9 @@ import {
   BottomNavProvider,
   BottomNavContext,
   AuthContext,
-  AuthProvider
+  AuthProvider,
+  TopNavContext,
+  TopNavProvider
 } from "@/contexts/BottomNavContext";
 import { useContext, useState, useEffect, lazy, Suspense } from "react";
 import Login from "@/components/LoginSignup";
@@ -20,13 +22,15 @@ export default function RootLayout({ children }) {
   return (
       <AuthProvider>
         <BottomNavProvider>
-          <html lang="en">
-            <body>
-              <div className="pages-wrapper">
-                <Pages>{children}</Pages>
-              </div>
-            </body>
-          </html>
+          <TopNavProvider>
+            <html lang="en">
+              <body>
+                <div className="pages-wrapper">
+                  <Pages>{children}</Pages>
+                </div>
+              </body>
+            </html>
+          </TopNavProvider>
         </BottomNavProvider>
       </AuthProvider>
   );
@@ -36,6 +40,7 @@ function Pages({ children }) {
   const [viewportWidth, setViewportWidth] = useState(null);
   const { hideBottomNav } = useContext(BottomNavContext);
   const { isLoggedIn } = useContext(AuthContext);
+  const { hideTopNav } = useContext(TopNavContext);
   const [isLoading, setIsLoading] = useState(true); // Add isLoading state
 
   useEffect(() => {
@@ -57,13 +62,13 @@ function Pages({ children }) {
     
   }, []);
 
-  if (isLoggedIn === true) {
-    console.log("true")
-  }else if (isLoggedIn === null) {
-    console.log("null")
-  }else{
-    console.log("false")
-  }
+  // if (isLoggedIn === true) {
+  //   console.log("true")
+  // }else if (isLoggedIn === null) {
+  //   console.log("null")
+  // }else{
+  //   console.log("false")
+  // }
 
   const style = {};
 
@@ -89,7 +94,7 @@ function Pages({ children }) {
               <SideMenu />
               {!hideBottomNav && <BottomNavigation />}
               <div className="page-right">{children}</div>
-              {!hideBottomNav && <GeneralHeader />}
+              {!hideTopNav && <GeneralHeader />}
             </>
           )}
         </>

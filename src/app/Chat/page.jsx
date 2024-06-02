@@ -5,7 +5,7 @@ import PageRightHeader from "@/components/PageRightHeader";
 import CPTemplate from "@/components/templates/CPTemplate";
 import SearchIcon from "@/icons/search";
 import Image from "next/image";
-import { BottomNavContext } from "@/contexts/BottomNavContext";
+import { BottomNavContext, TopNavContext } from "@/contexts/BottomNavContext";
 
 export default function Chats() {
   const [viewportWidth, setViewportWidth] = useState(null);
@@ -26,6 +26,9 @@ export default function Chats() {
   const chatdata = userData && userData.chats;
 
   const chatEndRef = useRef(null);
+
+  const { toggleBottomNav } = useContext(BottomNavContext);
+  const { toggleTopNav } = useContext(TopNavContext);
 
   const dummyData = {
     username: "AkinOluwa",
@@ -255,11 +258,19 @@ export default function Chats() {
 
     const handleResize = () => {
       setViewportWidth(window.innerWidth);
+      if (window.innerWidth > 654)  {
+        toggleTopNav(false);
+      }else if (selectedUserProfile !== null) {
+        console.log("hi")
+        toggleTopNav(true)
+      }else{
+        toggleTopNav(false)
+      }
     };
 
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  }, [selectedUserProfile, toggleTopNav]);
 
   useEffect(() => {
     const fetchDataFromLocalStorage = async () => {
@@ -386,10 +397,14 @@ export default function Chats() {
 
   const hideNav = () => {
     toggleBottomNav(true);
+    if (viewportWidth < 655) {
+      toggleTopNav(true);
+    }
   };
 
   const showNav = () => {
     toggleBottomNav(false);
+    toggleTopNav(false);
   };
 
   function SearchBar() {
@@ -417,8 +432,6 @@ export default function Chats() {
       </>
     );
   }
-
-  const { toggleBottomNav } = useContext(BottomNavContext);
 
   const scrollToBottom = () => {
     chatEndRef.current?.scrollIntoView({ behavior: "smooth" });

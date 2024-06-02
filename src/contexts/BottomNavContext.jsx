@@ -3,6 +3,7 @@
 import { createContext, useState, useEffect } from 'react';
 
 export const BottomNavContext = createContext();
+export const TopNavContext = createContext();
 export const AuthContext = createContext({
   isLoggedIn: false,
   user: null,
@@ -20,6 +21,19 @@ export const BottomNavProvider = ({ children }) => {
     <BottomNavContext.Provider value={{ hideBottomNav, toggleBottomNav }}>
       {children}
     </BottomNavContext.Provider>
+  );
+};
+
+export const TopNavProvider = ({ children }) => {
+  const [hideTopNav, setHideTopNav] = useState(false);
+
+  const toggleTopNav = (hide) => {
+    setHideTopNav(hide);
+  };
+  return (
+    <TopNavContext.Provider value={{ hideTopNav, toggleTopNav }}>
+      {children}
+    </TopNavContext.Provider>
   );
 };
 
