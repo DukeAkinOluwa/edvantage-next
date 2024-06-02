@@ -87,9 +87,9 @@ function Pages({ children }) {
           {isLoggedIn === true && (
             <>
               <SideMenu />
-              {!hideBottomNav && <GeneralHeader />}
               {!hideBottomNav && <BottomNavigation />}
               <div className="page-right">{children}</div>
+              {!hideBottomNav && <GeneralHeader />}
             </>
           )}
         </>
