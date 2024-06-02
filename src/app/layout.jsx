@@ -49,7 +49,7 @@ function Pages({ children }) {
     ? viewportWidth > 1000
       ? {}
       : {
-          gridTemplateAreas: '"generalHeader generalHeader" "pageRight pageRight" "pageRight pageRight"',
+          gridTemplateAreas: '"pageRight pageRight" "pageRight pageRight" "pageRight pageRight"',
         }
     : viewportWidth > 768
     ? {}
@@ -58,9 +58,9 @@ function Pages({ children }) {
   return (
     <div className="pages" style={pagesStyle}>
       <SideMenu />
-      <div className="page-right">{children}</div>
-      <GeneralHeader />
+      {!hideBottomNav && <GeneralHeader />}
       {!hideBottomNav && <BottomNavigation />}
+      <div className="page-right">{children}</div>
     </div>
   );
 }
