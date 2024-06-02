@@ -12,7 +12,7 @@ import {
   AuthProvider
 } from "@/contexts/BottomNavContext";
 import { useContext, useState, useEffect, lazy, Suspense } from "react";
-import Login from "@/components/Login";
+import Login from "@/components/LoginSignup";
 
 const inter = Inter({ subsets: ["latin"] });
 

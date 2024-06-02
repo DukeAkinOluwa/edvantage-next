@@ -319,26 +319,22 @@ input {
     grid-template-columns: repeat(2, 50%);
     height: 100dvh;
     width: 100dvw;
-
     .left {
         @include fdja();
         gap: 10px;
-
         h1 {
             color: $primary-color;
         }
-
         img {
             max-width: calc(100% - 60px);
-            object-fit: cover;
+            max-height: 400px;
+            object-fit: contain;
         }
     }
-
     .right {
         background-color: $primary-color;
         @include fda();
         justify-content: flex-end;
-
         .phone-design {
             @include fd();
             gap: 10px;
@@ -347,29 +343,26 @@ input {
             min-height: 50svh;
             width: 55%;
             padding: calc(15% / 2);
-
             .alternative {
+                @include fa;
+                gap: 5px;
                 align-self: center;
-
-                a {
+                .highlight {
                     color: $primary-color;
                 }
             }
         }
     }
-
     .onboarding-right {
         justify-content: center;
         color: $primary-color2;
     }
-
     .container {
         position: relative;
         @include fd;
         gap: 30px;
         width: 80%;
         height: max-content;
-
         .options {
             @include fd;
             width: 100%;
@@ -379,7 +372,6 @@ input {
             background-color: $white;
             border-radius: 0px 0px 10px 10px;
             position: relative;
-
             .option {
                 @include fa;
                 max-width: calc(100% - 20px);
@@ -390,7 +382,6 @@ input {
             }
         }
     }
-
     .remember-me-forgot-password {
         @include fa();
         justify-content: space-between;
@@ -405,12 +396,10 @@ input {
             @include fa();
         }
     }
-
     .or-div {
         width: 100%;
         @include fda();
         padding: 20px 0px;
-
         .line {
             height: 0px;
             width: 100%;
@@ -418,7 +407,6 @@ input {
             // position: relative;
             // top: 0px;
         }
-
         .text {
             position: relative;
             top: -11px;
@@ -426,24 +414,22 @@ input {
             padding: 0px 15px;
         }
     }
-
     .switch-screen {
         @include fa;
     }
-
     .all {
         @include fdja;
         gap: 20px;
         grid-column: span 2;
         height: 100%;
         width: 100vw;
-
-        a {
+        a{
             color: $white;
         }
-
-        img {
-            max-width: 100%;
+        img{
+            max-width: calc(100% - 60px);
+            max-height: 400px;
+            object-fit: contain;
         }
     }
 }

@@ -31,6 +31,7 @@ export default function SideMenu() {
   // Logout Function
   const handleLogout = () => {
     logout(false)
+    console.log("a")
   };
 
   return (

@@ -248,7 +248,8 @@ input:focus-visible {
 }
 .login-signup .left img {
   max-width: calc(100% - 60px);
-  object-fit: cover;
+  max-height: 400px;
+  object-fit: contain;
 }
 .login-signup .right {
   background-color: #2A52BE;
@@ -268,9 +269,12 @@ input:focus-visible {
   padding: 7.5%;
 }
 .login-signup .right .phone-design .alternative {
+  display: flex;
+  align-items: center;
+  gap: 5px;
   align-self: center;
 }
-.login-signup .right .phone-design .alternative a {
+.login-signup .right .phone-design .alternative .highlight {
   color: #2A52BE;
 }
 .login-signup .onboarding-right {
@@ -355,7 +359,9 @@ input:focus-visible {
   color: #FFFFFF;
 }
 .login-signup .all img {
-  max-width: 100%;
+  max-width: calc(100% - 60px);
+  max-height: 400px;
+  object-fit: contain;
 }
 
 .assignment-task-overview-table {
