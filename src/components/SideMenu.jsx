@@ -1,10 +1,12 @@
 'use client'
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import { AuthContext } from "@/contexts/BottomNavContext"
 import Link from "next/link";
 
 export default function SideMenu() {
   const [activeLink, setActiveLink] = useState(null)
+  const { logout } = useContext(AuthContext)
   // useEffect(() => {
   //   const currentPath = location.pathname;
   //   if(currentPath === "/"){
@@ -27,11 +29,8 @@ export default function SideMenu() {
   // }, []);
 
   // Logout Function
-  const logout = () => {
-    // Remove an item from local storage
-    localStorage.removeItem("userData");
-
-    navigate("/"); // Trigger the redirect immediately
+  const handleLogout = () => {
+    logout(false)
   };
 
   return (
@@ -157,7 +156,7 @@ export default function SideMenu() {
           <p>User Profile</p>
         </Link>
       </nav>
-      <div onClick={logout} className="side-menu-logout">
+      <div onClick={handleLogout} className="side-menu-logout">
         Logout
       </div>
     </div>

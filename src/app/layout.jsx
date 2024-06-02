@@ -8,27 +8,35 @@ import BottomNavigation from "@/components/BottomNavigation";
 import {
   BottomNavProvider,
   BottomNavContext,
+  AuthContext,
+  AuthProvider
 } from "@/contexts/BottomNavContext";
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState, useEffect, lazy, Suspense } from "react";
+import Login from "@/components/Login";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({ children }) {
   return (
-    <BottomNavProvider>
-      <html lang="en">
-        <body>
-          <div className="pages-wrapper">
-            <Pages>{children}</Pages>
-          </div>
-        </body>
-      </html>
-    </BottomNavProvider>
+      <AuthProvider>
+        <BottomNavProvider>
+          <html lang="en">
+            <body>
+              <div className="pages-wrapper">
+                <Pages>{children}</Pages>
+              </div>
+            </body>
+          </html>
+        </BottomNavProvider>
+      </AuthProvider>
   );
 }
 
 function Pages({ children }) {
   const [viewportWidth, setViewportWidth] = useState(null);
+  const { hideBottomNav } = useContext(BottomNavContext);
+  const { isLoggedIn } = useContext(AuthContext);
+  const [isLoading, setIsLoading] = useState(true); // Add isLoading state
 
   useEffect(() => {
     setViewportWidth(window.innerWidth);
@@ -41,7 +49,21 @@ function Pages({ children }) {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const { hideBottomNav } = useContext(BottomNavContext);
+  useEffect(() => {
+    // Simulate data fetching or checking for logged in state
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1000); // Replace with actual data fetching logic
+    
+  }, []);
+
+  if (isLoggedIn === true) {
+    console.log("true")
+  }else if (isLoggedIn === null) {
+    console.log("null")
+  }else{
+    console.log("false")
+  }
 
   const style = {};
 
@@ -52,18 +74,30 @@ function Pages({ children }) {
           gridTemplateAreas: '"pageRight pageRight" "pageRight pageRight" "pageRight pageRight"',
         }
     : viewportWidth > 768
-    ? {}
-    : {};
+      ? {}
+      : {};
 
   return (
-    <div className="pages" style={pagesStyle}>
-      <SideMenu />
-      {!hideBottomNav && <GeneralHeader />}
-      {!hideBottomNav && <BottomNavigation />}
-      <div className="page-right">{children}</div>
+    <div className="pages" style={pagesStyle} suppressHydrationWarning={true}>
+      {isLoading ? (
+        <div className="loading">Loading...</div>
+      ) : (
+        <>
+          {isLoggedIn === false && <Login />}
+          {isLoggedIn === true && (
+            <>
+              <SideMenu />
+              {!hideBottomNav && <GeneralHeader />}
+              {!hideBottomNav && <BottomNavigation />}
+              <div className="page-right">{children}</div>
+            </>
+          )}
+        </>
+      )}
     </div>
   );
 }
+
 
 // export const metadata = {
 //   title: "Edvantage",
