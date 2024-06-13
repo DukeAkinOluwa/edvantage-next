@@ -5,6 +5,65 @@ import { useEffect, useState } from "react";
 
 export default function Assignments(){
 
+    const Dummy = [
+        {
+            coursecode : "CSC 301",
+            status : "Completed",
+            duedate : 25,
+            progress : 1,
+            priority : "High"
+        },
+        {
+            coursecode : "ENG 303",
+            status : "Pending",
+            duedate : 86,
+            progress : 2,
+            priority : "Low"
+        },
+        {
+            coursecode : "MEE 305",
+            status : "Pending",
+            duedate : 12,
+            progress : 3,
+            priority : "High"
+        },
+        {
+            coursecode : "ENG 307",
+            status : "Completed",
+            duedate : 18,
+            progress : 4,
+            priority : "Low"
+        },
+        {
+            coursecode : "ICT 301",
+            status : "Completed",
+            duedate : 23,
+            progress : 1,
+            priority : "High"
+        },
+        {
+            coursecode : "AMS 303",
+            status : "Pending",
+            duedate : 32,
+            progress : 2,
+            priority : "Low"
+        },
+        {
+            coursecode : "TCE 305",
+            status : "Pending",
+            duedate : 85,
+            progress : 3,
+            priority : "High"
+        },
+        {
+            coursecode : "ENG 307",
+            status : "Completed",
+            duedate : 97,
+            progress : 4,
+            priority : "Low"
+        }
+    ]
+
     useEffect(() => {
         // Function to fetch data from local storage asynchronously
         const fetchDataFromLocalStorage = async () => {
@@ -29,7 +88,7 @@ export default function Assignments(){
     
     const [userData, setUserData] = useState(null);
     
-    const taskinfo = userData && userData.assignments;
+    // const taskinfo = userData && userData.assignments;
 
 
     return(
@@ -44,9 +103,9 @@ export default function Assignments(){
                         <div className="column4"><h5>Progress</h5></div>
                         <div className="column5"><h5>Priority</h5></div>
                     </div>
-                    {taskinfo ? (
+                    {Dummy ? (
                         <>
-                        {taskinfo.map((tasks, index) => (
+                        {Dummy.map((tasks, index) => (
                             <ATTemplate key={index} data={tasks} />
                         ))}</>
                     ) : (
