@@ -62,8 +62,8 @@ function Pages({ children }) {
     
   }, []);
 
-  console.log(isTopNavHidden)
-  console.log(isBottomNavHidden)
+  console.log("isTopNavHidden? ", isTopNavHidden)
+  console.log("isBottomNavHidden? ", isBottomNavHidden)
 
   const style = {};
 

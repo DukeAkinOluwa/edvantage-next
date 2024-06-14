@@ -12,7 +12,7 @@ export default function GeneralHeader() {
     let UserProfileImage = `/Images/profile/${imageid}.png`
 
     const [viewportWidth, setViewportWidth] = useState(null);
-    const [isVisible, setIsVisible] = useState(false)
+    const [isNotificationSectionVisible, setIsNotificationSectionVisible] = useState(false)
     const [invisibleBackground, setInvisibleBackground] = useState(false)
 
     const { isBottomNavHidden, setIsBottomNavHidden } = useContext(BottomNavContext)
@@ -22,7 +22,7 @@ export default function GeneralHeader() {
   
       const handleResize = () => {
         setViewportWidth(window.innerWidth);
-        if ((window.innerWidth > 1000) || ((isVisible === true) && (window.innerWidth > 654)))  {
+        if ((window.innerWidth > 1000) || ((isNotificationSectionVisible === true) && (window.innerWidth > 654)))  {
             setIsBottomNavHidden(false);
         }else{
             setIsBottomNavHidden(true)
@@ -35,40 +35,45 @@ export default function GeneralHeader() {
     }, [setViewportWidth, setIsBottomNavHidden]);
 
     // console.log("viewportWidth = ", viewportWidth)
-    // console.log("notification visibility: ", isVisible)
-    // console.log("is bottom nav hidden? ", hideBottomNav)
+    // console.log("notification visibility: ", isNotificationSectionVisible)
+    // console.log("is bottom nav hidden? ", isBottomNavHidden)
     // console.log("viewport within range? ", (654 < viewportWidth) && (viewportWidth < 1001))
-    // console.log("is condition true? ", ((isVisible === true) && (window.innerWidth < 654)))
+    // console.log("is condition true? ", ((isNotificationSectionVisible === true) && (window.innerWidth < 654)))
 
     useEffect(() => {
         const handleBackButton = (event) => {
-            if (isVisible) {
-                event.preventDefault()
-                handleRefreshClick()
-                console.log("Back button clicked!")
-            }
+          if (isNotificationSectionVisible === true) {
+            event.preventDefault();
+            handleRefreshClick();
+            console.log("Back button clicked!");
+          }
+        };
+      
+        const updateHistoryState = () => {
+          window.history.pushState(null, "", window.location.pathname);
+        };
+      
+        if (isNotificationSectionVisible === true) {
+          updateHistoryState();
         }
-
-        const addHistoryState = () => {
-            window.history.pushState(null, "", window.location.pathname)
-        }
-
-        addHistoryState()
-        window.addEventListener("popstate", handleBackButton)
-
+      
+        window.addEventListener("popstate", handleBackButton);
+      
         return () => {
-            window.removeEventListener("popstate", handleBackButton)
-        }
-    }, [isVisible])
+          window.removeEventListener("popstate", handleBackButton);
+        };
+      }, [isNotificationSectionVisible]);
+      
 
     function handleRefreshClick() {
         toggleNotification()
     }
 
     function toggleNotification() {
-        setIsVisible(!isVisible)
+        setIsNotificationSectionVisible(!isNotificationSectionVisible)
         setInvisibleBackground(!invisibleBackground)
-        if(((hideBottomNav === true) && (viewportWidth < 655)) || ((654 < viewportWidth) && (viewportWidth < 1001))){
+        if(((isNotificationSectionVisible === true) && (viewportWidth < 655)) //|| ((654 < viewportWidth) && (viewportWidth < 1001))
+        ){
             setIsBottomNavHidden(false)
         }else(
             setIsBottomNavHidden(true)
@@ -92,7 +97,7 @@ export default function GeneralHeader() {
                     <Image src={UserProfileImage} alt="ProfileImage" width={35} height={35} />
                 </Link>
             </div>
-            {isVisible && (
+            {isNotificationSectionVisible && (
                 <div className="header-popup-notification">
                     <div className="top-bar">
                         <svg className="pc-hidden" width="16" height="16" viewBox="0 0 16 16" fill="none" onClick={handleRefreshClick}>
