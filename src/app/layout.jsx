@@ -63,18 +63,19 @@ function Pages({ children }) {
   }, []);
 
   console.log(hideBottomNav)
+  console.log(hideTopNav)
 
   const style = {};
 
-  const pagesStyle = hideBottomNav
-    ? viewportWidth > 1000
-      ? {}
-      : {
-          gridTemplateAreas: '"pageRight pageRight" "pageRight pageRight" "pageRight pageRight"',
-        }
-    : viewportWidth > 768
-      ? {}
-      : {};
+  let pagesStyle
+
+    if (hideBottomNav && hideTopNav && (viewportWidth < 1001)) {
+      pagesStyle = { gridTemplateAreas: '"pageRight pageRight" "pageRight pageRight" "pageRight pageRight"',}
+    }else if(hideBottomNav && !hideTopNav && (viewportWidth < 1001)){
+      pagesStyle = { gridTemplateAreas: '"generalHeader generalHeader" "pageRight pageRight" "pageRight pageRight"',}
+    }else if (hideTopNav && !hideBottomNav && (viewportWidth < 1001)) {
+      pagesStyle = { gridTemplateAreas: '"pageRight pageRight" "pageRight pageRight" "bottomNav bottomNav"',}
+    }
 
   return (
     <div className="pages" style={pagesStyle} suppressHydrationWarning={true}>

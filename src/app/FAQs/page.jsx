@@ -3,10 +3,19 @@
 import SideMenu from "@/components/SideMenu"
 import PageRightHeader from "@/components/PageRightHeader"
 import faq_info from "@/DB/faqdata.json"
+import { useEffect, useContext } from "react"
+import { BottomNavContext, TopNavContext } from "@/contexts/BottomNavContext";
 
 export default function FAQs(){
     
     const faqinfo = faq_info.data
+    const { toggleBottomNav } = useContext(BottomNavContext);
+    const { toggleTopNav } = useContext(TopNavContext);
+
+    useEffect(()=>{
+        toggleBottomNav(true)
+        toggleTopNav(true)
+    })
 
     return(
         <>

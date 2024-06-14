@@ -1,34 +1,38 @@
-import PageRightHeader from "@/components/PageRightHeader"
+'use client'
 
-export default function UserProfile(props){
+import Image from "next/image"
+import Link from "next/link"
+import { useEffect, useContext } from "react"
+import { BottomNavContext, TopNavContext } from "@/contexts/BottomNavContext";
+
+export default function Profile(){
+
+    const { toggleBottomNav } = useContext(BottomNavContext);
+    const { toggleTopNav } = useContext(TopNavContext);
+
+    let imageid = "AkinProfileImage"
+    let UserProfileImage = `/Images/profile/${imageid}.png`
+
+    useEffect(()=>{
+        toggleBottomNav(true)
+        toggleTopNav(true)
+    })
+
     return(
-        <div className="user-profile-page">
-            <PageRightHeader page_title={`Profile`} userlevel="23"/>
-            <h3 className="user-profile-heading">Profile</h3>
-            <label className="upload-file">
-                <svg xmlns="http://www.w3.org/2000/svg" width="36" height="37" viewBox="0 0 36 37" fill="none">
-                    <path fillRule="evenodd" clipRule="evenodd" d="M9.99994 8.46643C10.74 7.98404 11.61 7.72656 12.5 7.72656C13.0714 7.72656 13.5346 8.17848 13.5346 8.73594C13.5346 9.29341 13.0714 9.74533 12.5 9.74533C12.0193 9.74533 11.5493 9.8844 11.1496 10.145C10.7498 10.4055 10.4383 10.7759 10.2543 11.2092C10.0703 11.6425 10.0222 12.1193 10.116 12.5793C10.2098 13.0393 10.4413 13.4619 10.7812 13.7935C11.1212 14.1252 11.5543 14.351 12.0258 14.4425C12.4973 14.534 12.986 14.487 13.4302 14.3076C13.8744 14.1281 14.254 13.8241 14.5211 13.4342C14.7882 13.0442 14.9307 12.5857 14.9307 12.1167C14.9307 11.5592 15.3939 11.1073 15.9654 11.1073C16.5368 11.1073 17 11.5592 17 12.1167C17 12.985 16.7361 13.8338 16.2416 14.5557C15.7471 15.2777 15.0443 15.8404 14.2221 16.1727C13.3998 16.5049 12.495 16.5919 11.6221 16.4225C10.7492 16.2531 9.94736 15.835 9.31802 15.221C8.68868 14.607 8.2601 13.8248 8.08647 12.9732C7.91283 12.1216 8.00195 11.2389 8.34254 10.4367C8.68314 9.63447 9.25991 8.94883 9.99994 8.46643Z" fill="#8D98AA"/>
-                    <path fillRule="evenodd" clipRule="evenodd" d="M34.9802 13.5801C35.5434 13.5801 36 14.0348 36 14.5956V23.0993C36 27.4494 35.1375 30.7587 32.9439 32.9556C30.7489 35.1538 27.4407 36.0186 23.094 36.0186H12.906C8.56063 36.0186 5.25258 35.1542 3.05723 32.9562C0.863226 30.7595 0 27.4502 0 23.0993V19.6802C0 19.1193 0.456559 18.6647 1.01975 18.6647C1.58295 18.6647 2.03951 19.1193 2.03951 19.6802V23.0993C2.03951 27.2519 2.87587 29.8945 4.50321 31.5238C6.12922 33.1518 8.76429 33.9874 12.906 33.9874H23.094C27.2371 33.9874 29.8721 33.1514 31.4977 31.5234C33.1248 29.8939 33.9605 27.2514 33.9605 23.0993V14.5956C33.9605 14.0348 34.4171 13.5801 34.9802 13.5801Z" fill="#8D98AA"/>
-                    <path fillRule="evenodd" clipRule="evenodd" d="M3.09967 3.89765C5.32422 1.7445 8.6763 0.897461 13.0827 0.897461H19.9716C20.5396 0.897461 21 1.34312 21 1.89286C21 2.4426 20.5396 2.88826 19.9716 2.88826H13.0827C8.87924 2.88826 6.20419 3.70818 4.55405 5.30536C2.90392 6.90254 2.05681 9.49174 2.05681 13.5603C2.05681 14.11 1.59638 14.5557 1.0284 14.5557C0.460432 14.5557 0 14.11 0 13.5603C0 9.29531 0.875122 6.05081 3.09967 3.89765Z" fill="#8D98AA"/>
-                    <path fillRule="evenodd" clipRule="evenodd" d="M23 6.75098C23 6.21218 23.4792 5.77539 24.0704 5.77539H33.9296C34.5208 5.77539 35 6.21218 35 6.75098C35 7.28978 34.5208 7.72656 33.9296 7.72656H24.0704C23.4792 7.72656 23 7.28978 23 6.75098Z" fill="#8D98AA"/>
-                    <path fillRule="evenodd" clipRule="evenodd" d="M29 0.897461C29.5523 0.897461 30 1.365 30 1.94174V11.5602C30 12.137 29.5523 12.6045 29 12.6045C28.4477 12.6045 28 12.137 28 11.5602V1.94174C28 1.365 28.4477 0.897461 29 0.897461Z" fill="#8D98AA"/>
-                    <path fillRule="evenodd" clipRule="evenodd" d="M28.0496 20.0921L20.9723 26.0689L20.9535 26.0844C20.0931 26.7765 19.0135 27.1549 17.8993 27.1549C16.7851 27.1549 15.7055 26.7765 14.8451 26.0844C14.8358 26.077 14.8267 26.0694 14.8177 26.0616L14.2713 25.5897C13.8139 25.2295 13.2519 25.0191 12.6651 24.9885C12.0746 24.9578 11.4894 25.1106 10.9934 25.425L2.59721 30.969C2.12855 31.2785 1.49204 31.1579 1.17551 30.6997C0.858988 30.2415 0.982315 29.6192 1.45097 29.3098L9.86814 23.7519C10.7295 23.2027 11.7473 22.9356 12.7741 22.9892C13.801 23.0427 14.7839 23.4142 15.5806 24.0499C15.5909 24.0581 15.6011 24.0666 15.6111 24.0752L16.1591 24.5485C16.6508 24.9392 17.2653 25.1527 17.8993 25.1527C18.5351 25.1527 19.1512 24.938 19.6436 24.5453L26.7209 18.5684L26.7397 18.5529C27.6002 17.8608 28.6797 17.4824 29.7939 17.4824C30.9081 17.4824 31.9877 17.8608 32.8481 18.5529L32.867 18.5684L35.6454 20.915C36.0734 21.2765 36.1206 21.9087 35.7509 22.3271C35.3812 22.7455 34.7345 22.7916 34.3066 22.4302L31.5382 20.092C31.0458 19.6993 30.4297 19.4847 29.7939 19.4847C29.1582 19.4847 28.5421 19.6993 28.0496 20.0921Z" fill="#8D98AA"/>
-                </svg>
-                <input type="file" placeholder="Upload your photo" name="old-password" autoComplete="on" />
-            </label>
-            <label className="enter-full-name">
-                <span>Full name</span>
-                <input type="text" placeholder="Please enter your full name" name="old-password" autoComplete="on" />
-            </label>
-            <label>
-                <span>Username</span>
-                <input type="text" placeholder="Please enter your username" name="old-password" autoComplete="on" />
-            </label>
-            <label className="enter-bio">
-                <span>Bio</span>
-                <input type="text" placeholder="Write your Bio here e.g your hobbies, interests etc" name="old-password" autoComplete="on" />
-            </label>
-            <div className="button button1"><p>Update Profile</p></div>
+        <div className="profile-page">
+            <div className="profile-card">
+                <div className="profile-image-cont">
+                    <Image src={UserProfileImage} alt="ProfileImage" width={75} height={75} />
+                </div>
+                <h2>AkinOluwa</h2>
+                <h3>Bells University Of Technology</h3>
+                <p>Mechatronics Engineering | 300L</p>
+            </div>
+            <div className="links">
+                <Link href="/Settings">Settings</Link>
+                <Link href="/FAQs">FAQs</Link>
+                <Link href="/TermsAndConditions">Terms &amp; Conditions</Link>
+            </div>
         </div>
     )
 }

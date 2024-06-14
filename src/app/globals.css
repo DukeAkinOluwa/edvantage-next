@@ -768,6 +768,55 @@ input[type=file] {
   margin: 20px 0px 0px 0px;
 }
 
+.profile-page {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  height: auto;
+  margin: 35px 0px 0px;
+  width: calc(100% - 30px);
+}
+.profile-page .profile-card {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.profile-page .profile-card h3, .profile-page .profile-card p {
+  color: #3d4040;
+}
+.profile-page .profile-image-cont {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 85px;
+  width: 85px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.profile-page .profile-image-cont img {
+  height: 100%;
+  width: 100%;
+  max-height: 100%;
+  max-width: 100%;
+}
+.profile-page .links {
+  display: flex;
+  flex-direction: column;
+  width: calc(100% - 20px);
+  padding: 0px 10px;
+  height: fit-content;
+  border-radius: 10px;
+  border: solid 1px #e8e7e7;
+}
+.profile-page .links a {
+  padding: 15px 0px;
+  border-bottom: solid 1px #e8e7e7;
+  color: #000;
+}
+.profile-page .links a:last-child {
+  border-bottom: none;
+}
+
 .invisible-background {
   height: 100dvh;
   width: 100dvw;

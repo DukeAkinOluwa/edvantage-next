@@ -1,5 +1,6 @@
 'use client'
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { BottomNavContext, TopNavContext } from "@/contexts/BottomNavContext";
 import SideMenu from "@/components/SideMenu"
 import PageRightHeader from "@/components/PageRightHeader"
 
@@ -11,6 +12,14 @@ const [userData, setUserData] = useState({
     newEmail: '',
 });
 const [localUserData, setLocalUserData] = useState(null);
+const { toggleBottomNav } = useContext(BottomNavContext);
+const { toggleTopNav } = useContext(TopNavContext);
+
+useEffect(()=>{
+    toggleBottomNav(true)
+    toggleTopNav(true)
+    console.log("akin")
+})
 
 // Fetch user data from localStorage on component mount (client-side only)
 useEffect(() => {

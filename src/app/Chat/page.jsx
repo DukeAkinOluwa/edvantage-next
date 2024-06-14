@@ -296,6 +296,11 @@ export default function Chats() {
     setElementZIndex(0);
   }, []);
 
+  useEffect(()=>{
+    toggleBottomNav(false)
+    toggleTopNav(true)
+  })
+
   function handleSetBack(booleanValue, elementIndex) {
     setBack(booleanValue);
     setElementZIndex(elementIndex);
