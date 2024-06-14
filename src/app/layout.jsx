@@ -62,8 +62,8 @@ function Pages({ children }) {
     
   }, []);
 
-  console.log(hideBottomNav)
   console.log(hideTopNav)
+  console.log(hideBottomNav)
 
   const style = {};
 

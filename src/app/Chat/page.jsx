@@ -260,11 +260,14 @@ export default function Chats() {
       setViewportWidth(window.innerWidth);
       if (window.innerWidth > 654)  {
         toggleTopNav(false);
+        toggleBottomNav(true)
       }else if (selectedUserProfile !== null) {
         console.log("hi")
+        toggleBottomNav(true)
         toggleTopNav(true)
       }else{
-        toggleTopNav(false)
+        toggleTopNav(true)
+        toggleBottomNav(false)
       }
     };
 
@@ -295,11 +298,6 @@ export default function Chats() {
     setCurrentPage(1);
     setElementZIndex(0);
   }, []);
-
-  useEffect(()=>{
-    toggleBottomNav(false)
-    toggleTopNav(true)
-  })
 
   function handleSetBack(booleanValue, elementIndex) {
     setBack(booleanValue);
