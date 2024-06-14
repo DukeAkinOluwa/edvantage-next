@@ -27,8 +27,8 @@ export default function Chats() {
 
   const chatEndRef = useRef(null);
 
-  const { toggleBottomNav } = useContext(BottomNavContext);
-  const { toggleTopNav } = useContext(TopNavContext);
+  const { setIsBottomNavHidden } = useContext(BottomNavContext);
+  const { setIsTopNavHidden } = useContext(TopNavContext);
 
   const dummyData = {
     username: "AkinOluwa",
@@ -259,21 +259,21 @@ export default function Chats() {
     const handleResize = () => {
       setViewportWidth(window.innerWidth);
       if (window.innerWidth > 654)  {
-        toggleTopNav(false);
-        toggleBottomNav(true)
+        setIsTopNavHidden(false);
+        setIsBottomNavHidden(true)
       }else if (selectedUserProfile !== null) {
         console.log("hi")
-        toggleBottomNav(true)
-        toggleTopNav(true)
+        setIsBottomNavHidden(true)
+        setIsTopNavHidden(true)
       }else{
-        toggleTopNav(true)
-        toggleBottomNav(false)
+        setIsTopNavHidden(true)
+        setIsBottomNavHidden(false)
       }
     };
 
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
-  }, [selectedUserProfile, toggleTopNav]);
+  }, [selectedUserProfile, setIsTopNavHidden]);
 
   useEffect(() => {
     const fetchDataFromLocalStorage = async () => {
@@ -399,15 +399,15 @@ export default function Chats() {
   };
 
   const hideNav = () => {
-    toggleBottomNav(true);
+    setIsBottomNavHidden(true);
     if (viewportWidth < 655) {
-      toggleTopNav(true);
+      setIsTopNavHidden(true);
     }
   };
 
   const showNav = () => {
-    toggleBottomNav(false);
-    toggleTopNav(false);
+    setIsBottomNavHidden(false);
+    setIsTopNavHidden(false);
   };
 
   function SearchBar() {

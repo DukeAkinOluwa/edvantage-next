@@ -38,9 +38,9 @@ export default function RootLayout({ children }) {
 
 function Pages({ children }) {
   const [viewportWidth, setViewportWidth] = useState(null);
-  const { hideBottomNav } = useContext(BottomNavContext);
+  const { isBottomNavHidden } = useContext(BottomNavContext);
   const { isLoggedIn } = useContext(AuthContext);
-  const { hideTopNav } = useContext(TopNavContext);
+  const { isTopNavHidden } = useContext(TopNavContext);
   const [isLoading, setIsLoading] = useState(true); // Add isLoading state
 
   useEffect(() => {
@@ -62,18 +62,18 @@ function Pages({ children }) {
     
   }, []);
 
-  console.log(hideTopNav)
-  console.log(hideBottomNav)
+  console.log(isTopNavHidden)
+  console.log(isBottomNavHidden)
 
   const style = {};
 
   let pagesStyle
 
-    if (hideBottomNav && hideTopNav && (viewportWidth < 1001)) {
+    if (isBottomNavHidden && isTopNavHidden && (viewportWidth < 1001)) {
       pagesStyle = { gridTemplateAreas: '"pageRight pageRight" "pageRight pageRight" "pageRight pageRight"',}
-    }else if(hideBottomNav && !hideTopNav && (viewportWidth < 1001)){
+    }else if(isBottomNavHidden && !isTopNavHidden && (viewportWidth < 1001)){
       pagesStyle = { gridTemplateAreas: '"generalHeader generalHeader" "pageRight pageRight" "pageRight pageRight"',}
-    }else if (hideTopNav && !hideBottomNav && (viewportWidth < 1001)) {
+    }else if (isTopNavHidden && !isBottomNavHidden && (viewportWidth < 1001)) {
       pagesStyle = { gridTemplateAreas: '"pageRight pageRight" "pageRight pageRight" "bottomNav bottomNav"',}
     }
 
@@ -87,9 +87,9 @@ function Pages({ children }) {
           {isLoggedIn === true && (
             <>
               <SideMenu />
-              {!hideBottomNav && <BottomNavigation />}
+              {!isBottomNavHidden && <BottomNavigation />}
               <div className="page-right">{children}</div>
-              {!hideTopNav && <GeneralHeader />}
+              {!isTopNavHidden && <GeneralHeader />}
             </>
           )}
         </>

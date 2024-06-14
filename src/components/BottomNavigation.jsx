@@ -4,11 +4,11 @@ import { BottomNavContext, TopNavContext } from "@/contexts/BottomNavContext";
 
 export default function BottomNavigation(){
 
-    const { toggleBottomNav } = useContext(BottomNavContext);
+    const { setIsTopNavHidden } = useContext(BottomNavContext);
     const { toggleTopNav } = useContext(TopNavContext);
 
     function handleHideTopAndBottomNav(){
-        toggleBottomNav(true)
+        setIsTopNavHidden(true)
         toggleTopNav(true)
         console.log("akin")
     }

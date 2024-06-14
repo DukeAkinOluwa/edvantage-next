@@ -7,15 +7,15 @@ import { BottomNavContext, TopNavContext } from "@/contexts/BottomNavContext";
 
 export default function Profile(){
 
-    const { toggleBottomNav } = useContext(BottomNavContext);
-    const { toggleTopNav } = useContext(TopNavContext);
+    const { setIsBottomNavHidden } = useContext(BottomNavContext);
+    const { setIsTopNavHidden } = useContext(TopNavContext);
 
     let imageid = "AkinProfileImage"
     let UserProfileImage = `/Images/profile/${imageid}.png`
 
     useEffect(()=>{
-        toggleBottomNav(true)
-        toggleTopNav(true)
+        setIsBottomNavHidden(true)
+        setIsTopNavHidden(true)
     })
 
     return(

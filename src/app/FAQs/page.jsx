@@ -9,12 +9,12 @@ import { BottomNavContext, TopNavContext } from "@/contexts/BottomNavContext";
 export default function FAQs(){
     
     const faqinfo = faq_info.data
-    const { toggleBottomNav } = useContext(BottomNavContext);
-    const { toggleTopNav } = useContext(TopNavContext);
+    const { setIsBottomNavHidden } = useContext(BottomNavContext);
+    const { setIsTopNavHidden } = useContext(TopNavContext);
 
     useEffect(()=>{
-        toggleBottomNav(true)
-        toggleTopNav(true)
+        setIsBottomNavHidden(true)
+        setIsTopNavHidden(true)
     })
 
     return(

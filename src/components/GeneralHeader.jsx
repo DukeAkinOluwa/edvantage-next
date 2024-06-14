@@ -15,7 +15,7 @@ export default function GeneralHeader() {
     const [isVisible, setIsVisible] = useState(false)
     const [invisibleBackground, setInvisibleBackground] = useState(false)
 
-    const { hideBottomNav, toggleBottomNav } = useContext(BottomNavContext)
+    const { isBottomNavHidden, setIsBottomNavHidden } = useContext(BottomNavContext)
 
     useEffect(() => {
       setViewportWidth(window.innerWidth);
@@ -23,16 +23,16 @@ export default function GeneralHeader() {
       const handleResize = () => {
         setViewportWidth(window.innerWidth);
         if ((window.innerWidth > 1000) || ((isVisible === true) && (window.innerWidth > 654)))  {
-            toggleBottomNav(false);
+            setIsBottomNavHidden(false);
         }else{
-            toggleBottomNav(true)
+            setIsBottomNavHidden(true)
             console.log("hi")
         }
       };
   
       window.addEventListener("resize", handleResize);
       return () => window.removeEventListener("resize", handleResize);
-    }, [setViewportWidth, toggleBottomNav]);
+    }, [setViewportWidth, setIsBottomNavHidden]);
 
     // console.log("viewportWidth = ", viewportWidth)
     // console.log("notification visibility: ", isVisible)
@@ -69,9 +69,9 @@ export default function GeneralHeader() {
         setIsVisible(!isVisible)
         setInvisibleBackground(!invisibleBackground)
         if(((hideBottomNav === true) && (viewportWidth < 655)) || ((654 < viewportWidth) && (viewportWidth < 1001))){
-            toggleBottomNav(false)
+            setIsBottomNavHidden(false)
         }else(
-            toggleBottomNav(true)
+            setIsBottomNavHidden(true)
         )
     }
 

@@ -12,12 +12,12 @@ const [userData, setUserData] = useState({
     newEmail: '',
 });
 const [localUserData, setLocalUserData] = useState(null);
-const { toggleBottomNav } = useContext(BottomNavContext);
-const { toggleTopNav } = useContext(TopNavContext);
+const { setIsBottomNavHidden } = useContext(BottomNavContext);
+const { setIsTopNavHidden } = useContext(TopNavContext);
 
 useEffect(()=>{
-    toggleBottomNav(true)
-    toggleTopNav(true)
+    setIsBottomNavHidden(true)
+    setIsTopNavHidden(true)
     console.log("akin")
 })
 

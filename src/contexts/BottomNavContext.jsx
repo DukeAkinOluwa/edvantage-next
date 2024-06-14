@@ -12,26 +12,18 @@ export const AuthContext = createContext({
 });
 
 export const BottomNavProvider = ({ children }) => {
-  const [hideBottomNav, setHideBottomNav] = useState(false);
-
-  const toggleBottomNav = (hide) => {
-    setHideBottomNav(hide);
-  };
+  const [isBottomNavHidden, setIsBottomNavHidden] = useState(false);
   return (
-    <BottomNavContext.Provider value={{ hideBottomNav, toggleBottomNav }}>
+    <BottomNavContext.Provider value={{ isBottomNavHidden, setIsBottomNavHidden }}>
       {children}
     </BottomNavContext.Provider>
   );
 };
 
 export const TopNavProvider = ({ children }) => {
-  const [hideTopNav, setHideTopNav] = useState(false);
-
-  const toggleTopNav = (hide) => {
-    setHideTopNav(hide);
-  };
+  const [isTopNavHidden, setIsTopNavHidden] = useState(false);
   return (
-    <TopNavContext.Provider value={{ hideTopNav, toggleTopNav }}>
+    <TopNavContext.Provider value={{ isTopNavHidden, setIsTopNavHidden }}>
       {children}
     </TopNavContext.Provider>
   );
