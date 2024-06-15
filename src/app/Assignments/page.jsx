@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 
 export default function Assignments(){
 
+    const [viewportWidth, setViewportWidth] = useState(null);
+
     const Dummy = [
         {
             coursecode : "CSC 301",
@@ -85,6 +87,10 @@ export default function Assignments(){
         // Call the function to fetch data from local storage
         fetchDataFromLocalStorage();
     }, []);
+
+    useEffect(() => {
+        setViewportWidth(window.innerWidth)
+    })
     
     const [userData, setUserData] = useState(null);
     
@@ -93,7 +99,8 @@ export default function Assignments(){
 
     return(
         <>
-            <PageRightHeader page_title={`Assignment`} userlevel="23"/>
+            {viewportWidth < 1001 ? <IndividualPageHeader /> : <PageRightHeader page_title={`Assignment`} userlevel="23"/>}
+            {/* {viewportWidth > 655 && } */}
             <div className="assignment-task-overview-table table">
                 <div className="box">
                     <div className="assignment-header row">
@@ -144,5 +151,32 @@ export default function Assignments(){
                 <div className="column column5"><h3 className="pc-hidden">Priority</h3><div className="table-status" style={priority_background}><p style={priority_text}>{data.priority}</p></div></div>
             </div>
         )
+    }
+    function IndividualPageHeader(){
+  
+      function handleRefreshClick(){
+        window.history.back()
+      }
+      
+      return(
+        <div className="individual-page-header">
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 16 16"
+            fill="none"
+            onClick={handleRefreshClick}
+          >
+            <path
+              d="M15 8H1M1 8L8 15M1 8L8 1"
+              stroke="#101828"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+          <h2>Tasks</h2>
+        </div>
+      )
     }
 }

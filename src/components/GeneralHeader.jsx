@@ -15,24 +15,24 @@ export default function GeneralHeader() {
     const [isNotificationSectionVisible, setIsNotificationSectionVisible] = useState(false)
     const [invisibleBackground, setInvisibleBackground] = useState(false)
 
-    const { isBottomNavHidden, setIsBottomNavHidden } = useContext(BottomNavContext)
+    // const { isBottomNavHidden, setIsBottomNavHidden } = useContext(BottomNavContext)
 
     useEffect(() => {
       setViewportWidth(window.innerWidth);
   
       const handleResize = () => {
-        setViewportWidth(window.innerWidth);
-        if ((window.innerWidth > 1000) || ((isNotificationSectionVisible === true) && (window.innerWidth > 654)))  {
-            setIsBottomNavHidden(false);
-        }else{
-            setIsBottomNavHidden(true)
-            console.log("hi")
-        }
+        // setViewportWidth(window.innerWidth);
+        // if ((window.innerWidth > 1000) || ((isNotificationSectionVisible === true) && (window.innerWidth > 654)))  {
+        //     setIsBottomNavHidden(false);
+        // }else{
+        //     setIsBottomNavHidden(true)
+        //     console.log("hi")
+        // }
       };
   
       window.addEventListener("resize", handleResize);
       return () => window.removeEventListener("resize", handleResize);
-    }, [setViewportWidth, setIsBottomNavHidden]);
+    }, [setViewportWidth]);
 
     // console.log("viewportWidth = ", viewportWidth)
     // console.log("notification visibility: ", isNotificationSectionVisible)
@@ -72,12 +72,12 @@ export default function GeneralHeader() {
     function toggleNotification() {
         setIsNotificationSectionVisible(!isNotificationSectionVisible)
         setInvisibleBackground(!invisibleBackground)
-        if(((isNotificationSectionVisible === true) && (viewportWidth < 655)) //|| ((654 < viewportWidth) && (viewportWidth < 1001))
-        ){
-            setIsBottomNavHidden(false)
-        }else(
-            setIsBottomNavHidden(true)
-        )
+        // if(((isNotificationSectionVisible === true) && (viewportWidth < 655)) //|| ((654 < viewportWidth) && (viewportWidth < 1001))
+        // ){
+        //     setIsBottomNavHidden(false)
+        // }else(
+        //     setIsBottomNavHidden(true)
+        // )
     }
 
     const notificationInfo = notification_info.notifications

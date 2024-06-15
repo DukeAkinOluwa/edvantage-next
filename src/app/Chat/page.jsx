@@ -5,7 +5,8 @@ import PageRightHeader from "@/components/PageRightHeader";
 import CPTemplate from "@/components/templates/CPTemplate";
 import SearchIcon from "@/icons/search";
 import Image from "next/image";
-import { BottomNavContext, TopNavContext } from "@/contexts/BottomNavContext";
+import { redirect } from "next/navigation";
+// import { BottomNavContext, TopNavContext } from "@/contexts/BottomNavContext";
 
 export default function Chats() {
   const [viewportWidth, setViewportWidth] = useState(null);
@@ -27,8 +28,8 @@ export default function Chats() {
 
   const chatEndRef = useRef(null);
 
-  const { setIsBottomNavHidden } = useContext(BottomNavContext);
-  const { setIsTopNavHidden } = useContext(TopNavContext);
+  // const { setIsBottomNavHidden } = useContext(BottomNavContext);
+  // const { setIsTopNavHidden } = useContext(TopNavContext);
 
   const dummyData = {
     username: "AkinOluwa",
@@ -255,25 +256,32 @@ export default function Chats() {
 
   useEffect(() => {
     setViewportWidth(window.innerWidth);
+    // if (window.innerWidth > 654)  {
+    //   setIsTopNavHidden(false);
+    //   setIsBottomNavHidden(true)
+    // }else{
+    //   setIsTopNavHidden(true)
+    //   setIsBottomNavHidden(true)
+    // }
 
     const handleResize = () => {
       setViewportWidth(window.innerWidth);
-      if (window.innerWidth > 654)  {
-        setIsTopNavHidden(false);
-        setIsBottomNavHidden(true)
-      }else if (selectedUserProfile !== null) {
-        console.log("hi")
-        setIsBottomNavHidden(true)
-        setIsTopNavHidden(true)
-      }else{
-        setIsTopNavHidden(true)
-        setIsBottomNavHidden(false)
-      }
+      // if (window.innerWidth > 654)  {
+      //   setIsTopNavHidden(false);
+      //   setIsBottomNavHidden(true)
+      // }//else if (selectedUserProfile !== null) {
+      //   // console.log("hi")
+      //   // setIsBottomNavHidden(true)
+      //   // setIsTopNavHidden(true)}
+      //   else{
+      //   setIsTopNavHidden(true)
+      //   setIsBottomNavHidden(true)
+      // }
     };
 
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
-  }, [selectedUserProfile, setIsTopNavHidden]);
+  }, [selectedUserProfile]);
 
   useEffect(() => {
     const fetchDataFromLocalStorage = async () => {
@@ -317,7 +325,7 @@ export default function Chats() {
     setChatTexts(chatTexts);
     setCurrentPage(2);
     handleReset();
-    hideNav();
+    // hideNav();
     // Add logic to show the chat section
     document.querySelector(".whole-chat-section").classList.add("show-chat");
   };
@@ -398,17 +406,17 @@ export default function Chats() {
     setInvisibleBackground(false);
   };
 
-  const hideNav = () => {
-    setIsBottomNavHidden(true);
-    if (viewportWidth < 655) {
-      setIsTopNavHidden(true);
-    }
-  };
+  // const hideNav = () => {
+  //   setIsBottomNavHidden(true);
+  //   if (viewportWidth < 655) {
+  //     setIsTopNavHidden(true);
+  //   }
+  // };
 
-  const showNav = () => {
-    setIsBottomNavHidden(false);
-    setIsTopNavHidden(false);
-  };
+  // const showNav = () => {
+  //   setIsBottomNavHidden(false);
+  //   setIsTopNavHidden(false);
+  // };
 
   function SearchBar() {
     const handleInputClick = () => {};
@@ -453,10 +461,11 @@ export default function Chats() {
                   elementIndex={"-1"}
               />
             )} */}
-      {viewportWidth < 655 ? (
+      {viewportWidth < 656 ? (
         <>
           {currentPage === 1 && (
             <div className="whole-chat-section">
+              <IndividualPageHeader />
               <ChatPageLeft />
               <AddChat />
             </div>
@@ -472,6 +481,10 @@ export default function Chats() {
         </>
       ) : (
         <div className="whole-chat-section">
+          {(viewportWidth < 1001) ?
+          (
+            <IndividualPageHeader />
+          ) : (<></>)}
           <ChatPageLeft />
           <UserProfileDetails
             selectedUserProfile={selectedUserProfile}
@@ -491,7 +504,7 @@ export default function Chats() {
       const handleBackButton = (event) => {
         event.preventDefault();
         console.log("Back button clicked!");
-        handleRefreshClick();
+        history.back()
       };
 
       const addHistoryState = () => {
@@ -538,7 +551,7 @@ export default function Chats() {
     const handleRefreshClick = () => {
       setCurrentPage(1);
       setSelectedUserProfile(null);
-      showNav();
+      // showNav();
     };
 
     return (
@@ -659,68 +672,70 @@ export default function Chats() {
   }
   function ChatPageLeft() {
     return (
-      <div className="left">
-        {isSearchBarVisible && <SearchBar />}
-        <div className="chat-classification">
-          <div onClick={handleShowAllChats} className="classification">
-            <p>All Chats</p>
+      <>
+        <div className="left">
+          {isSearchBarVisible && <SearchBar />}
+          <div className="chat-classification">
+            <div onClick={handleShowAllChats} className="classification">
+              <p>All Chats</p>
+            </div>
+            <div
+              onClick={() => handleClassificationClick("Group")}
+              className="classification groups"
+            >
+              <p>Groups</p>
+            </div>
+            <div
+              onClick={() => handleClassificationClick("Private")}
+              className="classification private"
+            >
+              <p>Private</p>
+            </div>
+            <div
+              className="icon-div"
+              style={{ width: `${isSearchBarVisible ? "0px" : ""}` }}
+              onClick={handleShowSearchBar}
+            >
+              <SearchIcon />
+            </div>
           </div>
-          <div
-            onClick={() => handleClassificationClick("Group")}
-            className="classification groups"
-          >
-            <p>Groups</p>
-          </div>
-          <div
-            onClick={() => handleClassificationClick("Private")}
-            className="classification private"
-          >
-            <p>Private</p>
-          </div>
-          <div
-            className="icon-div"
-            style={{ width: `${isSearchBarVisible ? "0px" : ""}` }}
-            onClick={handleShowSearchBar}
-          >
-            <SearchIcon />
-          </div>
-        </div>
-        <div className="chat-profiles" style={{ zIndex: `${elementZIndex}` }}>
-          {chatdata && filteredList.length === 0 ? (
-            chatdata
-              .filter((chat) =>
-                selectedClassification
-                  ? chat.type === selectedClassification
-                  : true
-              )
-              .map((chat, index) => (
-                <CPTemplate
-                  key={index}
-                  data={chat}
-                  onUserProfileClick={handleUserProfileClick}
-                />
-              ))
-          ) : (
-            <div style={{ display: searchValue === `${[]}` ? "none" : "" }}>
-              {filteredList ? (
-                filteredList.map((item, index) => (
+          <div className="chat-profiles" style={{ zIndex: `${elementZIndex}` }}>
+            {chatdata && filteredList.length === 0 ? (
+              chatdata
+                .filter((chat) =>
+                  selectedClassification
+                    ? chat.type === selectedClassification
+                    : true
+                )
+                .map((chat, index) => (
                   <CPTemplate
                     key={index}
-                    data={item}
+                    data={chat}
                     onUserProfileClick={handleUserProfileClick}
                   />
                 ))
-              ) : (
-                <>{searchDataType} not found</>
-              )}
+            ) : (
+              <div style={{ display: searchValue === `${[]}` ? "none" : "" }}>
+                {filteredList ? (
+                  filteredList.map((item, index) => (
+                    <CPTemplate
+                      key={index}
+                      data={item}
+                      onUserProfileClick={handleUserProfileClick}
+                    />
+                  ))
+                ) : (
+                  <>{searchDataType} not found</>
+                )}
+              </div>
+            )}
+            <div className="add-chat-icon" onClick={() => toggleAddChatSlide1()}>
+              <div className="cross-vert-line"></div>
+              <div className="cross-horiz-line"></div>
             </div>
-          )}
-        </div>
-        <div className="left-bottom">
-          <div className="add-chat-icon" onClick={() => toggleAddChatSlide1()}>
-            <div className="cross-vert-line"></div>
-            <div className="cross-horiz-line"></div>
           </div>
+          {/* <div className="left-bottom">
+          </div> */}
         </div>
         {invisibleBackground && (
           <div
@@ -728,7 +743,7 @@ export default function Chats() {
             onClick={() => handleClearAll()}
           />
         )}
-      </div>
+      </>
     );
   }
   function AddChat() {
@@ -797,5 +812,32 @@ export default function Chats() {
         )}
       </>
     );
+  }
+  function IndividualPageHeader(){
+
+    function handleRefreshClick(){
+      window.history.back()
+    }
+    
+    return(
+      <div className="individual-page-header">
+        <svg
+          width="18"
+          height="18"
+          viewBox="0 0 16 16"
+          fill="none"
+          onClick={handleRefreshClick}
+        >
+          <path
+            d="M15 8H1M1 8L8 15M1 8L8 1"
+            stroke="#101828"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+        <h2>Chats</h2>
+      </div>
+    )
   }
 }

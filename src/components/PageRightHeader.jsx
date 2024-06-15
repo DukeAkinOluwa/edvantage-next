@@ -5,8 +5,9 @@ import SilverMedal from "@/icons/Badges-Medals-Trophies/SilverMedal"
 
 export default function PageRightHeader(props){
     const userlevel = props.userlevel
+    const topMargin = props.topMargin
     return(
-        <div className="page-right-header">
+        <div className="page-right-header" style={{marginTop: `${topMargin}px`}}>
             <div className="page-right-header-b">
                 <h3>{props.page_title}</h3>
                 <section className="progress-status">

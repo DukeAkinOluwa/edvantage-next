@@ -210,6 +210,15 @@ input {
     grid-template-rows: 65px auto 90px;
     grid-template-columns: 270px calc(100dvw - 270px);
     background-color: $white;
+    .individual-page-header{
+        @include fa;
+        gap: 15px;
+        padding: 0px 0px 0px 10px;
+        grid-column: span 2;
+        min-height: 50px;
+        height: 50px;
+        width: calc(100% - 10px);
+    }
 }
 
 .page-right {
@@ -438,13 +447,14 @@ input {
 .assignment-task-overview-table {
     position: relative;
     @include fja();
-    width: calc(100% - 20px);
+    width: calc(100% - 10px);
     max-height: 100%;
     overflow: hidden;
     background-color: $white;
     border-radius: 10px;
     .box{
-        height: calc(100% - 20px);
+        height: 100%;
+        margin: 0px;
     }
     .assignment-header,
     .assignment-table-task {
@@ -573,10 +583,11 @@ input {
                 // background-color: #063
             }
             .chat-profiles {
+                position: relative;
                 @include fd;
                 gap: 10px;
                 overflow-x: scroll;
-                height: calc(100% - 66px - 70px);
+                height: 100%;
                 width: 100%;
                 border-bottom: solid 1px #28282833;
                 z-index: 1;
@@ -609,12 +620,6 @@ input {
                     width: calc(100% - 50px - 20px);
                 }
             }
-            .left-bottom {
-                @include fa;
-                height: 60px;
-                width: 100%;
-                position: relative;
-            }
             .add-chat-icon {
                 @include fja;
                 height: 45px;
@@ -623,6 +628,7 @@ input {
                 background-color: $primary-color;
                 position: absolute;
                 right: 15px;
+                bottom: 15px;
             }
             .cross-vert-line {
                 position: absolute;
@@ -752,22 +758,22 @@ input {
         "left right";
     grid-template-columns: 60% calc(40% - 10px);
     background-color: $white;
-
     h3 {
         color: $primary-color;
     }
-
+    .individual-page-header{
+        padding: 0px;
+        width: 100%;
+    }
     .page-right-header {
         grid-area: top;
     }
-
     .left {
         @include fd();
         gap: 40px;
         grid-area: left;
         align-items: flex-start;
     }
-
     .right {
         grid-area: right;
         height: calc(100dhv - 95px)
@@ -784,6 +790,7 @@ input {
     h3 {
         padding: 0px 0px 20px 0px;
         border-bottom: solid 1px #D1D1D1;
+        color: $text-color;
     }
 }
 
@@ -834,11 +841,10 @@ input[type="file"] {
 }
 
 .profile-page{
-    @include fd;
-    gap: 40px;
+    @include fda;
     height: auto;
-    margin: 35px 0px 0px;
-    width: calc(100% - 30px);
+    width: 100%;
+    gap: 10px;
     // background-color: red;
     .profile-card{
         @include fd;
@@ -859,6 +865,11 @@ input[type="file"] {
             max-height: 100%;
             max-width: 100%;
         }
+    }
+    .body{
+        @include fd;
+        gap: 40px;
+        width: calc(100% - 30px);
     }
     .links{
         @include fd;
@@ -2110,12 +2121,20 @@ input[type="file"] {
 @media only screen and (max-width: 1000px) {
     .pages{
         grid-template-areas: 
-        "generalHeader generalHeader"
         "pageRight pageRight"
-        "bottomNav bottomNav";
+        "pageRight pageRight"
+        "pageRight pageRight";
     }
     .chat-page{
         .whole-chat-section{
+            gap: 10px 0px;
+            grid-template-rows: 50px auto;
+            height: 100%;
+            .left,
+            .right{
+                padding: 0px;
+                height: 100%;
+            }
             .right{
                 .chat-input-box{
                     width: calc(100dvw - 270px - 50px);
@@ -2371,15 +2390,15 @@ input[type="file"] {
     // Components - Page Right Header
     .page-right-header {
         align-self: flex-start;
-        .page-right-header-b {
-            display: none;
-            width: calc(100% - 15px);
-            left: 15px;
-            h3,
-            .progress-status>p {
-                display: none;
-            }
-        }
+        // .page-right-header-b {
+        //     display: none;
+        //     width: calc(100% - 15px);
+        //     left: 15px;
+        //     h3,
+        //     .progress-status>p {
+        //         display: none;
+        //     }
+        // }
     }
 
     // Components - Dashboard Calendar
@@ -2629,15 +2648,8 @@ input[type="file"] {
             grid-template-columns: auto;
             border-top: 0px;
             .left {
-                height: calc(100dvh - 60px);
                 .chat-profiles {
                     border: 0px;
-                }
-                .left-bottom{
-                    .add-chat-icon{
-                        position: fixed;
-                        bottom: calc(70px + 20px);
-                    }
                 }
             }
             .right {

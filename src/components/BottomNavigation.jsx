@@ -1,17 +1,17 @@
 import Link from "next/link";
-import { useContext } from "react";
-import { BottomNavContext, TopNavContext } from "@/contexts/BottomNavContext";
+// import { useContext } from "react";
+// import { BottomNavContext, TopNavContext } from "@/contexts/BottomNavContext";
 
 export default function BottomNavigation(){
 
-    const { setIsTopNavHidden } = useContext(BottomNavContext);
-    const { toggleTopNav } = useContext(TopNavContext);
+    // const { setIsTopNavHidden } = useContext(BottomNavContext);
+    // const { toggleTopNav } = useContext(TopNavContext);
 
-    function handleHideTopAndBottomNav(){
-        setIsTopNavHidden(true)
-        toggleTopNav(true)
-        console.log("akin")
-    }
+    // function handleHideTopAndBottomNav(){
+    //     setIsTopNavHidden(true)
+    //     toggleTopNav(true)
+    //     console.log("akin")
+    // }
 
     return(
         <div className="bottom-navigator">
