@@ -200,6 +200,9 @@ input:focus-visible {
 .dashboard-main-section .dashboard-section-header h3 {
   font-size: 1.25rem;
 }
+.dashboard-main-section .general-header {
+  display: none;
+}
 .dashboard-main-section .add-item {
   width: 100dvw;
   height: 100dvh;
@@ -2092,7 +2095,8 @@ input[type=file] {
     height: 40px;
     background-color: #2A52BE;
   }
-  .side-menu {
+  .side-menu,
+  .general-header {
     display: none;
   }
   .page-right {
@@ -2109,6 +2113,13 @@ input[type=file] {
   }
   .dashboard-main-section {
     grid-template-rows: 190px 140px 140px 60vh 50svh;
+  }
+  .dashboard-main-section .general-header {
+    display: flex;
+    align-items: center;
+    position: fixed;
+    width: calc(100dvw - 40px);
+    left: 0px;
   }
   .dashboard-time-table .table {
     display: grid;

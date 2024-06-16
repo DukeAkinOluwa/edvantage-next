@@ -37,7 +37,7 @@ export default function Home() {
   }
   return (
     <>
-    <PageRightHeader page_title={`Dashboard`} userlevel="23" handleSetBack={handleSetBack} topMargin={topMarginValue} />
+    
     <section className={`dashboard-main-section ${back ? "back" : ""}`}>
         <DashboardAd />
         <DashboardBoxes />
@@ -45,12 +45,12 @@ export default function Home() {
         <DashboardTimeTable />
         <DashboardTasksOverview />
         <DashboardGroup />
-    </section>
-    {viewportWidth < 1001 && 
-      <>
         <GeneralHeader />
+    </section>
+    {viewportWidth < 1001 ?
+      <>
         <BottomNavigation />
-      </>
+      </> : <PageRightHeader page_title={`Dashboard`} userlevel="23" handleSetBack={handleSetBack} topMargin={topMarginValue} />
     }
     </>
   );

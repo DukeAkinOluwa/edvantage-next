@@ -4,8 +4,8 @@
   "start_url": "./",
   "display": "standalone",
   "display_override": ["window-controls-overlay", "standalone", "fullscreen", "minimal-ui"],
-  "theme_color": "#2A52BE",
-  "background_color": "#FEFAFA",
+  "theme_color": "#FEFAFA",
+  "background_color": "#2A52BE",
   "icons": [
     {
       "src": "./Images/Manifest/Logos/Edvantage1.png",
@@ -14,6 +14,11 @@
     },
     {
       "src": "./Images/Manifest/Logos/Edvantage2.png",
+      "sizes": "1080x1080",
+      "type": "image/png"
+    },
+    {
+      "src": "./Images/Manifest/Logos/Logo.jpg",
       "sizes": "1080x1080",
       "type": "image/png"
     }

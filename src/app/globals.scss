@@ -286,6 +286,9 @@ input {
             font-size: 1.25rem;
         }
     }
+    .general-header{
+        display: none;
+    }
     .add-item{
         width: 100dvw;
         height: 100dvh;
@@ -2165,7 +2168,8 @@ input[type="file"] {
             background-color: $primary-color;
         }
     }
-    .side-menu{
+    .side-menu,
+    .general-header{
         display: none;
     }
     .page-right{
@@ -2182,6 +2186,12 @@ input[type="file"] {
     }
     .dashboard-main-section{
         grid-template-rows: 190px 140px 140px 60vh 50svh;
+        .general-header{
+            @include fa;
+            position: fixed;
+            width: calc(100dvw - 40px);
+            left: 0px;
+        }
     }
     .dashboard-time-table{
         .table{
