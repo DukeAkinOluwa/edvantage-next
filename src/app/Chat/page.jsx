@@ -307,6 +307,31 @@ export default function Chats() {
     setElementZIndex(0);
   }, []);
 
+  useEffect(() => {
+    const handleBackButton = (event) => {
+      if (selectedUserProfile !== null) {
+        event.preventDefault();
+        handleRefreshClick();
+      }else{
+        history.back()
+      }
+    };
+  
+    const updateHistoryState = () => {
+      window.history.pushState(null, "", window.location.pathname);
+    };
+  
+    if (selectedUserProfile !== null) {
+      updateHistoryState();
+    }
+  
+    window.addEventListener("popstate", handleBackButton);
+  
+    return () => {
+      window.removeEventListener("popstate", handleBackButton);
+    };
+  }, [selectedUserProfile]);
+
   function handleSetBack(booleanValue, elementIndex) {
     setBack(booleanValue);
     setElementZIndex(elementIndex);
@@ -404,6 +429,12 @@ export default function Chats() {
     setIsChatSlide1Visible(false);
     setIsChatSlide2Visible(false);
     setInvisibleBackground(false);
+  };
+
+  const handleRefreshClick = () => {
+    setCurrentPage(1);
+    setSelectedUserProfile(null);
+    // showNav();
   };
 
   // const hideNav = () => {
@@ -546,12 +577,6 @@ export default function Chats() {
       if (chatEndRef.current) {
         chatEndRef.current.scrollIntoView({ behavior: "smooth" });
       }
-    };
-
-    const handleRefreshClick = () => {
-      setCurrentPage(1);
-      setSelectedUserProfile(null);
-      // showNav();
     };
 
     return (

@@ -62,7 +62,7 @@ export default function GeneralHeader() {
         return () => {
           window.removeEventListener("popstate", handleBackButton);
         };
-      }, [isNotificationSectionVisible]);
+    }, [isNotificationSectionVisible]);
       
 
     function handleRefreshClick() {
