@@ -5,7 +5,7 @@
 $primary-color: #2A52BE;
 $primary-color2: #FEFAFA;
 $text-color: #2D2E2E;
-$white: #FFFFFF;
+$white: #fafbfd;
 $top-navbar-height: 70px;
 $button-radius: 8px;
 $landingbannerheight: calc(100vh - $top-navbar-height);
@@ -539,8 +539,8 @@ input {
                 justify-content: space-between;
                 width: calc(100% - 20px);
                 .classification {
-                    padding: 6px 8px;
-                    border-radius: 20px;
+                    padding: 8px 8px;
+                    border-radius: 10px;
                     background-color: rgb(204, 204, 204, .2);
                     min-width: calc(30% - 22px);
                     text-align: center;
@@ -562,16 +562,17 @@ input {
                 @include fa;
                 gap: 5px;
                 width: calc(100% - 10px - 30px);
-                height: 40px;
-                border-radius: 10px;
+                height: 50px;
+                border-radius: 22.5px;
                 padding: 0px 0px 0px 10px;
-                background-color: #FFFFFF;
-                border: 1px solid #CBDEF8;
-                border-bottom: solid 3px $primary-color;
+                background-color: #CCCCCC33;
+                // border: 1px solid #CBDEF8;
+                // border-bottom: solid 3px $primary-color;
                 input{
                     height: 100%;
                     width: calc(100% - 10px);
                     border: none;
+                    background-color: rgb(203, 222, 248, .0);
                 }
             }
             .invisible-reset{
@@ -1785,7 +1786,7 @@ input[type="file"] {
     @include fja();
     width: 100%;
     overflow: hidden;
-    background-color: white;
+    background-color: $white;
     grid-area: dashboardcalendar;
     font-size: 0.7rem;
     border-radius: 8px;

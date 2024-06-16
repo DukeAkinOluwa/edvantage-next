@@ -450,32 +450,6 @@ export default function Chats() {
   //   setIsTopNavHidden(false);
   // };
 
-  function SearchBar() {
-    const handleInputClick = () => {};
-
-    return (
-      <>
-        {invisibleReset && (
-          <div className="invisible-reset" onClick={handleReset} />
-        )}
-        <div className="search-bar">
-          <SearchIcon />
-          <input
-            type="search"
-            name="search"
-            id="search"
-            value={searchValue}
-            placeholder={`Search for ${
-              selectedClassification ? selectedClassification : ""
-            } Chat`}
-            onChange={(event) => handleSearchFilter(event.target.value)}
-            onClick={handleInputClick}
-          />
-        </div>
-      </>
-    );
-  }
-
   const scrollToBottom = () => {
     chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
@@ -681,29 +655,24 @@ export default function Chats() {
     return (
       <>
         <div className="left">
-          {isSearchBarVisible && <SearchBar />}
+          <SearchBar />
           <div className="chat-classification">
-            <div onClick={handleShowAllChats} className="classification">
-              <p>All Chats</p>
+            <div onClick={handleShowAllChats} className="classification" style={{backgroundColor: `${selectedClassification === null && "#0177fb1a"}`, color: `${selectedClassification === null && "#2A52BE"}`}}>
+              <p>General</p>
             </div>
             <div
               onClick={() => handleClassificationClick("Group")}
               className="classification groups"
+              style={{backgroundColor: `${selectedClassification === "Group" && "#0177fb1a"}`, color: `${selectedClassification === "Group" && "#2A52BE"}`}}
             >
               <p>Groups</p>
             </div>
             <div
               onClick={() => handleClassificationClick("Private")}
               className="classification private"
+              style={{backgroundColor: `${selectedClassification === "Private" && "#0177fb1a"}`, color: `${selectedClassification === "Private" && "#2A52BE"}`}}
             >
               <p>Private</p>
-            </div>
-            <div
-              className="icon-div"
-              style={{ width: `${isSearchBarVisible ? "0px" : ""}` }}
-              onClick={handleShowSearchBar}
-            >
-              <SearchIcon />
             </div>
           </div>
           <div className="chat-profiles" style={{ zIndex: `${elementZIndex}` }}>
@@ -846,5 +815,30 @@ export default function Chats() {
         <h2>Chats</h2>
       </div>
     )
+  }
+  function SearchBar() {
+    const handleInputClick = () => {};
+
+    return (
+      <>
+        {invisibleReset && (
+          <div className="invisible-reset" onClick={handleReset} />
+        )}
+        <div className="search-bar">
+          <SearchIcon />
+          <input
+            type="search"
+            name="search"
+            id="search"
+            value={searchValue}
+            placeholder={`Search for ${
+              selectedClassification ? selectedClassification : ""
+            } Chat`}
+            onChange={(event) => handleSearchFilter(event.target.value)}
+            onClick={handleInputClick}
+          />
+        </div>
+      </>
+    );
   }
 }
