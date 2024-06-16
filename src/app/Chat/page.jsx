@@ -312,8 +312,9 @@ export default function Chats() {
       if (selectedUserProfile !== null) {
         event.preventDefault();
         handleRefreshClick();
-      }else{
-        history.back()
+      } else {
+        // No selected user profile - navigate back
+        window.history.back();
       }
     };
   
@@ -530,25 +531,6 @@ export default function Chats() {
     const [showScrollToBottom, setShowScrollToBottom] = useState(false);
     const chatEndRef = useRef(null);
     const chatBodyRef = useRef(null);
-
-    useEffect(() => {
-      const handleBackButton = (event) => {
-        event.preventDefault();
-        console.log("Back button clicked!");
-        history.back()
-      };
-
-      const addHistoryState = () => {
-        window.history.pushState(null, "", window.location.pathname);
-      };
-
-      addHistoryState();
-      window.addEventListener("popstate", handleBackButton);
-
-      return () => {
-        window.removeEventListener("popstate", handleBackButton);
-      };
-    }, []);
 
     useEffect(() => {
       scrollToBottom();
