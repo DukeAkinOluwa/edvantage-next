@@ -9,49 +9,80 @@ import DashboardCalendar from "@/components/dashboard/DashboardCalendar";
 import DashboardGroup from "@/components/dashboard/DashboardGroups";
 import DashboardTasksOverview from "@/components/dashboard/DashboardTasksOverview";
 import DashboardTimeTable from "@/components/dashboard/DashboardTimeTable";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 export default function Home() {
-  
-  const [viewportWidth, setViewportWidth] = useState(null);
-  const [topMarginValue, setTopMarginValue] = useState("")
-
-  const [back, setBack] = useState(false)
-
-  useEffect(() => {
-    setViewportWidth(window.innerWidth);
-    if ((window.innerWidth > 655) && (window.innerWidth < 1001)) {
-      setTopMarginValue(60)
-    }
-
-    const handleResize = () => {
-      setViewportWidth(window.innerWidth);
-    };
-
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  function handleSetBack(booleanValue){
-      setBack(booleanValue)
-  }
-  return (
-    <>
+    const [viewportWidth, setViewportWidth] = useState(null);
+    const [topMarginValue, setTopMarginValue] = useState("");
+    const [back, setBack] = useState(false);
+    const [showHeader, setShowHeader] = useState(true);
+    const [lastScrollY, setLastScrollY] = useState(0);
     
-    <section className={`dashboard-main-section ${back ? "back" : ""}`}>
-        <DashboardAd />
-        <DashboardBoxes />
-        <DashboardCalendar />
-        <DashboardTimeTable />
-        <DashboardTasksOverview />
-        <DashboardGroup />
-        <GeneralHeader />
-    </section>
-    {viewportWidth < 1001 ?
-      <>
-        <BottomNavigation />
-      </> : <PageRightHeader page_title={`Dashboard`} userlevel="23" handleSetBack={handleSetBack} topMargin={topMarginValue} />
+    const scrollContainerRef = useRef(null);
+
+    useEffect(() => {
+        setViewportWidth(window.innerWidth);
+        if (window.innerWidth > 655 && window.innerWidth < 1001) {
+            setTopMarginValue(60);
+        }
+
+        const handleResize = () => {
+            setViewportWidth(window.innerWidth);
+        };
+
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
+
+    // useEffect(() => {
+    //     const handleScroll = () => {
+    //         const currentScrollY = window.scrollY;
+
+    //         if (currentScrollY > lastScrollY) {
+    //             // Scrolling down
+    //             setShowHeader(false);
+    //         } else {
+    //             // Scrolling up
+    //             setShowHeader(true);
+    //         }
+
+    //         setLastScrollY(currentScrollY);
+    //         console.log("akin")
+    //     };
+
+    //     const element = scrollContainerRef.current;
+    //     if (element) {
+    //         element.addEventListener('scroll', handleScroll);
+    //     }
+
+    //     return () => {
+    //         if (element) {
+    //             element.removeEventListener('scroll', handleScroll);
+    //         }
+    //     };
+    // }, [lastScrollY]);
+
+    function handleSetBack(booleanValue) {
+        setBack(booleanValue);
     }
-    </>
-  );
+
+    return (
+        <>
+            <section ref={scrollContainerRef} className={`dashboard-main-section ${back ? "back" : ""}`}>
+                <GeneralHeader />
+                <DashboardAd />
+                <DashboardBoxes />
+                <DashboardCalendar />
+                <DashboardTimeTable />
+                <DashboardTasksOverview />
+                <DashboardGroup />
+                {/* {showHeader && <GeneralHeader />} */}
+            </section>
+            {viewportWidth < 1001 ? (
+                <BottomNavigation />
+            ) : (
+                <PageRightHeader page_title={`Dashboard`} userlevel="23" handleSetBack={handleSetBack} topMargin={topMarginValue} />
+            )}
+        </>
+    );
 }
