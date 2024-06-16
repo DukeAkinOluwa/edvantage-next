@@ -85,15 +85,15 @@ function Pages({ children }) {
           {isLoggedIn === false && <Login />}
           {isLoggedIn === true && (
             <>
+              {/* {!isBottomNavHidden && <BottomNavigation />} */}
+              <div className="page-right">{children}</div>
+              {/* {!isTopNavHidden && <GeneralHeader />} */}
               {/* {viewportWidth > 1000 &&  */}
                 <>
                   <SideMenu />
                   <GeneralHeader />
                 </>
               {/* } */}
-              {/* {!isBottomNavHidden && <BottomNavigation />} */}
-              <div className="page-right">{children}</div>
-              {/* {!isTopNavHidden && <GeneralHeader />} */}
             </>
           )}
         </>

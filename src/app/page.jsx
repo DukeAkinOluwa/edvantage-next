@@ -14,7 +14,7 @@ import { useState, useEffect, useRef } from "react";
 export default function Home() {
     const [viewportWidth, setViewportWidth] = useState(null);
     const [topMarginValue, setTopMarginValue] = useState("");
-    const [back, setBack] = useState(false);
+    const [back, setBack] = useState(true);
     const [showHeader, setShowHeader] = useState(true);
     const [lastScrollY, setLastScrollY] = useState(0);
     
@@ -65,11 +65,12 @@ export default function Home() {
     function handleSetBack(booleanValue) {
         setBack(booleanValue);
     }
+    console.log(back)
 
     return (
         <>
-            <section ref={scrollContainerRef} className={`dashboard-main-section ${back ? "back" : ""}`}>
-                <GeneralHeader />
+            <section ref={scrollContainerRef} className={`dashboard-main-section ${(back && (viewportWidth > 1001)) ? "back" : ""}`}>
+                <GeneralHeader handleSetBack={handleSetBack} />
                 <DashboardAd />
                 <DashboardBoxes />
                 <DashboardCalendar />
@@ -79,9 +80,11 @@ export default function Home() {
                 {/* {showHeader && <GeneralHeader />} */}
             </section>
             {viewportWidth < 1001 ? (
-                <BottomNavigation />
-            ) : (
-                <PageRightHeader page_title={`Dashboard`} userlevel="23" handleSetBack={handleSetBack} topMargin={topMarginValue} />
+                <>
+                {back && <BottomNavigation />}
+                </>
+            ) : (<></>
+                // <PageRightHeader page_title={`Dashboard`} userlevel="23" handleSetBack={handleSetBack} topMargin={topMarginValue} />
             )}
         </>
     );

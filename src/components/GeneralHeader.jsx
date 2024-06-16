@@ -7,7 +7,7 @@ import HNTemplate from "./templates/HNTemplate"
 import Image from "next/image"
 import { BottomNavContext } from "@/contexts/BottomNavContext"
 
-export default function GeneralHeader() {
+export default function GeneralHeader({ handleSetBack }) {
     let imageid = "AkinProfileImage"
     let UserProfileImage = `/Images/profile/${imageid}.png`
 
@@ -72,6 +72,13 @@ export default function GeneralHeader() {
     function toggleNotification() {
         setIsNotificationSectionVisible(!isNotificationSectionVisible)
         setInvisibleBackground(!invisibleBackground)
+        if (handleSetBack) {
+            if (isNotificationSectionVisible) {
+                handleSetBack(true)
+            }else{
+                handleSetBack(false)
+            }
+        }
         // if(((isNotificationSectionVisible === true) && (viewportWidth < 655)) //|| ((654 < viewportWidth) && (viewportWidth < 1001))
         // ){
         //     setIsBottomNavHidden(false)
