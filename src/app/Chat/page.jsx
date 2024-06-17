@@ -618,14 +618,16 @@ export default function Chats() {
               )}
             </div>
             <div className="chat-input-box">
-              <label>
-                <input
-                  type="text"
-                  placeholder="Start typing..."
-                  name="chat-input"
-                  autoComplete="off"
-                />
-              </label>
+              <form action="">
+                <label>
+                  <input
+                    type="text"
+                    placeholder="Start typing..."
+                    name="chat-input"
+                    autoComplete="off"
+                  />
+                </label>
+              </form>
             </div>
           </>
         ) : (
