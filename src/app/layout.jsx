@@ -3,6 +3,7 @@
 import { Inter } from "next/font/google";
 import SideMenu from "@/components/SideMenu";
 import GeneralHeader from "@/components/GeneralHeader";
+import SwDev from "./swDev";
 import "./globals.css";
 // import BottomNavigation from "@/components/BottomNavigation";
 import {
@@ -25,6 +26,7 @@ export default function RootLayout({ children }) {
               <body>
                 <div className="pages-wrapper">
                   <Pages>{children}</Pages>
+                  <SwDev />
                 </div>
               </body>
             </html>
