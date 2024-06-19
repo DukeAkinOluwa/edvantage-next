@@ -3,7 +3,12 @@
   "short_name": "Edvantage",
   "start_url": "./",
   "display": "standalone",
-  "display_override": ["window-controls-overlay", "standalone", "fullscreen", "minimal-ui"],
+  "display_override": [
+    "window-controls-overlay",
+    "standalone",
+    "fullscreen",
+    "minimal-ui"
+  ],
   "theme_color": "#FAFBFD",
   "background_color": "#2A52BE",
   "icons": [
@@ -19,7 +24,7 @@
     },
     {
       "src": "./Images/Manifest/Logos/Logo.jpg",
-      "sizes": "1080x1080",
+      "sizes": "144x144",
       "type": "image/png"
     }
   ],
@@ -40,13 +45,13 @@
       "src": "./Images/Manifest/Screenshots/screenshot-mobile-1.png",
       "sizes": "395x862",
       "type": "image/png",
-      "form factor": "narrow"
+      "form_factor": "narrow"
     },
     {
       "src": "./Images/Manifest/Screenshots/screenshot-mobile-2.png",
       "sizes": "390x861",
       "type": "image/png",
-      "form factor": "narrow"
+      "form_factor": "narrow"
     }
   ],
   "protocol_handlers": [
@@ -54,5 +59,9 @@
       "protocol": "web+edvantage",
       "url": "./users/[userId]/%s"
     }
+  ],
+  "files": [
+    "/",
+    "/manifest.json"
   ]
 }
