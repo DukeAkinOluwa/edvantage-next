@@ -65,7 +65,7 @@ export default function Home() {
     function handleSetBack(booleanValue) {
         setBack(booleanValue);
     }
-    console.log(back)
+    // console.log(back)
 
     return (
         <>

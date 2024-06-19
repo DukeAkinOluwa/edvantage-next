@@ -4,6 +4,8 @@ import { Inter } from "next/font/google";
 import SideMenu from "@/components/SideMenu";
 import GeneralHeader from "@/components/GeneralHeader";
 import SwDev from "./swDev";
+import NotificationRequest from "@/components/NotificationRequest";
+import ScheduleNotification from "@/components/ScheduleNotification";
 import "./globals.css";
 // import BottomNavigation from "@/components/BottomNavigation";
 import {
@@ -27,6 +29,8 @@ export default function RootLayout({ children }) {
                 <div className="pages-wrapper">
                   <Pages>{children}</Pages>
                   <SwDev />
+                  <ScheduleNotification />
+                  <NotificationRequest />
                 </div>
               </body>
             </html>
