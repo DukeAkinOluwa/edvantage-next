@@ -69,7 +69,6 @@ const generateManifest = async () => {
         ...manualManifest,
         files: [
         "/",
-        "/manifest.json"
         // ...dynamicAssets
         ]
     };

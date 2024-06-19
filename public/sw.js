@@ -56,31 +56,27 @@ self.addEventListener('activate', event => {
 
 self.addEventListener('fetch', event => {
     const url = event.request.url;
-    if ((url.startsWith('/Images/') || url.startsWith('/_next/')) ||
-    url.startsWith('https://fonts.googleapis.com/')) {
-        // Cache dynamic images
+    // Check for existing caching conditions
+    if (url === '/' ||  // Added check for root page
+        (url.startsWith('/Images/') || url.startsWith('/_next/static/')) ||
+        url.startsWith('https://fonts.googleapis.com/') ||
+        url === '/manifest.json') {
+      // Existing caching logic...
+    } else {
+      // Cache navigation requests
         event.respondWith(
-        caches.match(event.request).then(response => {
+            caches.match(event.request).then(response => {
             if (response) {
-            return response;
+                return response;
             }
             return fetch(event.request).then(networkResponse => {
                 return caches.open(CACHE_NAME).then(cache => {
-                    cache.put(event.request, networkResponse.clone());
-                    return networkResponse;
+                console.log(event.request, networkResponse.clone());
+                cache.put(event.request, networkResponse.clone());
+                return networkResponse;
                 });
             });
-        }).catch(() => caches.match('/offline.html'))
-        );
-    } else {
-        // Cache other necessary files
-        event.respondWith(
-        caches.match(event.request).then(response => {
-            if (response) {
-            return response;
-            }
-            return fetch(event.request).catch(() => caches.match('/offline.html'));
-        })
+            }).catch(() => caches.match('/offline.html'))
         );
     }
     console.log(event.request.url);
