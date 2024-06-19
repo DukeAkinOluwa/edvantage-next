@@ -25,9 +25,12 @@ export default function SwDev(){
         } catch (error) {
           console.error('Error registering service worker:', error);
         }
-    }, []);
 
-    console.log('holla')
+        navigator.serviceWorker.oncontrollerchange = (ev) => {
+            console.log('New SW Regd')
+        }
+
+    }, []);
 
     return null
 }
