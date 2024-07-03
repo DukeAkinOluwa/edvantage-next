@@ -5,6 +5,7 @@ import PageRightHeader from "@/components/PageRightHeader";
 import CPTemplate from "@/components/templates/CPTemplate";
 import SearchIcon from "@/icons/search";
 import Image from "next/image";
+import Link from "next/link";
 import { redirect } from "next/navigation";
 // import { BottomNavContext, TopNavContext } from "@/contexts/BottomNavContext";
 
@@ -253,6 +254,45 @@ export default function Chats() {
       },
     ],
   };
+  
+  const fileData = [
+    // Media (10)
+    { id: 1, type: "image", name: "photo.jpg", size: 1024578 },
+    { id: 2, type: "image", name: "vacation_pic.jpg", size: 873214 },
+    { id: 3, type: "image", name: "funny_clip.jpg", size: 25165489 },
+    { id: 4, type: "image", name: "presentation.jpg", size: 3847219 },
+    { id: 5, type: "image", name: "screenshot.jpg", size: 231456 },
+    { id: 6, type: "image", name: "cat_video.jpg", size: 14587932 },
+    { id: 7, type: "image", name: "mountain_view.jpg", size: 987412 },
+    { id: 8, type: "image", name: "cooking_tutorial.jpg", size: 42893716 },
+    { id: 9, type: "image", name: "profile_pic.jpg", size: 512348 },
+    { id: 10, type: "image", name: "gameplay.jpg", size: 78932145 },
+  
+    // Links (10)
+    { id: 11, type: "link", name: "Wikipedia", url: "https://en.wikipedia.org/wiki/Main_Page/dgsjcvhbsa" },
+    { id: 12, type: "link", name: "YouTube", url: "https://www.youtube.com/" },
+    { id: 13, type: "link", name: "Google Search", url: "https://www.google.com/" },
+    { id: 14, type: "link", name: "Stack Overflow", url: "https://stackoverflow.com/" },
+    { id: 15, type: "link", name: "GitHub", url: "https://github.com/" },
+    { id: 16, type: "link", name: "MDN Web Docs", url: "https://developer.mozilla.org/" },
+    { id: 17, type: "link", name: "FreeCodeCamp", url: "https://www.freecodecamp.org/" },
+    { id: 18, type: "link", name: "Khan Academy", url: "https://www.khanacademy.org/" },
+    { id: 19, type: "link", name: "Coursera", url: "https://www.coursera.org/" },
+    { id: 20, type: "link", name: "Udemy", url: "https://www.udemy.com/" },
+  
+    // Documents (10)
+    { id: 21, type: "document", name: "report.pdf", size: 2348712 },
+    { id: 22, type: "document", name: "presentation.pptx", size: 1873241 },
+    { id: 23, type: "document", name: "budget.xlsx", size: 432891 },
+    { id: 24, type: "document", name: "contract.docx", size: 987421 },
+    { id: 25, type: "document", name: "research_paper.odt", size: 1523847 },
+    { id: 26, type: "document", name: "meeting_notes.txt", size: 12345 },
+    { id: 27, type: "document", name: "instructions.pdf", size: 789321 },
+    { id: 28, type: "document", name: "invoice.csv", size: 321456 },
+    { id: 29, type: "document", name: "email.eml", size: 874123 },
+    { id: 30, type: "document", name: "code.txt", size: 543281 }
+  ];
+  
 
   useEffect(() => {
     setViewportWidth(window.innerWidth);
@@ -503,6 +543,7 @@ export default function Chats() {
   );
   function UserProfileDetails({ selectedUserProfile, chatTexts }) {
     const [showScrollToBottom, setShowScrollToBottom] = useState(false);
+    const [isAboutProfileVisible, setIsAboutProfileVisible] = useState(false);
     const chatEndRef = useRef(null);
     const chatBodyRef = useRef(null);
 
@@ -535,11 +576,13 @@ export default function Chats() {
       }
     };
 
+    console.log(isAboutProfileVisible)
+
     return (
       <div className="right">
         {selectedUserProfile ? (
           <>
-            <div className="chat-header">
+            <div className="chat-header" onClick={() => setIsAboutProfileVisible(true)}>
               <svg
                 width="18"
                 height="18"
@@ -650,8 +693,63 @@ export default function Chats() {
             </div>
           </div>
         )}
+        {isAboutProfileVisible === true ?
+          <ChatAboutProfile /> : <></>
+        }
       </div>
     );
+    function ChatAboutProfile(){
+      const [fileType, setFileType] = useState("image")
+      return(
+          <div className="chat-about-profile">
+            <Image src={`/Images/profile/${selectedUserProfile.imageid}`} alt="profile" height={350} width={300} />
+            <div className="back-arrow-cont">
+              <svg width="18" height="18" viewBox="0 0 16 16" fill="none" onClick={() => setIsAboutProfileVisible(false)} className="back-arrow" >
+                <path
+                  d="M15 8H1M1 8L8 15M1 8L8 1" stroke="#101828" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+                />
+              </svg>
+            </div>
+            <div className="files-header">
+              <div className="media" style={{color: `${fileType === "image" ? "#2A52BE" : ""}`}} onClick={() => setFileType("image")}>
+                <p>Media</p>
+              </div>
+              <div className="links" style={{color: `${fileType === "link" ? "#2A52BE" : ""}`}} onClick={() => setFileType("link")}>
+                <p>Links</p>
+              </div>
+              <div className="docs" style={{color: `${fileType === "document" ? "#2A52BE" : ""}`}} onClick={() => setFileType("document")}>
+                <p>Docs</p>
+              </div>
+            </div>
+            <div className="files">
+              {
+                fileData
+                .filter((file) =>{
+                  // switch (fileType) {
+                  //   case "media":
+                  //     return file.type === "image" || file.type === "video";
+                  //   case "links":
+                  //     return file.type === "link";
+                  //   case "docs":
+                  //     return file.type === "document";
+                  //   default:
+                  //     return false;
+                  // }
+                  return file.type === fileType
+                }
+                )
+                .map((file, index) => (
+                  <>
+                    {file.type === "image" ? <MediaFileTemplate name={file.name} size={file.size} key={index}/> : <></>}
+                    {file.type === "link" ? <LinkFileTemplate name={file.name} url={file.url} key={index}/> : <></>}
+                    {file.type === "document" ? <DocumentFileTemplate name={file.name} size={file.size} key={index}/> : <></>}
+                  </>
+                ))
+              }
+            </div>
+          </div>
+      )
+    }
   }
   function ChatPageLeft() {
     return (
@@ -842,5 +940,25 @@ export default function Chats() {
         </div>
       </>
     );
+  }
+  function MediaFileTemplate({name, size}){
+    return(
+      <div className="media-file">
+        <Image src={`/Images/chatmedia/${name}`} height={100} width={100} alt=""></Image>
+      </div>
+    )
+  }
+  function LinkFileTemplate({name, url}){
+    return(
+      <Link href={url} className="link-file">
+        <div className="link-image"></div>
+        <p>{url}</p>
+      </Link>
+    )
+  }
+  function DocumentFileTemplate(){
+    return(
+      <div className="doc-file"></div>
+    )
   }
 }
