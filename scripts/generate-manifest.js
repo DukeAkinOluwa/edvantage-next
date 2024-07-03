@@ -8,7 +8,7 @@ const manualManifest = {
     "start_url": "./",
     "display": "standalone",
     "display_override": ["window-controls-overlay", "standalone", "fullscreen", "minimal-ui"],
-    "theme_color": "#FAFBFD",
+    "theme_color": "#2A52BE",
     "background_color": "#2A52BE",
     "icons": [
         {
