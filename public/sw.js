@@ -29,6 +29,9 @@ self.addEventListener('install', event => {
         })
         .then(() => self.skipWaiting())
     );
+    event.waitUntil(
+        caches.delete(CACHE_NAME)
+    );
 });
 
 self.addEventListener('activate', event => {
@@ -48,29 +51,29 @@ self.addEventListener('activate', event => {
 });
 
 self.addEventListener('fetch', event => {
-    const url = event.request.url;
-    if (event.request.method === 'GET') {
-        if (url === '/' ||
-            url.startsWith('/Images/') || url.startsWith('/_next/static/') ||
-            url.startsWith('https://fonts.googleapis.com/') ||
-            url === '/manifest.json') {
-        } else {
-            event.respondWith(
-            caches.match(event.request).then(response => {
-                if (response) {
-                return response;
-                }
-                return fetch(event.request).then(networkResponse => {
-                return caches.open(CACHE_NAME).then(cache => {
-                    // console.log(event.request, networkResponse.clone());
-                    cache.put(event.request, networkResponse.clone());
-                    return networkResponse;
-                });
-                });
-            }).catch(() => caches.match('/offline.html'))
-            );
-        }
-    }
+    // const url = event.request.url;
+    // if (event.request.method === 'GET') {
+    //     if (url === '/' ||
+    //         url.startsWith('/Images/') || url.startsWith('/_next/static/') ||
+    //         url.startsWith('https://fonts.googleapis.com/') ||
+    //         url === '/manifest.json') {
+    //     } else {
+    //         event.respondWith(
+    //         caches.match(event.request).then(response => {
+    //             if (response) {
+    //             return response;
+    //             }
+    //             return fetch(event.request).then(networkResponse => {
+    //             return caches.open(CACHE_NAME).then(cache => {
+    //                 // console.log(event.request, networkResponse.clone());
+    //                 cache.put(event.request, networkResponse.clone());
+    //                 return networkResponse;
+    //             });
+    //             });
+    //         }).catch(() => caches.match('/offline.html'))
+    //         );
+    //     }
+    // }
     // console.log(event.request.url);
 });
 
