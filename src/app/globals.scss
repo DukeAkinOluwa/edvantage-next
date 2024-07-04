@@ -764,20 +764,23 @@ input {
                         width: 20px;
                     }
                 }
-                .files-header{
-                    @include fa;
-                    gap: 10px;
-                    width: 100%;
-                    overflow: hidden;
-                    height: 50px;
-                    & > div{
-                        @include fja;
-                        height: 100%;
-                        flex: 1;
-                        padding: 0px 10px;
-                    }
-                }
                 .files{
+                    .files-header{
+                        @include fa;
+                        gap: 10px;
+                        width: 100%;
+                        position: sticky;
+                        top: 0px;
+                        background-color: $white;
+                        overflow: hidden;
+                        height: 50px;
+                        & > div{
+                            @include fja;
+                            height: 100%;
+                            flex: 1;
+                            padding: 0px 10px;
+                        }
+                    }
                     display: flex;
                     flex-wrap: wrap;
                     width: 100%;
@@ -827,11 +830,16 @@ input {
                         height: 60px;
                         margin: 0px 10px 5px;
                         .link-image{
+                            @include fja;
                             height: 60px;
                             min-width: 60px;
+                            max-width: 60px;
                             border-radius: 5px;
                             background-color: $primary-color;
                             color: $white;
+                            h1{
+                                font-weight: 400
+                            }
                         }
                         .text{
                             @include fdj;

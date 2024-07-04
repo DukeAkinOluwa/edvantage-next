@@ -267,6 +267,36 @@ export default function Chats() {
     { id: 8, type: "image", name: "cooking_tutorial.jpg", size: 42893716 },
     { id: 9, type: "image", name: "profile_pic.jpg", size: 512348 },
     { id: 10, type: "image", name: "gameplay.jpg", size: 78932145 },
+    { id: 1, type: "image", name: "photo.jpg", size: 1024578 },
+    { id: 2, type: "image", name: "vacation_pic.jpg", size: 873214 },
+    { id: 3, type: "image", name: "funny_clip.jpg", size: 25165489 },
+    { id: 4, type: "image", name: "presentation.jpg", size: 3847219 },
+    { id: 5, type: "image", name: "screenshot.jpg", size: 231456 },
+    { id: 6, type: "image", name: "cat_video.jpg", size: 14587932 },
+    { id: 7, type: "image", name: "mountain_view.jpg", size: 987412 },
+    { id: 8, type: "image", name: "cooking_tutorial.jpg", size: 42893716 },
+    { id: 9, type: "image", name: "profile_pic.jpg", size: 512348 },
+    { id: 10, type: "image", name: "gameplay.jpg", size: 78932145 },
+    { id: 1, type: "image", name: "photo.jpg", size: 1024578 },
+    { id: 2, type: "image", name: "vacation_pic.jpg", size: 873214 },
+    { id: 3, type: "image", name: "funny_clip.jpg", size: 25165489 },
+    { id: 4, type: "image", name: "presentation.jpg", size: 3847219 },
+    { id: 5, type: "image", name: "screenshot.jpg", size: 231456 },
+    { id: 6, type: "image", name: "cat_video.jpg", size: 14587932 },
+    { id: 7, type: "image", name: "mountain_view.jpg", size: 987412 },
+    { id: 8, type: "image", name: "cooking_tutorial.jpg", size: 42893716 },
+    { id: 9, type: "image", name: "profile_pic.jpg", size: 512348 },
+    { id: 10, type: "image", name: "gameplay.jpg", size: 78932145 },
+    { id: 1, type: "image", name: "photo.jpg", size: 1024578 },
+    { id: 2, type: "image", name: "vacation_pic.jpg", size: 873214 },
+    { id: 3, type: "image", name: "funny_clip.jpg", size: 25165489 },
+    { id: 4, type: "image", name: "presentation.jpg", size: 3847219 },
+    { id: 5, type: "image", name: "screenshot.jpg", size: 231456 },
+    { id: 6, type: "image", name: "cat_video.jpg", size: 14587932 },
+    { id: 7, type: "image", name: "mountain_view.jpg", size: 987412 },
+    { id: 8, type: "image", name: "cooking_tutorial.jpg", size: 42893716 },
+    { id: 9, type: "image", name: "profile_pic.jpg", size: 512348 },
+    { id: 10, type: "image", name: "gameplay.jpg", size: 78932145 },
   
     // Links (10)
     { id: 11, type: "link", name: "Wikipedia", url: "https://en.wikipedia.org/wiki/Main_Page/dgsjcvhbsa" },
@@ -705,23 +735,21 @@ export default function Chats() {
             <Image src={`/Images/profile/${selectedUserProfile.imageid}`} alt="profile" height={350} width={300} />
             <div className="back-arrow-cont">
               <svg width="18" height="18" viewBox="0 0 16 16" fill="none" onClick={() => setIsAboutProfileVisible(false)} className="back-arrow" >
-                <path
-                  d="M15 8H1M1 8L8 15M1 8L8 1" stroke="#101828" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
-                />
+                <path d="M15 8H1M1 8L8 15M1 8L8 1" stroke="#101828" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
             </div>
-            <div className="files-header">
-              <div className="media" style={{color: `${fileType === "image" ? "#2A52BE" : ""}`}} onClick={() => setFileType("image")}>
-                <p>Media</p>
-              </div>
-              <div className="links" style={{color: `${fileType === "link" ? "#2A52BE" : ""}`}} onClick={() => setFileType("link")}>
-                <p>Links</p>
-              </div>
-              <div className="docs" style={{color: `${fileType === "document" ? "#2A52BE" : ""}`}} onClick={() => setFileType("document")}>
-                <p>Docs</p>
-              </div>
-            </div>
             <div className="files">
+              <div className="files-header">
+                <div className="media" style={{color: `${fileType === "image" ? "#2A52BE" : ""}`}} onClick={() => setFileType("image")}>
+                  <p>Media</p>
+                </div>
+                <div className="links" style={{color: `${fileType === "link" ? "#2A52BE" : ""}`}} onClick={() => setFileType("link")}>
+                  <p>Links</p>
+                </div>
+                <div className="docs" style={{color: `${fileType === "document" ? "#2A52BE" : ""}`}} onClick={() => setFileType("document")}>
+                  <p>Docs</p>
+                </div>
+              </div>
               {
                 fileData
                 .filter((file) =>{
@@ -968,9 +996,30 @@ export default function Chats() {
     )
   }
   function LinkFileTemplate({name, url}){
+    function getFirstTwoValidChars(word) {
+      // Handle empty string or strings with less than 2 characters
+      if (!word || word.length < 2) {
+        return "";
+      }
+    
+      const firstChar = word.charAt(0);
+      const secondChar = word.charAt(1);
+    
+      // Check if both characters are alphanumeric (letters or numbers)
+      if (/\w/.test(firstChar) && /\w/.test(secondChar)) {
+        return(
+          <h1>{firstChar + secondChar}</h1>
+        );
+      } else {
+        // If not valid, return an empty string
+        return(
+          <h1>Li</h1>
+        )
+      }
+    }
     return(
       <Link href={url} className="link-file">
-        <div className="link-image"></div>
+        <div className="link-image"><h4>{getFirstTwoValidChars(name)}</h4></div>
         <div className="text">
           <h3>{name}</h3>
           <p>{url}</p>
