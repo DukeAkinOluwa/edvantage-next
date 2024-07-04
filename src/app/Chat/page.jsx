@@ -942,17 +942,39 @@ export default function Chats() {
     );
   }
   function MediaFileTemplate({name, size}){
+    const [isImageExpanded, setIsImageExpanded] = useState(false)
+    function ImageExpanded(){
+      return(
+        <>
+          <div className="image-expanded">
+            <Image src={`/Images/chatmedia/${name}`} width={400} height={1000} alt=""></Image>
+            <div className="image-expanded-header">
+              <svg width="18" height="18" viewBox="0 0 16 16" onClick={() => setIsImageExpanded(false)} className="back-arrow" >
+                <path d="M15 8H1M1 8L8 15M1 8L8 1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+              <p>{name}</p>
+            </div>
+          </div>
+        </>
+      )
+    }
     return(
-      <div className="media-file">
-        <Image src={`/Images/chatmedia/${name}`} height={100} width={100} alt=""></Image>
-      </div>
+      <>
+        <div className="media-file" onClick={() => setIsImageExpanded(true)}>
+          <Image src={`/Images/chatmedia/${name}`} height={100} width={100} alt=""></Image>
+        </div>
+        {isImageExpanded ? <ImageExpanded /> : <></>}
+      </>
     )
   }
   function LinkFileTemplate({name, url}){
     return(
       <Link href={url} className="link-file">
         <div className="link-image"></div>
-        <p>{url}</p>
+        <div className="text">
+          <h3>{name}</h3>
+          <p>{url}</p>
+        </div>
       </Link>
     )
   }
