@@ -332,7 +332,7 @@ export default function Chats() {
     // }else{
     //   setIsTopNavHidden(true)
     //   setIsBottomNavHidden(true)
-    // }
+    // }  
 
     const handleResize = () => {
       setViewportWidth(window.innerWidth);
