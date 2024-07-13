@@ -2040,7 +2040,6 @@ input[type=file] {
 .dashboard-task-overview-table {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   grid-area: dashboardtasks;
   max-height: 100%;

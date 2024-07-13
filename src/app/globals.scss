@@ -2089,7 +2089,7 @@ input[type="file"] {
 
 // Dashboard Task Overview
 .dashboard-task-overview-table {
-    @include fdja();
+    @include fda();
     grid-area: dashboardtasks;
     max-height: 100%;
     overflow-x: scroll;
