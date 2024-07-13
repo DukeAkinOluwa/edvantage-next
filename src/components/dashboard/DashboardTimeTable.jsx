@@ -2,139 +2,62 @@
 
 import { useState, useEffect } from "react"
 import AddEvent from "../AddEvent"
+import { getAllTasks, updateTask } from "@/utils/indexedDB";
 
 export default function DashboardTimeTable(){
     
     const [isAddEventVisible, setIsAddEventVisible] = useState(false)
     const [viewportWidth, setViewportWidth] = useState(null);
+    const [tasks, setTasks] = useState([]);
+    const [reloadTimetable, setReloadTimetable] = useState(false)
+    
+    const [eventData, setEventData] = useState({
+        title: '',
+        date: '',
+        startTime: '',
+        endTime: '',
+        category: 'event'
+    });
   
-    const today = new Date();
-    const startDate = new Date(today.setDate(today.getDate() - ((today.getDay() || 7))));
+    const getWeekStart = () => {
+        const today = new Date();
+        const dayOfWeek = today.getDay(); // 0 (Sunday) to 6 (Saturday)
+        const diff = today.getDate() - dayOfWeek; // Adjust for Sunday
+        const startDate = new Date(today.setDate(diff));
+        startDate.setHours(0, 0, 0, 0); // Set time to 00:00:00
+        return startDate;
+    };
+    
+    const startDate = getWeekStart();
+      
+
+    const previousDate = new Date(startDate);
+    previousDate.setDate(previousDate.getDate() - 1);
+
     const formatDate = (date) => new Date(date).toLocaleDateString('en-US', { weekday: 'short', day: 'numeric' });
 
     const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
     const times = ['6:00', '8:00', '10:00', '12:00', '14:00', '16:00']
-    const eventData = [
-        {
-            title: "MCT304",
-            startTime: "08:00",
-            endTime: "10:00",
-            type: "class",
-            date: "22 Mon"
-        },
-        {
-            title: "EEE304",
-            startTime: "11:00",
-            endTime: "13:00",
-            type: "class",
-            date: "22 Mon"
-        },,
-        {
-            title: "MCT302",
-            startTime: "14:00",
-            endTime: "16:00",
-            type: "class",
-            date: "22 Mon"
-        },
-        {
-            title: "PHY312",
-            startTime: "16:00",
-            endTime: "18:00",
-            type: "class",
-            date: "22 Mon"
-        },
-        {
-            title: "PHY312",
-            startTime: "21:00",
-            endTime: "22:15",
-            type: "exam",
-            date: "22 Mon"
-        },
-        {
-            title: "ICT324",
-            startTime: "08:00",
-            endTime: "09:00",
-            type: "class",
-            date: "23 Tue"
-        },
-        {
-            title: "MCT308",
-            startTime: "10:00",
-            endTime: "12:00",
-            type: "class",
-            date: "23 Tue"
-        },
-        {
-            title: "ENG302",
-            startTime: "14:00",
-            endTime: "16:00",
-            type: "class",
-            date: "23 Tue"
-        },
-        {
-            title: "GES302",
-            startTime: "16:00",
-            endTime: "18:00",
-            type: "class",
-            date: "23 Tue"
-        },
-        {
-            title: "EEE306",
-            startTime: "07:00",
-            endTime: "08:00",
-            type: "class",
-            date: "24 Wed"
-        },
-        {
-            title: "ENG302",
-            startTime: "08:00",
-            endTime: "10:00",
-            type: "class",
-            date: "24 Wed"
-        },
-        {
-            title: "CEN304",
-            startTime: "10:00",
-            endTime: "12:00",
-            type: "class",
-            date: "24 Wed"
-        },
-        {
-            title: "EEE306",
-            startTime: "08:00",
-            endTime: "10:00",
-            type: "class",
-            date: "25 Thu"
-        },
-        {
-            title: "CEN302",
-            startTime: "12:00",
-            endTime: "14:00",
-            type: "class",
-            date: "25 Thu"
-        },
-        {
-            title: "Rehearsal",
-            startTime: "17:30",
-            endTime: "19:30",
-            type: "exam",
-            date: "26 Fri"
-        },
-        {
-            title: "Rehearsal",
-            startTime: "15:30",
-            endTime: "17:30",
-            type: "exam",
-            date: "22 Sat"
-        },
-        {
-            title: "Church",
-            startTime: "10:00",
-            endTime: "12:00",
-            type: "other",
-            date: "22 Sun"
-        },
-    ]
+
+    const filteredTasks = tasks.filter(task => {
+        const taskDate = new Date(task.date);
+        
+        const endDate = new Date(startDate);
+            endDate.setDate(endDate.getDate() + 7);
+            
+        // console.log(taskDate)
+        
+        return (taskDate >= (startDate)) && (taskDate < (endDate));
+    });
+
+    useEffect(() => {
+        const fetchTasks = async () => {
+            const tasksFromDB = await getAllTasks();
+            setTasks(tasksFromDB);
+        };
+    
+        fetchTasks();
+    }, [reloadTimetable]);
 
     useEffect(() => {
         setViewportWidth(window.innerWidth);
@@ -163,11 +86,13 @@ export default function DashboardTimeTable(){
                         <div className="cell">
                             <h3>Time</h3>
                         </div>
-                        {days.map((day) => (
-                            <div key={day} className="cell">
-                                <h3>{formatDate(new Date(startDate.setDate(startDate.getDate() + 1)))}</h3>
-                            </div>
-                        ))}
+                        {[...Array(7)].map((day, index) => {
+                            return(
+                                <div key={day} className="cell">
+                                    <h3>{formatDate(new Date(previousDate.setDate(previousDate.getDate() + 1)))}</h3>
+                                </div>
+                            )
+                        })}
                     </div>
                     <div className="table-content">
                         <div className="left">
@@ -181,8 +106,8 @@ export default function DashboardTimeTable(){
                         { [...Array(24 * 7)].map((_, index) => (
                             <div key={index} className="empty-div"></div>
                         ))}
-                            {eventData ? (
-                                eventData.map((info, index) => (
+                            {filteredTasks.length > 0 ? (
+                                filteredTasks.filter(task => task.category === 'event').map((info, index) => (
                                     <EventTemplate info={info} key={index} eventIndex={index} />
                                 ))
                             ) : (
@@ -218,31 +143,43 @@ export default function DashboardTimeTable(){
         }
         function EventStyleLogic(){
             function calculateTimeDifferenceInMinutes(time1, time2) {
-                const time1Parts = time1.split(':');
-                const time2Parts = time2.split(':');
-            
-                const date1 = new Date();
-                date1.setHours(parseInt(time1Parts[0]), parseInt(time1Parts[1]), 0, 0);
-            
-                const date2 = new Date();
-                date2.setHours(parseInt(time2Parts[0]), parseInt(time2Parts[1]), 0, 0);
-            
-                const diffInMs = date2.getTime() - date1.getTime();
-                const diffInMinutes = Math.round(diffInMs / (1000 * 60));
-            
-                return diffInMinutes;
+                if ((time1 !== undefined) && (time2 !== undefined)) {
+                    const time1Parts = time1.split(':');
+                    const time2Parts = time2.split(':');
+                
+                    const date1 = new Date();
+                    date1.setHours(parseInt(time1Parts[0]), parseInt(time1Parts[1]), 0, 0);
+                
+                    const date2 = new Date();
+                    date2.setHours(parseInt(time2Parts[0]), parseInt(time2Parts[1]), 0, 0);
+                
+                    const diffInMs = date2.getTime() - date1.getTime();
+                    const diffInMinutes = Math.round(diffInMs / (1000 * 60));
+                
+                    return diffInMinutes;
+                }
+                return 0
             }
             function eventLeft() {
-                // Calculate the number of days difference between the event date and initDate
-                const eventDateParts = info.date.split(' '); // Split "date day" string
-                const eventDay = eventDateParts[1]; // Extract the day (Mon, Tue, etc.)
-                const daysDifference = days.indexOf(eventDay)
-          
+                const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+                
+                // Extract the date from the info object
+                const eventDate = new Date(info.date);
+                
+                // Get the day of the week (0 for Sunday, 1 for Monday, etc.)
+                const eventDayIndex = eventDate.getDay();
+                const eventDay = days[eventDayIndex]; // Get the day in "Mon", "Tue", etc.
+              
+                // Calculate the days difference from the start of the week (e.g., Sunday)
+                const daysDifference = eventDayIndex;
+              
                 // Calculate left distance based on days difference (consider wrapping around to Sunday)
                 const eventLeftDistance = daysDifference * 14.28;
-          
-                return ({ eventLeftDistance, daysDifference });
+              
+                return { eventLeftDistance, daysDifference };
             }
+              
+              
             const eventHeightDifference = calculateTimeDifferenceInMinutes(info.startTime, info.endTime);
             const eventTopDifference = calculateTimeDifferenceInMinutes("06:00", info.startTime);
             const gap = 3
@@ -263,7 +200,7 @@ export default function DashboardTimeTable(){
             return({ eventStyles, eventHeightDifference })
         }
         function handleToggleShowEventDetails(){
-            setIsEventDetailsVisible(!isEventDetailsVisible)
+            setIsEventDetailsVisible(true)
         }
         return(
             <div className="event" style={EventStyleLogic().eventStyles} onClick={handleToggleShowEventDetails}>
@@ -272,29 +209,65 @@ export default function DashboardTimeTable(){
             </div>
         )
         function EventDetails({eventDetailData}){
+    
+            const [editingAssignment, setEditingAssignment] = useState(null);
+            const [isEditing, setIsEditing] = useState(false);
+            const [eventData, setEventData] = useState(eventDetailData);
+
+            const handleInputChange = (e) => {
+                const { name, value } = e.target;
+                setEventData((prevData) => ({
+                ...prevData,
+                [name]: value,
+                }));
+                
+                setIsEditing(true); // Set back to read-only mode after submit
+            };
+
+            const handleEditClick = () => {
+              setIsEditing(true);
+              setEditingAssignment(eventDetailData)
+            };
+
+            const handleSubmit = async () => {
+                await updateTask({ ...editingAssignment, ...eventData });
+                setIsEditing(false);
+                setReloadTimetable(!reloadTimetable)
+        
+                setEventData({
+                    title: '',
+                    date: '',
+                    startTime: '',
+                    endTime: '',
+                    category: 'event'
+                })
+
+                setIsEventDetailsVisible(false)
+            }
+
             return(
-                <div className="add">
+                <form className="add">
                     <div className="header" style={{backgroundColor: `${eventBackColor().color}`}}>
-                        <h3 style={{color: "#FFF"}}>{eventDetailData.title}</h3>
+                        <h3 style={{color: "#FFF"}}>{eventData.title}</h3>
                     </div>
                     <label>
                         <span>Title</span>
-                        <input type="text" placeholder={`${eventDetailData.title}`} name="title" onChange={() => console.log()} autoComplete="on" />
+                        <input type="text" value={`${eventData.title}`} name="title" onChange={handleInputChange} disabled={!isEditing} autoComplete="on" />
                     </label>
                     <label>
                         <span>Start Time</span>
-                        <input type="time" placeholder={`${eventDetailData.startTime}`} name="title" onChange={() => console.log()} autoComplete="on" />
+                        <input type="time" value={`${eventData.startTime}`} name="startTime" onChange={handleInputChange} disabled={!isEditing} autoComplete="on" />
                     </label>
                     <label>
                         <span>End Time</span>
-                        <input type="time" placeholder={`${eventDetailData.endTime}`} name="title" onChange={() => console.log()} autoComplete="on" />
+                        <input type="time" value={`${eventData.endTime}`} name="endTime" onChange={handleInputChange} disabled={!isEditing} autoComplete="on" />
                     </label>
                     <label>
                         <span>Date</span>
-                        <input type="date" placeholder={`${eventDetailData.date}`} name="title" onChange={() => console.log()} autoComplete="on" />
+                        <input type="date" value={`${eventData.date}`} name="date" onChange={handleInputChange} disabled={!isEditing} autoComplete="on" />
                     </label>
-                    <div className="button button1" onClick={() => console.log()}><p style={{backgroundColor: `${eventBackColor().color}`}}>Edit</p></div>
-                </div>
+                    <div className="button button1" onClick={isEditing ? handleSubmit : handleEditClick}><p style={{backgroundColor: `${eventBackColor().color}`}}>{isEditing ? <>Save</> : <>Edit</>}</p></div>
+                </form>
             )
         }
     }

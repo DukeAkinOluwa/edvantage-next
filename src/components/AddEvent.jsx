@@ -1,13 +1,17 @@
 'use client'
 
 import { useState } from "react";
+import { addTask, updateTask } from '@/utils/indexedDB';
 
 export default function AddEvent(){
+
+    const [editingAssignment, setEditingAssignment] = useState(null);
     const [eventData, setEventData] = useState({
         title: '',
         date: '',
-        start: '',
-        end: ''
+        startTime: '',
+        endTime: '',
+        category: 'event'
     });
 
     const handleInputChange = (e) => {
@@ -18,8 +22,21 @@ export default function AddEvent(){
         }));
     };
 
-    function handleSubmit(){
-        console.log(eventData)
+    const handleSubmit = async () => {
+        if (editingAssignment) {
+            await updateTask({ ...editingAssignment, ...assignmentData });
+            setEditingAssignment(null);
+        } else {
+            await addTask(eventData);
+        }
+
+        setEventData({
+            title: '',
+            date: '',
+            startTime: '',
+            endTime: '',
+            category: 'event'
+        })
     }
     return(
         <div className="add">
@@ -36,11 +53,11 @@ export default function AddEvent(){
             </label>
             <label>
                 <span>Start</span>
-                <input type="time" className="long-input" placeholder="Enter assignment here" name="start" onChange={handleInputChange} autoComplete="on" />
+                <input type="time" className="long-input" placeholder="Enter assignment here" name="startTime" onChange={handleInputChange} autoComplete="on" />
             </label>
             <label>
                 <span>End</span>
-                <input type="time" className="long-input" placeholder="Enter assignment here" name="end" onChange={handleInputChange} autoComplete="on" />
+                <input type="time" className="long-input" placeholder="Enter assignment here" name="endTime" onChange={handleInputChange} autoComplete="on" />
             </label>
             <div className="button button1" onClick={handleSubmit}><p>Add Assignment</p></div>
         </div>

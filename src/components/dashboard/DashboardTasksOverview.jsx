@@ -3,12 +3,24 @@
 import task_data from "@/DB/taskdata.json"
 import React, { useState, useEffect } from 'react';
 import AddAssignment from "../AddAssignment";
+import { getAllTasks } from "@/utils/indexedDB";
 
 const DashboardTasksOverview = () =>{
     const taskdata = task_data.courses
     const [windowWidth, setWindowWidth] = useState(null);
     const [isAddTaskVisible, setIsAddTaskVisible] = useState(false)
     const [isAddAssignmentVisible, setIsAddAssignmentVisible] = useState(false)
+    const [assignments, setAssignments] = useState([]);
+    const [editingAssignment, setEditingAssignment] = useState(null);
+  
+    useEffect(() => {
+      const fetchAssignments = async () => {
+        const assignmentsFromDB = await getAllTasks();
+        setAssignments(assignmentsFromDB);
+      };
+  
+      fetchAssignments();
+    }, [assignments]);
 
     useEffect(() => {
         setWindowWidth(window.innerWidth);
@@ -48,7 +60,7 @@ const DashboardTasksOverview = () =>{
                     <div className="column column4"><h5>Status</h5></div>
                 </div>
             </div>
-            {taskinfo.slice(0,10).map((tasks, index) => (
+            {assignments.filter(assignments => assignments.category === 'assignment').slice(0,10).map((tasks, index) => (
                  <DTOTemplate key={index} taskdata={tasks} />
              ))}
             </div>
@@ -72,7 +84,7 @@ const DashboardTasksOverview = () =>{
     
         return(
             <div className="dashboard-t-o-t-task row">
-                <div className="column column1"><h3 className="pc-hidden">Course name</h3><p>{taskdata.coursename}</p></div>
+                <div className="column column1"><h3 className="pc-hidden">Course name</h3><p>{taskdata.title}</p></div>
                 <div className="column column2"><h3 className="pc-hidden">Title</h3><p>{taskdata.coursecode}</p></div>
                 <div className="column column3"><h3 className="pc-hidden">Date</h3><p>{taskdata.duedate}</p></div>
                 <div className="column column4"><h3 className="pc-hidden">Status</h3><div className="table-status" style={task_status_background}><p style={task_status_text}>{taskdata.status}</p></div></div>
