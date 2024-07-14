@@ -27,7 +27,6 @@ export default function Chats() {
   const [back, setBack] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [elementZIndex, setElementZIndex] = useState("");
-  const [showPopupNotification, setShowPopupNotification] = useState(false)
   const [popupNotificationTitle, setPopupNotificationTitle] = useState("")
   const [popupNotificationText, setPopupNotificationText] = useState("")
 
@@ -555,14 +554,13 @@ export default function Chats() {
   }, [selectedUserProfile]);
     
   useEffect(() => {
-    if (showPopupNotification) {
-      const timeout = setTimeout(() => {
-        setShowPopupNotification(false);
-      }, 4000); // 4 seconds
-  
-      return () => clearTimeout(timeout);
-    }
-  }, [showPopupNotification]);
+    const timeout = setTimeout(() => {
+      setPopupNotificationText("")
+      setPopupNotificationTitle("")
+    }, 4000); // 4 seconds
+
+    return () => clearTimeout(timeout);
+  }, [popupNotificationText, popupNotificationTitle]);
 
   function handleSetBack(booleanValue, elementIndex) {
     setBack(booleanValue);
@@ -572,7 +570,6 @@ export default function Chats() {
   function handleShowPopupNotification(title, text){
     setPopupNotificationTitle(title)
     setPopupNotificationText(text)
-    setShowPopupNotification(true)
   }
 
   const handleClassificationClick = (classification) => {
@@ -738,7 +735,7 @@ export default function Chats() {
           </div>
         )}
       </span>
-      { showPopupNotification === true ? <InAppPopupNotification popupNotificationText={popupNotificationText} popupNotificationTitle={popupNotificationTitle} /> : <></> }
+      <InAppPopupNotification popupNotificationText={popupNotificationText} popupNotificationTitle={popupNotificationTitle} />
     </>
   );
   function UserProfileDetails({ selectedUserProfile, chatTexts }) {

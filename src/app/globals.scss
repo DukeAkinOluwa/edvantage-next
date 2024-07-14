@@ -1613,12 +1613,13 @@ input[type="file"] {
     gap: 5px;
     position: fixed;
     top: calc(20px + $page-right-header-height);
-    height: 60px;
+    height: fit-content;
     width: calc(100% - $side-menu-width - 50px);
     border-radius: 10px;
     background-color: $primary-color2;
     box-shadow: 0px 0px 10px rgba(40, 40, 40, 0.2);
     padding: 10px;
+    transition: 0.5s ease;
 }
 
 // Side Menu
@@ -2313,7 +2314,6 @@ input[type="file"] {
     // Popup Notification
     .popup-notification{
         top: 10px;
-        height: 60px;
         width: calc(100% - 40px);
         z-index: 2;
     }
