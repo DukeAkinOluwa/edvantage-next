@@ -675,14 +675,51 @@ input {
                 height: calc(100% - 50px - 60px); // removed a - 100px. might need to include it later
                 // max-height: 100%;
                 overflow-y: scroll;
-                .text {
+                .text,
+                .chat-timetable{
                     width: max-content;
                     min-width: 30px;
                     max-width: 240px;
                     border-radius: 15px;
-                    display: flex;
                     padding: 10px;
+                }
+                .text {
+                    display: flex;
                     gap: 15px;
+                }
+                .chat-timetable{
+                    @include fda;
+                    padding-bottom: 0px;
+                    gap: 8px;
+                    height: fit-content;
+                    .highlight{
+                        @include fja;
+                        width: calc(100% - 10px);
+                        padding: 5px;
+                        height: 30px;
+                        border-radius: 8px;
+                        background-color: rgb(250, 251, 253, .3);
+                    }
+                    .texts{
+                        h3{
+                            font-weight: 500;
+                        }
+                    }
+                    .options{
+                        @include fa;
+                        width: calc(100% + 20px);
+                        flex-wrap: nowrap;
+                        gap: 2px;
+                        border-top: solid 2px $white;
+                        .button{
+                            @include fja;
+                            height: 30px;
+                            width: 100%;
+                        }
+                            & > *:not(:first-child){
+                                border-left: solid 2px $white;
+                            }
+                    }
                 }
             }
             .empty-chat-body {
@@ -2075,6 +2112,11 @@ input[type="file"] {
                     position: absolute;
                     border-radius: 10px;
                     color: $white;
+                    overflow: hidden;
+                    h4{
+                        color: $white;
+                        font-weight: 500;
+                    }
                 }
                 label{
                     color: $text-color;

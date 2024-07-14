@@ -16,7 +16,7 @@ export default function DashboardTimeTable(){
         date: '',
         startTime: '',
         endTime: '',
-        category: 'event'
+        type: 'event'
     });
   
     const getWeekStart = () => {
@@ -45,9 +45,11 @@ export default function DashboardTimeTable(){
         const endDate = new Date(startDate);
             endDate.setDate(endDate.getDate() + 7);
             
-        // console.log(taskDate)
-        
-        return (taskDate >= (startDate)) && (taskDate < (endDate));
+        if (task.repeat === 'none') {
+            return taskDate >= startDate && taskDate < endDate;
+        }else if((task.repeat === 'weekly')){
+            return true; // Include the task if repeat is not 'none'
+        }
     });
 
     useEffect(() => {
@@ -107,7 +109,7 @@ export default function DashboardTimeTable(){
                             <div key={index} className="empty-div"></div>
                         ))}
                             {filteredTasks.length > 0 ? (
-                                filteredTasks.filter(task => task.category === 'event').map((info, index) => (
+                                filteredTasks.filter((task => (task.type === 'event') || (task.type === 'class'))).map((info, index) => (
                                     <EventTemplate info={info} key={index} eventIndex={index} />
                                 ))
                             ) : (
@@ -116,7 +118,7 @@ export default function DashboardTimeTable(){
                         </div>
                     </div>
                 </div>
-                {isAddEventVisible === true ? (<div className="add-item"><div className="invisible-background" onClick={handleAddEvent}></div><AddEvent /></div>) : (<></>) }
+                {isAddEventVisible === true ? (<div className="add-item"><div className="invisible-background" onClick={handleAddEvent}></div><AddEvent setReloadTimetable={setReloadTimetable} reloadTimetable={reloadTimetable} setIsAddEventVisible={setIsAddEventVisible} isAddEventVisible={isAddEventVisible} /></div>) : (<></>) }
             </div>
         </section>
     )
@@ -178,8 +180,7 @@ export default function DashboardTimeTable(){
               
                 return { eventLeftDistance, daysDifference };
             }
-              
-              
+            
             const eventHeightDifference = calculateTimeDifferenceInMinutes(info.startTime, info.endTime);
             const eventTopDifference = calculateTimeDifferenceInMinutes("06:00", info.startTime);
             const gap = 3
@@ -204,7 +205,8 @@ export default function DashboardTimeTable(){
         }
         return(
             <div className="event" style={EventStyleLogic().eventStyles} onClick={handleToggleShowEventDetails}>
-                <p>{info.title}</p>
+                <h4>{info.title}</h4>
+                <p>{info.type}</p>
                 {isEventDetailsVisible === true ? (<div className="add-item" style={{zIndex: `${isEventDetailsVisible ? "2" : ""}`}}><div className="invisible-background" onClick={handleToggleShowEventDetails}></div><EventDetails eventDetailData={info} /></div>) : (<></>) }
             </div>
         )
@@ -239,7 +241,8 @@ export default function DashboardTimeTable(){
                     date: '',
                     startTime: '',
                     endTime: '',
-                    category: 'event'
+                    type: 'event',
+                    repeat: 'none'
                 })
 
                 setIsEventDetailsVisible(false)

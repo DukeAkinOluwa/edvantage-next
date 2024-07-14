@@ -7,6 +7,7 @@ import SearchIcon from "@/icons/search";
 import Image from "next/image";
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import { addTask, updateTask } from '@/utils/indexedDB';
 // import { BottomNavContext, TopNavContext } from "@/contexts/BottomNavContext";
 
 export default function Chats() {
@@ -198,50 +199,195 @@ export default function Chats() {
           {
             sender: "John",
             message: "Hello",
+            category: {
+              name: "text"
+            }
           },
           {
             sender: "Akin",
             message: "Hi",
+            category: {
+              name: "text"
+            }
           },
           {
             sender: "Akin",
-            message:
-              "Whatsup good? I saw the text message you sent a few days back but I cheared all my chats by mistake and I kinda forgot to respond to your text.",
+            message: "Whatsup good? I saw the text message you sent a few days back but I cheared all my chats by mistake and I kinda forgot to respond to your text.",
+            category: {
+              name: "text"
+            }
           },
           {
             sender: "John",
             message: "Oooh ooh, that's alright.",
+            category: {
+              name: "text"
+            }
           },
           {
             sender: "Akin",
-            message:
-              "I spoke with the photographer already and he says that he will be free throughout next week.",
+            message: "I spoke with the photographer already and he says that he will be free throughout next week.",
+            category: {
+              name: "text"
+            }
           },
           {
             sender: "John",
             message: "Thank God o.",
+            category: {
+              name: "text"
+            }
           },
           {
             sender: "John",
             message: "So how much do you think he will request for?.",
+            category: {
+              name: "text"
+            }
           },
           {
             sender: "John",
-            message:
-              "I want him to be available throughout the event and the event should last for about 3 hours.",
+            message: "I want him to be available throughout the event and the event should last for about 3 hours.",
+            category: {
+              name: "text"
+            }
           },
           {
             sender: "Akin",
-            message:
-              "He charges about 20k per hour but since you're coming from me, he should charge you about 15 thousand per hour.",
+            message: "He charges about 20k per hour but since you're coming from me, he should charge you about 15 thousand per hour.",
+            category: {
+              name: "text"
+            }
           },
           {
             sender: "Akin",
             message: "Let's just say 15.",
+            category: {
+              name: "text"
+            }
           },
           {
             sender: "John",
             message: "Wow.",
+            category: {
+              name: "text"
+            }
+          },
+          {
+            sender: "Akin",
+            title: "400L Class Timetable",
+            subtitle: "Mechatronics Engineering",
+            message: "Checkout this Timetable.",
+            category: {
+              name: "timetable",
+              type: "class"
+            },
+            events: [
+              {
+                  title: "MCT304",
+                  startTime: "08:00",
+                  endTime: "10:00",
+                  type: "class",
+                  date: "2024-07-08",
+                  repeat: "weekly"
+              },
+              {
+                  title: "EEE304",
+                  startTime: "11:00",
+                  endTime: "13:00",
+                  type: "class",
+                  date: "2024-07-08",
+                  repeat: "weekly"
+              },
+              {
+                  title: "MCT302",
+                  startTime: "14:00",
+                  endTime: "16:00",
+                  type: "class",
+                  date: "2024-07-08",
+                  repeat: "weekly"
+              },
+              {
+                  title: "PHY312",
+                  startTime: "16:00",
+                  endTime: "18:00",
+                  type: "class",
+                  date: "2024-07-08",
+                  repeat: "weekly"
+              },
+              {
+                  title: "ICT324",
+                  startTime: "08:00",
+                  endTime: "09:00",
+                  type: "class",
+                  date: "2024-07-09",
+                  repeat: "weekly"
+              },
+              {
+                  title: "MCT308",
+                  startTime: "10:00",
+                  endTime: "12:00",
+                  type: "class",
+                  date: "2024-07-09",
+                  repeat: "weekly"
+              },
+              {
+                  title: "ENG302",
+                  startTime: "14:00",
+                  endTime: "16:00",
+                  type: "class",
+                  date: "2024-07-09",
+                  repeat: "weekly"
+              },
+              {
+                  title: "GES302",
+                  startTime: "16:00",
+                  endTime: "18:00",
+                  type: "class",
+                  date: "2024-07-09",
+                  repeat: "weekly"
+              },
+              {
+                  title: "EEE306",
+                  startTime: "07:00",
+                  endTime: "08:00",
+                  type: "class",
+                  date: "2024-07-10",
+                  repeat: "weekly"
+              },
+              {
+                  title: "ENG302",
+                  startTime: "08:00",
+                  endTime: "10:00",
+                  type: "class",
+                  date: "2024-07-10",
+                  repeat: "weekly"
+              },
+              {
+                  title: "CEN304",
+                  startTime: "10:00",
+                  endTime: "12:00",
+                  type: "class",
+                  date: "2024-07-10",
+                  repeat: "weekly"
+              },
+              {
+                  title: "EEE306",
+                  startTime: "08:00",
+                  endTime: "10:00",
+                  type: "class",
+                  date: "2024-07-11",
+                  repeat: "weekly"
+              },
+              {
+                  title: "CEN302",
+                  startTime: "12:00",
+                  endTime: "14:00",
+                  type: "class",
+                  date: "2024-07-11",
+                  repeat: "weekly"
+              }
+            ]
           },
         ],
       },
@@ -606,8 +752,6 @@ export default function Chats() {
       }
     };
 
-    console.log(isAboutProfileVisible)
-
     return (
       <div className="right">
         {selectedUserProfile ? (
@@ -639,28 +783,14 @@ export default function Chats() {
             <div className="chat-body" ref={chatBodyRef}>
               {selectedUserProfile.chat ? (
                 <>
-                  {selectedUserProfile.chat.map((chat, index) => (
-                    <div
-                      key={index}
-                      className="text"
-                      style={{
-                        alignSelf:
-                          chat.sender === selectedUserProfile.title
-                            ? "flex-end"
-                            : "flex-start",
-                        backgroundColor:
-                          chat.sender === selectedUserProfile.title
-                            ? "#2A52BE"
-                            : "#F2F2F7",
-                        color:
-                          chat.sender === selectedUserProfile.title
-                            ? "#FEFAFA"
-                            : "",
-                      }}
-                    >
-                      <p>{chat.message}</p>
-                    </div>
-                  ))}
+                  {selectedUserProfile.chat.map((chat, index) => {
+                    return(
+                      <>
+                        {(chat.category.name === "text" ? <ChatText chat={chat} key={index} /> : <></>)}
+                        {(chat.category.name === "timetable" ? <TimetableText chat={chat} key={index} /> : <></>)}
+                      </>
+                    )
+                  })}
                   <div ref={chatEndRef} />
                 </>
               ) : (
@@ -1032,4 +1162,74 @@ export default function Chats() {
       <div className="doc-file"></div>
     )
   }
+  function ChatText({chat}){
+    return(
+      <div className="text" style={{
+        alignSelf:
+          chat.sender === selectedUserProfile.title
+            ? "flex-end"
+            : "flex-start",
+        backgroundColor:
+          chat.sender === selectedUserProfile.title
+            ? "#2A52BE"
+            : "#F2F2F7",
+        color:
+          chat.sender === selectedUserProfile.title
+            ? "#FEFAFA"
+            : "",
+      }}
+    >
+      <p>{chat.message}</p>
+    </div>
+    )
+  }
+  function TimetableText({chat}){
+    function handleAddChatTimetable(){
+      chat.events.map((timetableclass)=>{
+        addTask(timetableclass)
+      })
+    }
+    return(
+      <div className="chat-timetable" style={{
+        alignSelf:
+          chat.sender === selectedUserProfile.title
+            ? "flex-end"
+            : "flex-start",
+        backgroundColor:
+          chat.sender === selectedUserProfile.title
+            ? "#2A52BE"
+            : "#F2F2F7",
+        color:
+          chat.sender === selectedUserProfile.title
+            ? "#FAFBFD"
+            : "",
+        }}
+      >
+        <div className="highlight">
+          {/* <h3>{chat.category.type === "class" ? "Class " : "Exam "} Timetable</h3> */}
+        </div>
+        <div className="texts">
+          <h3>{chat.title}</h3>
+          <p>{chat.subtitle}</p>
+        </div>
+        <div className="options">
+          <div className="button">
+            <p>Edit</p>
+          </div>
+          <div className="button" onClick={handleAddChatTimetable}>
+            <p>Add</p>
+          </div>
+        </div>
+      </div>
+    )
+  }
 }
+
+// sender: "Akin",
+// title: "400L Class Timetable",
+// subtitle: "Mechatronics Engineering",
+// message: "Checkout this Timetable.",
+// category: {
+//   name: "timetable",
+//   type: "class"
+// },

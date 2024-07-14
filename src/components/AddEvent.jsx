@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { addTask, updateTask } from '@/utils/indexedDB';
 
-export default function AddEvent(){
+export default function AddEvent({ setReloadTimetable, setIsAddEventVisible, reloadTimetable, isAddEventVisible }){
 
     const [editingAssignment, setEditingAssignment] = useState(null);
     const [eventData, setEventData] = useState({
@@ -11,7 +11,8 @@ export default function AddEvent(){
         date: '',
         startTime: '',
         endTime: '',
-        category: 'event'
+        type: 'event',
+        repeat: 'none'
     });
 
     const handleInputChange = (e) => {
@@ -29,13 +30,16 @@ export default function AddEvent(){
         } else {
             await addTask(eventData);
         }
+        setReloadTimetable(!reloadTimetable)
+        setIsAddEventVisible(!isAddEventVisible)
 
         setEventData({
             title: '',
             date: '',
             startTime: '',
             endTime: '',
-            category: 'event'
+            type: 'event',
+            repeat: 'none'
         })
     }
     return(
