@@ -12,18 +12,8 @@ const manualManifest = {
     "background_color": "#2A52BE",
     "icons": [
         {
-        "src": "./Images/Manifest/Logos/Edvantage1.png",
-        "sizes": "1080x1080",
-        "type": "image/png"
-        },
-        {
-        "src": "./Images/Manifest/Logos/Edvantage2.png",
-        "sizes": "1080x1080",
-        "type": "image/png"
-        },
-        {
-        "src": "./Images/Manifest/Logos/Logo.jpg",
-        "sizes": "144x144",
+        "src": "./Images/Manifest/Logos/LogoIconBB.png",
+        "sizes": "1607x1607",
         "type": "image/png"
         }
     ],
