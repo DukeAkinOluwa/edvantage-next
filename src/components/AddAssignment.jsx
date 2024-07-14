@@ -11,7 +11,7 @@ export default function AddAssignment({ handleAddAssignment, handleShowPopupNoti
         duedate: '',
         details: '',
         status: 'Pending',
-        category: 'assignment'
+        type: 'assignment'
     });
 
     const handleInputChange = (e) => {

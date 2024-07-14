@@ -2,97 +2,31 @@
 
 import PageRightHeader from "@/components/PageRightHeader"
 import { useEffect, useState } from "react";
+import { getAllTasks, updateTask } from "@/utils/indexedDB";
 
 export default function Assignments(){
 
     const [viewportWidth, setViewportWidth] = useState(null);
-
-    const Dummy = [
-        {
-            coursecode : "CSC 301",
-            status : "Completed",
-            duedate : 25,
-            progress : 1,
-            priority : "High"
-        },
-        {
-            coursecode : "ENG 303",
-            status : "Pending",
-            duedate : 86,
-            progress : 2,
-            priority : "Low"
-        },
-        {
-            coursecode : "MEE 305",
-            status : "Pending",
-            duedate : 12,
-            progress : 3,
-            priority : "High"
-        },
-        {
-            coursecode : "ENG 307",
-            status : "Completed",
-            duedate : 18,
-            progress : 4,
-            priority : "Low"
-        },
-        {
-            coursecode : "ICT 301",
-            status : "Completed",
-            duedate : 23,
-            progress : 1,
-            priority : "High"
-        },
-        {
-            coursecode : "AMS 303",
-            status : "Pending",
-            duedate : 32,
-            progress : 2,
-            priority : "Low"
-        },
-        {
-            coursecode : "TCE 305",
-            status : "Pending",
-            duedate : 85,
-            progress : 3,
-            priority : "High"
-        },
-        {
-            coursecode : "ENG 307",
-            status : "Completed",
-            duedate : 97,
-            progress : 4,
-            priority : "Low"
-        }
-    ]
+    const [tasks, setTasks] = useState([]);
 
     useEffect(() => {
-        // Function to fetch data from local storage asynchronously
-        const fetchDataFromLocalStorage = async () => {
-            try {
-                // Fetch data from local storage
-                const storedData = localStorage.getItem('userData');
-                if (storedData) {
-                    // Parse the stored data and update the state
-                    const parsedData = JSON.parse(storedData);
-                    setUserData(parsedData);
-                } else {
-                    console.log('No user data found in local storage.');
-                }
-            } catch (error) {
-                console.error('Error fetching data from local storage:', error);
-            }
+        const fetchTasks = async () => {
+            const tasksFromDB = await getAllTasks();
+            setTasks(tasksFromDB);
         };
-
-        // Call the function to fetch data from local storage
-        fetchDataFromLocalStorage();
+    
+        fetchTasks();
     }, []);
 
     useEffect(() => {
         setViewportWidth(window.innerWidth)
     })
-    
-    const [userData, setUserData] = useState(null);
+
+    const filteredTasks = tasks.filter(task => {
+        if (task.type === 'assignment') {
+            return true;
+        }
+    });
     
     // const taskinfo = userData && userData.assignments;
 
@@ -110,9 +44,9 @@ export default function Assignments(){
                         <div className="column4"><h5>Progress</h5></div>
                         <div className="column5"><h5>Priority</h5></div>
                     </div>
-                    {Dummy ? (
+                    {filteredTasks.length > 0 ? (
                         <>
-                        {Dummy.map((tasks, index) => (
+                        {filteredTasks.map((tasks, index) => (
                             <ATTemplate key={index} data={tasks} />
                         ))}</>
                     ) : (

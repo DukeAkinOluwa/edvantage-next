@@ -60,7 +60,7 @@ const DashboardTasksOverview = ({ handleShowPopupNotification }) =>{
                     <div className="column column4"><h5>Status</h5></div>
                 </div>
             </div>
-            {assignments.filter(assignments => assignments.category === 'assignment').slice(0,10).map((tasks, index) => (
+            {assignments.filter(assignments => assignments.type === 'assignment').slice(0,10).map((tasks, index) => (
                  <DTOTemplate key={index} taskdata={tasks} />
              ))}
             </div>

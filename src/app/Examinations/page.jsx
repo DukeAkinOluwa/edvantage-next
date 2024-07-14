@@ -2,33 +2,26 @@
 
 import PageRightHeader from "@/components/PageRightHeader"
 import { useEffect, useState } from "react";
+import { getAllTasks, updateTask } from "@/utils/indexedDB";
 
 export default function Examinations(){
-    useEffect(() => {
-        // Function to fetch data from local storage asynchronously
-        const fetchDataFromLocalStorage = async () => {
-            try {
-                // Fetch data from local storage
-                const storedData = localStorage.getItem('userData');
-                if (storedData) {
-                    // Parse the stored data and update the state
-                    const parsedData = JSON.parse(storedData);
-                    setUserData(parsedData);
-                } else {
-                    console.log('No user data found in local storage.');
-                }
-            } catch (error) {
-                console.error('Error fetching data from local storage:', error);
-            }
-        };
+    
+    const [tasks, setTasks] = useState([]);
 
-        // Call the function to fetch data from local storage
-        fetchDataFromLocalStorage();
+    useEffect(() => {
+        const fetchTasks = async () => {
+            const tasksFromDB = await getAllTasks();
+            setTasks(tasksFromDB);
+        };
+    
+        fetchTasks();
     }, []);
-    
-    const [userData, setUserData] = useState(null);
-    
-    const taskinfo = userData && userData.assignments;
+
+    const filteredTasks = tasks.filter(task => {
+        if (task.type === 'examination') {
+            return true;
+        }
+    });
 
     return(
         <>
@@ -42,9 +35,9 @@ export default function Examinations(){
                     <div className="column4"><h5>Time</h5></div>
                     <div className="column5"><h5>Venue</h5></div>
                 </div>
-                {taskinfo ? (
+                {filteredTasks.length > 0 ? (
                     <>
-                    {taskinfo.map(tasks => (
+                    {filteredTasks.map(tasks => (
                     <ETTemplate key={tasks.coursecode.replace(/ /g, "") + tasks.duedate} data={tasks} />
                     ))}
                     </>
