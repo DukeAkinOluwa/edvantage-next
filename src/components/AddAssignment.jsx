@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { addTask, updateTask } from '@/utils/indexedDB';
 
-export default function AddAssignment() {
+export default function AddAssignment({ handleAddAssignment, handleShowPopupNotification }) {
     
     const [editingAssignment, setEditingAssignment] = useState(null);
 
@@ -29,6 +29,8 @@ export default function AddAssignment() {
         } else {
             await addTask(assignmentData);
         }
+        handleShowPopupNotification("Assignment Added", `${assignmentData.title} assignment has Been Successfully Added`)
+        handleAddAssignment()
 
         setAssignmentData({
         title: '',

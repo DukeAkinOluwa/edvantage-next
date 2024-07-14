@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 import AddEvent from "../AddEvent"
 import { getAllTasks, updateTask } from "@/utils/indexedDB";
 
-export default function DashboardTimeTable(){
+export default function DashboardTimeTable({ handleShowPopupNotification }){
     
     const [isAddEventVisible, setIsAddEventVisible] = useState(false)
     const [viewportWidth, setViewportWidth] = useState(null);
@@ -118,7 +118,7 @@ export default function DashboardTimeTable(){
                         </div>
                     </div>
                 </div>
-                {isAddEventVisible === true ? (<div className="add-item"><div className="invisible-background" onClick={handleAddEvent}></div><AddEvent setReloadTimetable={setReloadTimetable} reloadTimetable={reloadTimetable} setIsAddEventVisible={setIsAddEventVisible} isAddEventVisible={isAddEventVisible} /></div>) : (<></>) }
+                {isAddEventVisible === true ? (<div className="add-item"><div className="invisible-background" onClick={handleAddEvent}></div><AddEvent setReloadTimetable={setReloadTimetable} reloadTimetable={reloadTimetable} setIsAddEventVisible={setIsAddEventVisible} isAddEventVisible={isAddEventVisible} handleShowPopupNotification={handleShowPopupNotification} /></div>) : (<></>) }
             </div>
         </section>
     )
@@ -235,6 +235,7 @@ export default function DashboardTimeTable(){
                 await updateTask({ ...editingAssignment, ...eventData });
                 setIsEditing(false);
                 setReloadTimetable(!reloadTimetable)
+                handleShowPopupNotification("Update Successful", `${eventData.title} has been updated`)
         
                 setEventData({
                     title: '',

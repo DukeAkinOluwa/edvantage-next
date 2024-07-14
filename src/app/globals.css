@@ -1548,6 +1548,20 @@ input[type=file] {
   gap: 10px;
 }
 
+.popup-notification {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  position: fixed;
+  top: 75px;
+  height: 60px;
+  width: calc(100% - 270px - 50px);
+  border-radius: 10px;
+  background-color: #FAFBFD;
+  box-shadow: 0px 0px 10px rgba(40, 40, 40, 0.2);
+  padding: 10px;
+}
+
 .side-menu {
   width: 270px;
   height: 100%;
@@ -2244,6 +2258,12 @@ input[type=file] {
   }
   .chat-page .whole-chat-section .right .chat-input-box {
     width: calc(100dvw - 270px - 50px);
+  }
+  .popup-notification {
+    top: 10px;
+    height: 60px;
+    width: calc(100% - 40px);
+    z-index: 2;
   }
   .top-navbar {
     justify-content: space-between;

@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { addTask, updateTask } from '@/utils/indexedDB';
 
-export default function AddEvent({ setReloadTimetable, setIsAddEventVisible, reloadTimetable, isAddEventVisible }){
+export default function AddEvent({ setReloadTimetable, setIsAddEventVisible, reloadTimetable, isAddEventVisible, handleShowPopupNotification }){
 
     const [editingAssignment, setEditingAssignment] = useState(null);
     const [eventData, setEventData] = useState({
@@ -32,6 +32,7 @@ export default function AddEvent({ setReloadTimetable, setIsAddEventVisible, rel
         }
         setReloadTimetable(!reloadTimetable)
         setIsAddEventVisible(!isAddEventVisible)
+        handleShowPopupNotification("Event Added", `${eventData.title} has Been Successfully Added`)
 
         setEventData({
             title: '',

@@ -8,6 +8,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { addTask, updateTask } from '@/utils/indexedDB';
+import InAppPopupNotification from "@/components/InAppPopupNotification";
 // import { BottomNavContext, TopNavContext } from "@/contexts/BottomNavContext";
 
 export default function Chats() {
@@ -26,6 +27,10 @@ export default function Chats() {
   const [back, setBack] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [elementZIndex, setElementZIndex] = useState("");
+  const [showPopupNotification, setShowPopupNotification] = useState(false)
+  const [popupNotificationTitle, setPopupNotificationTitle] = useState("")
+  const [popupNotificationText, setPopupNotificationText] = useState("")
+
   const chatdata = userData && userData.chats;
 
   const chatEndRef = useRef(null);
@@ -548,10 +553,26 @@ export default function Chats() {
       window.removeEventListener("popstate", handleBackButton);
     };
   }, [selectedUserProfile]);
+    
+  useEffect(() => {
+    if (showPopupNotification) {
+      const timeout = setTimeout(() => {
+        setShowPopupNotification(false);
+      }, 4000); // 4 seconds
+  
+      return () => clearTimeout(timeout);
+    }
+  }, [showPopupNotification]);
 
   function handleSetBack(booleanValue, elementIndex) {
     setBack(booleanValue);
     setElementZIndex(elementIndex);
+  }
+  
+  function handleShowPopupNotification(title, text){
+    setPopupNotificationTitle(title)
+    setPopupNotificationText(text)
+    setShowPopupNotification(true)
   }
 
   const handleClassificationClick = (classification) => {
@@ -671,51 +692,54 @@ export default function Chats() {
   };
 
   return (
-    <span className="chat-page">
-      {/* {viewportWidth < 768 && currentPage === 2 ? (
-              <></>
-            ) : (
-              <PageRightHeader
-                  page_title={`Settings`}
-                  userlevel="23"
-                  handleShowSearchBar={handleShowSearchBar}
-                  handleSetBack={handleSetBack}
-                  elementIndex={"-1"}
-              />
-            )} */}
-      {viewportWidth < 656 ? (
-        <>
-          {currentPage === 1 && (
-            <div className="whole-chat-section">
+    <>
+      <span className="chat-page">
+        {/* {viewportWidth < 768 && currentPage === 2 ? (
+                <></>
+              ) : (
+                <PageRightHeader
+                    page_title={`Settings`}
+                    userlevel="23"
+                    handleShowSearchBar={handleShowSearchBar}
+                    handleSetBack={handleSetBack}
+                    elementIndex={"-1"}
+                />
+              )} */}
+        {viewportWidth < 656 ? (
+          <>
+            {currentPage === 1 && (
+              <div className="whole-chat-section">
+                <IndividualPageHeader />
+                <ChatPageLeft />
+                <AddChat />
+              </div>
+            )}
+            {currentPage === 2 && (
+              <div className="whole-chat-section">
+                <UserProfileDetails
+                  selectedUserProfile={selectedUserProfile}
+                  chatTexts={chatTexts}
+                />
+              </div>
+            )}
+          </>
+        ) : (
+          <div className="whole-chat-section">
+            {(viewportWidth < 1001) ?
+            (
               <IndividualPageHeader />
-              <ChatPageLeft />
-              <AddChat />
-            </div>
-          )}
-          {currentPage === 2 && (
-            <div className="whole-chat-section">
-              <UserProfileDetails
-                selectedUserProfile={selectedUserProfile}
-                chatTexts={chatTexts}
-              />
-            </div>
-          )}
-        </>
-      ) : (
-        <div className="whole-chat-section">
-          {(viewportWidth < 1001) ?
-          (
-            <IndividualPageHeader />
-          ) : (<></>)}
-          <ChatPageLeft />
-          <UserProfileDetails
-            selectedUserProfile={selectedUserProfile}
-            chatTexts={chatTexts}
-          />
-          <AddChat />
-        </div>
-      )}
-    </span>
+            ) : (<></>)}
+            <ChatPageLeft />
+            <UserProfileDetails
+              selectedUserProfile={selectedUserProfile}
+              chatTexts={chatTexts}
+            />
+            <AddChat />
+          </div>
+        )}
+      </span>
+      { showPopupNotification === true ? <InAppPopupNotification popupNotificationText={popupNotificationText} popupNotificationTitle={popupNotificationTitle} /> : <></> }
+    </>
   );
   function UserProfileDetails({ selectedUserProfile, chatTexts }) {
     const [showScrollToBottom, setShowScrollToBottom] = useState(false);
@@ -1188,6 +1212,7 @@ export default function Chats() {
       chat.events.map((timetableclass)=>{
         addTask(timetableclass)
       })
+      handleShowPopupNotification("Timetable Added Successfully", "Events have been added to your Calendar")
     }
     return(
       <div className="chat-timetable" style={{

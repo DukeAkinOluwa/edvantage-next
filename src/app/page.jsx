@@ -2,6 +2,7 @@
 
 import BottomNavigation from "@/components/BottomNavigation";
 import GeneralHeader from "@/components/GeneralHeader";
+import InAppPopupNotification from "@/components/InAppPopupNotification";
 import PageRightHeader from "@/components/PageRightHeader";
 import DashboardAd from "@/components/dashboard/DashboardAd";
 import DashboardBoxes from "@/components/dashboard/DashboardBoxes";
@@ -17,6 +18,9 @@ export default function Home() {
     const [back, setBack] = useState(true);
     const [showHeader, setShowHeader] = useState(true);
     const [lastScrollY, setLastScrollY] = useState(0);
+    const [showPopupNotification, setShowPopupNotification] = useState(false)
+    const [popupNotificationTitle, setPopupNotificationTitle] = useState("")
+    const [popupNotificationText, setPopupNotificationText] = useState("")
     
     const scrollContainerRef = useRef(null);
 
@@ -33,6 +37,16 @@ export default function Home() {
         window.addEventListener("resize", handleResize);
         return () => window.removeEventListener("resize", handleResize);
     }, []);
+    
+    useEffect(() => {
+        if (showPopupNotification) {
+          const timeout = setTimeout(() => {
+            setShowPopupNotification(false);
+          }, 4000); // 4 seconds
+      
+          return () => clearTimeout(timeout);
+        }
+    }, [showPopupNotification]);
 
     // useEffect(() => {
     //     const handleScroll = () => {
@@ -65,6 +79,11 @@ export default function Home() {
     function handleSetBack(booleanValue) {
         setBack(booleanValue);
     }
+    function handleShowPopupNotification(title, text){
+        setPopupNotificationTitle(title)
+        setPopupNotificationText(text)
+        setShowPopupNotification(true)
+    }
     // console.log(back)
 
     return (
@@ -74,8 +93,8 @@ export default function Home() {
                 <DashboardAd />
                 <DashboardBoxes />
                 <DashboardCalendar />
-                <DashboardTimeTable />
-                <DashboardTasksOverview />
+                <DashboardTimeTable handleShowPopupNotification={handleShowPopupNotification} />
+                <DashboardTasksOverview handleShowPopupNotification={handleShowPopupNotification} />
                 <DashboardGroup />
                 {/* {showHeader && <GeneralHeader />} */}
             </section>
@@ -86,6 +105,7 @@ export default function Home() {
             ) : (<></>
                 // <PageRightHeader page_title={`Dashboard`} userlevel="23" handleSetBack={handleSetBack} topMargin={topMarginValue} />
             )}
+            { showPopupNotification === true ? <InAppPopupNotification popupNotificationText={popupNotificationText} popupNotificationTitle={popupNotificationTitle} /> : <></> }
         </>
     );
 }

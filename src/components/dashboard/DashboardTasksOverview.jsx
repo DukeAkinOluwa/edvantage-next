@@ -5,7 +5,7 @@ import React, { useState, useEffect } from 'react';
 import AddAssignment from "../AddAssignment";
 import { getAllTasks } from "@/utils/indexedDB";
 
-const DashboardTasksOverview = () =>{
+const DashboardTasksOverview = ({ handleShowPopupNotification }) =>{
     const taskdata = task_data.courses
     const [windowWidth, setWindowWidth] = useState(null);
     const [isAddTaskVisible, setIsAddTaskVisible] = useState(false)
@@ -64,7 +64,7 @@ const DashboardTasksOverview = () =>{
                  <DTOTemplate key={index} taskdata={tasks} />
              ))}
             </div>
-            {isAddAssignmentVisible === true ? (<div className="add-item"><div className="invisible-background" onClick={handleAddAssignment}></div><AddAssignment handleAddAssignment={handleAddAssignment} /></div>) : (<></>) }
+            {isAddAssignmentVisible === true ? (<div className="add-item"><div className="invisible-background" onClick={handleAddAssignment}></div><AddAssignment handleAddAssignment={handleAddAssignment} handleShowPopupNotification={handleShowPopupNotification} /></div>) : (<></>) }
         </div>
     )
     function DTOTemplate(props){
