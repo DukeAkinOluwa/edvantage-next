@@ -12,8 +12,13 @@ const manualManifest = {
     "background_color": "#2A52BE",
     "icons": [
         {
-        "src": "./Images/Manifest/Logos/LogoIconBB.png",
-        "sizes": "1607x1607",
+        "src": "./Images/Manifest/Logos/LogoIconBB144.png",
+        "sizes": "144x144",
+        "type": "image/png"
+        },
+        {
+        "src": "./Images/Manifest/Logos/LogoIconBB1080.png",
+        "sizes": "1080x1080",
         "type": "image/png"
         }
     ],
