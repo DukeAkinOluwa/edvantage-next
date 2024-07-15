@@ -29,7 +29,7 @@ export default function Chats() {
   const [elementZIndex, setElementZIndex] = useState("");
   const [popupNotificationTitle, setPopupNotificationTitle] = useState("")
   const [popupNotificationText, setPopupNotificationText] = useState("")
-
+  const [popupHeight, setPopupHeight] = useState(false)
   const chatdata = userData && userData.chats;
 
   const chatEndRef = useRef(null);
@@ -554,22 +554,22 @@ export default function Chats() {
   }, [selectedUserProfile]);
     
   useEffect(() => {
-    const timeout = setTimeout(() => {
-      setPopupNotificationText("")
-      setPopupNotificationTitle("")
-    }, 4000); // 4 seconds
-
-    return () => clearTimeout(timeout);
-  }, [popupNotificationText, popupNotificationTitle]);
+      const timeout = setTimeout(() => {
+          setPopupHeight(false)
+      }, 4000); // 4 seconds
+  
+      return () => clearTimeout(timeout);
+  }, [popupHeight]);
 
   function handleSetBack(booleanValue, elementIndex) {
     setBack(booleanValue);
     setElementZIndex(elementIndex);
   }
   
-  function handleShowPopupNotification(title, text){
+  function handleShowPopupNotification(title, text, pheight){
     setPopupNotificationTitle(title)
     setPopupNotificationText(text)
+    setPopupHeight(pheight)
   }
 
   const handleClassificationClick = (classification) => {
@@ -735,7 +735,7 @@ export default function Chats() {
           </div>
         )}
       </span>
-      <InAppPopupNotification popupNotificationText={popupNotificationText} popupNotificationTitle={popupNotificationTitle} />
+      <InAppPopupNotification popupNotificationText={popupNotificationText} popupNotificationTitle={popupNotificationTitle} popupHeight={popupHeight} />
     </>
   );
   function UserProfileDetails({ selectedUserProfile, chatTexts }) {
@@ -1212,7 +1212,7 @@ export default function Chats() {
       chat.events.map((timetableclass)=>{
         addTask(timetableclass)
       })
-      handleShowPopupNotification("Timetable Added Successfully", "Events have been added to your Calendar")
+      handleShowPopupNotification("Timetable Added Successfully", "Events have been added to your Calendar", true)
     }
     return(
       <div className="chat-timetable" style={{

@@ -41,7 +41,7 @@ export default function AddEvent({ handleEventAdded, handleShowPopupNotification
         }
         handleEventAdded()
         setFocusedInput("")
-        handleShowPopupNotification("Event Added", `${eventData.title} has Been Successfully Added`)
+        handleShowPopupNotification("Event Added", `${eventData.title} has Been Successfully Added`, true)
 
         setEventData({
             title: '',

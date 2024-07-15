@@ -40,7 +40,7 @@ export default function AddEvent({ handleTaskAdded, handleShowPopupNotification,
         }
         handleTaskAdded()
         setFocusedInput("")
-        handleShowPopupNotification("Event Added", `${assignmentData.title} has Been Successfully Added`)
+        handleShowPopupNotification("Event Added", `${assignmentData.title} has Been Successfully Added`, true)
 
         setAssignmentData({
             title: '',

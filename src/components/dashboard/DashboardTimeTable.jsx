@@ -203,16 +203,16 @@ export default function DashboardTimeTable({ handleShowPopupNotification }){
             }
             return({ eventStyles, eventHeightDifference })
         }
-        function handleToggleShowEventDetails(){
-            setIsEventDetailsVisible(!isEventDetailsVisible)
+        function handleShowEventDetails(){
+            setIsEventDetailsVisible(true)
         }
         return(
-            <div className="event" style={EventStyleLogic().eventStyles} onClick={handleToggleShowEventDetails}>
+            <div className="event" style={EventStyleLogic().eventStyles} onClick={handleShowEventDetails}>
                 <h4>{info.title}</h4>
                 <p>{info.type}</p>
                 {isEventDetailsVisible === true ? (
                     <div className="add-item" style={{zIndex: `${isEventDetailsVisible ? "2" : ""}`}}>
-                        <div className="invisible-background" onClick={handleToggleShowEventDetails}>
+                        <div className="invisible-background" onClick={handleShowEventDetails}>
                         </div><EventDetails eventDetailData={info} />
                     </div>) : (<></>)
                 }

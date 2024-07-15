@@ -20,6 +20,7 @@ export default function Home() {
     const [lastScrollY, setLastScrollY] = useState(0);
     const [popupNotificationTitle, setPopupNotificationTitle] = useState("")
     const [popupNotificationText, setPopupNotificationText] = useState("")
+    const [popupHeight, setPopupHeight] = useState(false)
     
     const scrollContainerRef = useRef(null);
 
@@ -39,12 +40,11 @@ export default function Home() {
     
     useEffect(() => {
         const timeout = setTimeout(() => {
-        setPopupNotificationText("")
-        setPopupNotificationTitle("")
+            setPopupHeight(false)
         }, 4000); // 4 seconds
     
         return () => clearTimeout(timeout);
-    }, [popupNotificationText, popupNotificationTitle]);
+    }, [popupHeight]);
 
     // useEffect(() => {
     //     const handleScroll = () => {
@@ -77,9 +77,10 @@ export default function Home() {
     function handleSetBack(booleanValue) {
         setBack(booleanValue);
     }
-    function handleShowPopupNotification(title, text){
+    function handleShowPopupNotification(title, text, pheight){
         setPopupNotificationTitle(title)
         setPopupNotificationText(text)
+        setPopupHeight(pheight)
     }
     // console.log(back)
 
@@ -101,7 +102,7 @@ export default function Home() {
                 </>
             ) : (<></>
                 // <PageRightHeader page_title={`Dashboard`} userlevel="23" handleSetBack={handleSetBack} topMargin={topMarginValue} />
-            )}<InAppPopupNotification popupNotificationText={popupNotificationText} popupNotificationTitle={popupNotificationTitle} />
+            )}<InAppPopupNotification popupNotificationText={popupNotificationText} popupNotificationTitle={popupNotificationTitle} popupHeight={popupHeight} />
         </>
     );
 }
