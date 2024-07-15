@@ -299,6 +299,7 @@ input {
         z-index: 2;
         .add{
             @include fd;
+            position: relative;
             gap: 15px;
             width: 350px;
             max-width: calc(100vw - 40px);
@@ -310,13 +311,43 @@ input {
             z-index: 1;
             .header{
                 @include fja;
+                height: calc(45px - 20px);
                 padding: 10px 0px;
                 border-radius: 5px;
+                background-color: $primary-color;
+                border-radius: 10px;
+                color: $white;
             }
             input{
                 height: fit-content;
                 min-height: 40px;
                 text-wrap: wrap;
+            }
+            .times{
+                @include fa;
+                gap: 10px;
+                label{
+                    width: 100%;
+                }
+            }
+            .options{
+                @include fda;
+                gap: 10px;
+                background-color: $primary-color;
+                border-radius: 10px;
+                position: absolute;
+                padding: 10px 0px;
+                left: calc(100% + 15px);
+                top: 0px;
+                color: $white;
+                box-shadow: 0px 0px 17px 1px rgba(40, 40, 40, 0.2);
+                .option{
+                    @include fja;
+                    padding: 10px;
+                    width: 100%;
+                    min-width: 120px;
+                    height: 20px;
+                }
             }
         }
     }
@@ -1050,7 +1081,8 @@ input[type="file"] {
     top: 0px;
     left: 0px;
     background: transparent;
-    backdrop-filter: blur(1px);
+    background-color: rgb(51, 51, 51, .3);
+    backdrop-filter: blur(3px);
 }
 // Get Started button
 .get-started {

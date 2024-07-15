@@ -10,6 +10,7 @@ export default function DashboardTimeTable({ handleShowPopupNotification }){
     const [viewportWidth, setViewportWidth] = useState(null);
     const [tasks, setTasks] = useState([]);
     const [reloadTimetable, setReloadTimetable] = useState(false)
+    const [focusedInput, setFocusedInput] = useState(null)
     
     const [eventData, setEventData] = useState({
         title: '',
@@ -113,7 +114,7 @@ export default function DashboardTimeTable({ handleShowPopupNotification }){
                             <div key={index} className="empty-div"></div>
                         ))}
                             {filteredTasks.length > 0 ? (
-                                filteredTasks.filter((task => (task.type === 'event') || (task.type === 'class'))).map((info, index) => (
+                                filteredTasks.filter((task => (task.type === 'exam') || (task.type === 'class') || (task.type === 'meeting') || (task.type === 'outing') || (task.type === 'other'))).map((info, index) => (
                                     <EventTemplate info={info} key={index} eventIndex={index} />
                                 ))
                             ) : (
@@ -122,7 +123,7 @@ export default function DashboardTimeTable({ handleShowPopupNotification }){
                         </div>
                     </div>
                 </div>
-                {isAddEventVisible === true ? (<div className="add-item"><div className="invisible-background" onClick={handleAddEvent}></div><AddEvent handleEventAdded={handleEventAdded} handleShowPopupNotification={handleShowPopupNotification} /></div>) : (<></>) }
+                {isAddEventVisible === true ? (<div className="add-item"><div className="invisible-background" onClick={handleAddEvent}></div><AddEvent handleEventAdded={handleEventAdded} handleShowPopupNotification={handleShowPopupNotification} setFocusedInput={setFocusedInput} focusedInput={focusedInput} /></div>) : (<></>) }
             </div>
         </section>
     )
@@ -246,8 +247,6 @@ export default function DashboardTimeTable({ handleShowPopupNotification }){
                     date: '',
                     startTime: '',
                     endTime: '',
-                    type: 'event',
-                    repeat: 'none'
                 })
 
                 setIsEventDetailsVisible(false)
