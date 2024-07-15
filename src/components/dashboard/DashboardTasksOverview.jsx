@@ -2,16 +2,14 @@
 
 import task_data from "@/DB/taskdata.json"
 import React, { useState, useEffect } from 'react';
-import AddAssignment from "../AddAssignment";
+import AddTask from "../AddTask";
 import { getAllTasks } from "@/utils/indexedDB";
 
 const DashboardTasksOverview = ({ handleShowPopupNotification }) =>{
     const taskdata = task_data.courses
     const [windowWidth, setWindowWidth] = useState(null);
     const [isAddTaskVisible, setIsAddTaskVisible] = useState(false)
-    const [isAddAssignmentVisible, setIsAddAssignmentVisible] = useState(false)
     const [assignments, setAssignments] = useState([]);
-    const [editingAssignment, setEditingAssignment] = useState(null);
     const [focusedInput, setFocusedInput] = useState(null)
   
     useEffect(() => {
@@ -39,15 +37,15 @@ const DashboardTasksOverview = ({ handleShowPopupNotification }) =>{
     const taskinfo = windowWidth >= 575.98 ? taskdata : taskdata.slice(0, 2);
     
     function handleAddAssignment(){
-        if(isAddAssignmentVisible === false){
-            setIsAddAssignmentVisible(true)
+        if(isAddTaskVisible === false){
+            setIsAddTaskVisible(true)
         }else{
-            setIsAddAssignmentVisible(false)
+            setIsAddTaskVisible(false)
         }
     }
 
     function handleTaskAdded(){
-        setIsAddAssignmentVisible(!isAddAssignmentVisible)
+        setIsAddTaskVisible(!isAddTaskVisible)
     }
 
     return(
@@ -69,7 +67,7 @@ const DashboardTasksOverview = ({ handleShowPopupNotification }) =>{
                 <DTOTemplate key={index} taskdata={tasks} />
             ))}
             </div>
-            {isAddAssignmentVisible === true ? (<div className="add-item"><div className="invisible-background" onClick={handleAddAssignment}></div><AddAssignment handleAddAssignment={handleAddAssignment} handleShowPopupNotification={handleShowPopupNotification} setFocusedInput={setFocusedInput} focusedInput={focusedInput} handleTaskAdded={handleTaskAdded} /></div>) : (<></>) }
+            {isAddTaskVisible === true ? (<div className="add-item"><div className="invisible-background" onClick={handleAddAssignment}></div><AddTask handleAddAssignment={handleAddAssignment} handleShowPopupNotification={handleShowPopupNotification} setFocusedInput={setFocusedInput} focusedInput={focusedInput} handleTaskAdded={handleTaskAdded} /></div>) : (<></>) }
         </div>
     )
     function DTOTemplate(props){
