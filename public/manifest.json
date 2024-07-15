@@ -13,8 +13,8 @@
   "background_color": "#2A52BE",
   "icons": [
     {
-      "src": "./Images/Manifest/Logos/LogoIconBlue.png",
-      "sizes": "904x904",
+      "src": "./Images/Manifest/Logos/LogoIconBB.png",
+      "sizes": "1607x1607",
       "type": "image/png"
     }
   ],

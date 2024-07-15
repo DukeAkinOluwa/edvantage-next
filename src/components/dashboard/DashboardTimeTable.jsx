@@ -75,6 +75,10 @@ export default function DashboardTimeTable({ handleShowPopupNotification }){
     function handleAddEvent(){
         setIsAddEventVisible(!isAddEventVisible)
     }
+    function handleEventAdded(){
+        setIsAddEventVisible(!isAddEventVisible)
+        setReloadTimetable(!reloadTimetable)
+    }
 
     return(
         <section className="dashboard-time-table">
@@ -118,7 +122,7 @@ export default function DashboardTimeTable({ handleShowPopupNotification }){
                         </div>
                     </div>
                 </div>
-                {isAddEventVisible === true ? (<div className="add-item"><div className="invisible-background" onClick={handleAddEvent}></div><AddEvent setReloadTimetable={setReloadTimetable} reloadTimetable={reloadTimetable} setIsAddEventVisible={setIsAddEventVisible} isAddEventVisible={isAddEventVisible} handleShowPopupNotification={handleShowPopupNotification} /></div>) : (<></>) }
+                {isAddEventVisible === true ? (<div className="add-item"><div className="invisible-background" onClick={handleAddEvent}></div><AddEvent handleEventAdded={handleEventAdded} handleShowPopupNotification={handleShowPopupNotification} /></div>) : (<></>) }
             </div>
         </section>
     )
