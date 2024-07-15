@@ -935,7 +935,8 @@ export default function Chats() {
       <>
         <div className="left">
           <SearchBar />
-          <div className="chat-classification">
+          {filteredList.length === 0 ? 
+            <div className="chat-classification">
             <div onClick={handleShowAllChats} className="classification" style={{backgroundColor: `${selectedClassification === null && "#0177fb1a"}`, color: `${selectedClassification === null && "#2A52BE"}`}}>
               <p>General</p>
             </div>
@@ -953,7 +954,8 @@ export default function Chats() {
             >
               <p>Private</p>
             </div>
-          </div>
+          </div> : <></>
+        }
           <div className="chat-profiles" style={{ zIndex: `${elementZIndex}` }}>
             {chatdata && filteredList.length === 0 ? (
               chatdata
@@ -1115,6 +1117,7 @@ export default function Chats() {
             } Chat`}
             onChange={(event) => handleSearchFilter(event.target.value)}
             onClick={handleInputClick}
+            autoFocus={true}
           />
         </div>
       </>
