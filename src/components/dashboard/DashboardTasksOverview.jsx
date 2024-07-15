@@ -12,6 +12,7 @@ const DashboardTasksOverview = ({ handleShowPopupNotification }) =>{
     const [isAddAssignmentVisible, setIsAddAssignmentVisible] = useState(false)
     const [assignments, setAssignments] = useState([]);
     const [editingAssignment, setEditingAssignment] = useState(null);
+    const [focusedInput, setFocusedInput] = useState(null)
   
     useEffect(() => {
       const fetchAssignments = async () => {
@@ -45,6 +46,10 @@ const DashboardTasksOverview = ({ handleShowPopupNotification }) =>{
         }
     }
 
+    function handleTaskAdded(){
+        setIsAddAssignmentVisible(!isAddAssignmentVisible)
+    }
+
     return(
         <div className="dashboard-task-overview-table table">
             <div className="box">
@@ -60,11 +65,11 @@ const DashboardTasksOverview = ({ handleShowPopupNotification }) =>{
                     <div className="column column4"><h5>Status</h5></div>
                 </div>
             </div>
-            {assignments.filter(assignments => assignments.type === 'assignment').slice(0,10).map((tasks, index) => (
-                 <DTOTemplate key={index} taskdata={tasks} />
-             ))}
+            {assignments.filter(task => (task.type === 'assignment') || (task.type === 'task')).slice(0,10).map((tasks, index) => (
+                <DTOTemplate key={index} taskdata={tasks} />
+            ))}
             </div>
-            {isAddAssignmentVisible === true ? (<div className="add-item"><div className="invisible-background" onClick={handleAddAssignment}></div><AddAssignment handleAddAssignment={handleAddAssignment} handleShowPopupNotification={handleShowPopupNotification} /></div>) : (<></>) }
+            {isAddAssignmentVisible === true ? (<div className="add-item"><div className="invisible-background" onClick={handleAddAssignment}></div><AddAssignment handleAddAssignment={handleAddAssignment} handleShowPopupNotification={handleShowPopupNotification} setFocusedInput={setFocusedInput} focusedInput={focusedInput} handleTaskAdded={handleTaskAdded} /></div>) : (<></>) }
         </div>
     )
     function DTOTemplate(props){
