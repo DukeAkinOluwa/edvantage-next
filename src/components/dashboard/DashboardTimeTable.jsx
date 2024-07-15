@@ -115,7 +115,7 @@ export default function DashboardTimeTable({ handleShowPopupNotification }){
                         ))}
                             {filteredTasks.length > 0 ? (
                                 filteredTasks.filter((task => (task.type === 'exam') || (task.type === 'class') || (task.type === 'meeting') || (task.type === 'outing') || (task.type === 'other'))).map((info, index) => (
-                                    <EventTemplate info={info} key={index} eventIndex={index} />
+                                    <EventTemplate info={info} key={index} />
                                 ))
                             ) : (
                                 <></>
@@ -127,24 +127,22 @@ export default function DashboardTimeTable({ handleShowPopupNotification }){
             </div>
         </section>
     )
-    function EventTemplate({ info, eventIndex }){
+    function EventTemplate({ info }){
         const [isEventDetailsVisible, setIsEventDetailsVisible] = useState(false)
         const [spacing, setSpacing] = useState(null)
         const [distance, setDistance] = useState(null)
         function eventBackColor(){
             let color
-            if(eventIndex % 6 === 0){
+            if(info.type === "class"){
                 color = "#0177FB"
-            }else if(eventIndex % 6 === 1){
-                color = "#98FB98"
-            }else if(eventIndex % 6 === 2){
+            }else if(info.type === "exam"){
                 color = "#FE6470"
-            }else if(eventIndex % 6 === 3){
-                color = "#01D7DF"
-            }else if(eventIndex % 6 === 4){
+            }else if(info.type === "outing"){
+                color = "#F4BB87"
+            }else if(info.type === "meeting"){
                 color = "#9747FF"
             }else{
-                color = "#F4BB87"
+                color = "#01D7DF"
             }
             return({ color })
         }
@@ -206,13 +204,18 @@ export default function DashboardTimeTable({ handleShowPopupNotification }){
             return({ eventStyles, eventHeightDifference })
         }
         function handleToggleShowEventDetails(){
-            setIsEventDetailsVisible(true)
+            setIsEventDetailsVisible(!isEventDetailsVisible)
         }
         return(
             <div className="event" style={EventStyleLogic().eventStyles} onClick={handleToggleShowEventDetails}>
                 <h4>{info.title}</h4>
                 <p>{info.type}</p>
-                {isEventDetailsVisible === true ? (<div className="add-item" style={{zIndex: `${isEventDetailsVisible ? "2" : ""}`}}><div className="invisible-background" onClick={handleToggleShowEventDetails}></div><EventDetails eventDetailData={info} /></div>) : (<></>) }
+                {isEventDetailsVisible === true ? (
+                    <div className="add-item" style={{zIndex: `${isEventDetailsVisible ? "2" : ""}`}}>
+                        <div className="invisible-background" onClick={handleToggleShowEventDetails}>
+                        </div><EventDetails eventDetailData={info} />
+                    </div>) : (<></>)
+                }
             </div>
         )
         function EventDetails({eventDetailData}){
@@ -255,7 +258,7 @@ export default function DashboardTimeTable({ handleShowPopupNotification }){
             return(
                 <form className="add">
                     <div className="header" style={{backgroundColor: `${eventBackColor().color}`}}>
-                        <h3 style={{color: "#FFF"}}>{eventData.title}</h3>
+                        <h3 style={{color: "#FFF"}}>{eventData.type.toUpperCase()}</h3>
                     </div>
                     <label>
                         <span>Title</span>
