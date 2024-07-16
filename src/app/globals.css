@@ -2355,9 +2355,6 @@ input[type=file] {
     left: 10px;
     top: 80px;
   }
-  .dashboard-main-section .add-item .add .options .option {
-    border-bottom: solid 1px #fafbfd;
-  }
   .dashboard-time-table .table {
     display: grid;
     grid-template-columns: 50px auto;

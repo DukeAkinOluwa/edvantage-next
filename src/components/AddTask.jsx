@@ -45,13 +45,13 @@ export default function AddTask({ handleTaskAdded, handleShowPopupNotification }
     };
 
     const handleSetShowOptions = () => {
-        console.log(taskShowOptions)
         setTaskShowOptions(!taskShowOptions)
     };
 
     const handleSetOption = (value) => {
         setTaskType(value);
-        setTaskData({ // Reset some data on event type change (optional)
+        handleSetShowOptions()
+        setTaskData({
         title: '',
         details: '',
         });
