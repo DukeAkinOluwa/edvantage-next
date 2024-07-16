@@ -16,9 +16,7 @@ export default function Chats() {
   const [userData, setUserData] = useState(null);
   const [selectedClassification, setSelectedClassification] = useState(null);
   const [selectedUserProfile, setSelectedUserProfile] = useState(null);
-  const [chatTexts, setChatTexts] = useState(null);
   const [searchValue, setSearchValue] = useState("");
-  const [isSearchBarVisible, setIsSearchBarVisible] = useState(false);
   const [invisibleReset, setInvisibleReset] = useState(false);
   const [invisibleBackground, setInvisibleBackground] = useState(false);
   const [isChatSlide1Visible, setIsChatSlide1Visible] = useState(false);
@@ -192,6 +190,7 @@ export default function Chats() {
         title: "Smart Glass Engineers",
         lasttext: "A community of like minded engineers focused",
         noofmembers: 18,
+        chat: []
       },
       {
         type: "Private",
@@ -401,6 +400,7 @@ export default function Chats() {
         title: "Debo",
         lasttext: "ENG305",
         noofmembers: 86,
+        chat: []
       },
     ],
   };
@@ -476,27 +476,9 @@ export default function Chats() {
 
   useEffect(() => {
     setViewportWidth(window.innerWidth);
-    // if (window.innerWidth > 654)  {
-    //   setIsTopNavHidden(false);
-    //   setIsBottomNavHidden(true)
-    // }else{
-    //   setIsTopNavHidden(true)
-    //   setIsBottomNavHidden(true)
-    // }  
 
     const handleResize = () => {
       setViewportWidth(window.innerWidth);
-      // if (window.innerWidth > 654)  {
-      //   setIsTopNavHidden(false);
-      //   setIsBottomNavHidden(true)
-      // }//else if (selectedUserProfile !== null) {
-      //   // console.log("hi")
-      //   // setIsBottomNavHidden(true)
-      //   // setIsTopNavHidden(true)}
-      //   else{
-      //   setIsTopNavHidden(true)
-      //   setIsBottomNavHidden(true)
-      // }
     };
 
     window.addEventListener("resize", handleResize);
@@ -533,7 +515,6 @@ export default function Chats() {
         event.preventDefault();
         handleRefreshClick();
       } else {
-        // No selected user profile - navigate back
         window.history.back();
       }
     };
@@ -556,7 +537,7 @@ export default function Chats() {
   useEffect(() => {
       const timeout = setTimeout(() => {
           setPopupHeight(false)
-      }, 4000); // 4 seconds
+      }, 4000);
   
       return () => clearTimeout(timeout);
   }, [popupHeight]);
@@ -580,14 +561,10 @@ export default function Chats() {
     setSelectedClassification(null);
   };
 
-  const handleUserProfileClick = (userProfile, chatTexts) => {
+  const handleUserProfileClick = (userProfile) => {
     setSelectedUserProfile(userProfile);
-    setChatTexts(chatTexts);
     setCurrentPage(2);
     handleReset();
-    // hideNav();
-    // Add logic to show the chat section
-    document.querySelector(".whole-chat-section").classList.add("show-chat");
   };
 
   const handleSearchFilter = (searchInputValue) => {
@@ -625,17 +602,10 @@ export default function Chats() {
     }
   };
 
-  const handleShowSearchBar = () => {
-    setIsSearchBarVisible(!isSearchBarVisible);
-    setInvisibleReset(true);
-    handleSetBack(!isSearchBarVisible, isSearchBarVisible ? "" : 1);
-  };
-
   const handleReset = () => {
     setFilteredList([]);
     setSearchValue("");
     setInvisibleReset(false);
-    setIsSearchBarVisible(false);
   };
 
   const toggleAddChatSlide1 = () => {
@@ -669,80 +639,71 @@ export default function Chats() {
   const handleRefreshClick = () => {
     setCurrentPage(1);
     setSelectedUserProfile(null);
-    // showNav();
   };
-
-  // const hideNav = () => {
-  //   setIsBottomNavHidden(true);
-  //   if (viewportWidth < 655) {
-  //     setIsTopNavHidden(true);
-  //   }
-  // };
-
-  // const showNav = () => {
-  //   setIsBottomNavHidden(false);
-  //   setIsTopNavHidden(false);
-  // };
 
   const scrollToBottom = () => {
     chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
+  
+  function getWholeChatSection() {
+    function getIndividualPageHeader() {
+      switch (true) {
+        case viewportWidth < 1001:
+          return(
+            <IndividualPageHeader />
+          )
+        default:
+          break;
+      }
+    }
+    switch (true) {
+      case viewportWidth < 656 && currentPage === 1:
+        return (
+          <div className="whole-chat-section">
+            <IndividualPageHeader />
+            <ChatPageLeft />
+            <AddChat />
+          </div>
+        );
+      case viewportWidth < 656 && currentPage === 2:
+        return (
+          <div className="whole-chat-section">
+            <UserProfileDetails
+              selectedUserProfile={selectedUserProfile}
+            />
+          </div>
+        );
+      case viewportWidth >= 656:
+        return (
+          <div className="whole-chat-section">
+            {getIndividualPageHeader()}
+            <ChatPageLeft />
+            <UserProfileDetails
+              selectedUserProfile={selectedUserProfile}
+            />
+            <AddChat />
+          </div>
+        );
+      default:
+        return null; // Handle unexpected cases
+    }
+  }
+  
 
   return (
     <>
       <span className="chat-page">
-        {/* {viewportWidth < 768 && currentPage === 2 ? (
-                <></>
-              ) : (
-                <PageRightHeader
-                    page_title={`Settings`}
-                    userlevel="23"
-                    handleShowSearchBar={handleShowSearchBar}
-                    handleSetBack={handleSetBack}
-                    elementIndex={"-1"}
-                />
-              )} */}
-        {viewportWidth < 656 ? (
-          <>
-            {currentPage === 1 && (
-              <div className="whole-chat-section">
-                <IndividualPageHeader />
-                <ChatPageLeft />
-                <AddChat />
-              </div>
-            )}
-            {currentPage === 2 && (
-              <div className="whole-chat-section">
-                <UserProfileDetails
-                  selectedUserProfile={selectedUserProfile}
-                  chatTexts={chatTexts}
-                />
-              </div>
-            )}
-          </>
-        ) : (
-          <div className="whole-chat-section">
-            {(viewportWidth < 1001) ?
-            (
-              <IndividualPageHeader />
-            ) : (<></>)}
-            <ChatPageLeft />
-            <UserProfileDetails
-              selectedUserProfile={selectedUserProfile}
-              chatTexts={chatTexts}
-            />
-            <AddChat />
-          </div>
-        )}
+        {getWholeChatSection()}
       </span>
       <InAppPopupNotification popupNotificationText={popupNotificationText} popupNotificationTitle={popupNotificationTitle} popupHeight={popupHeight} />
     </>
   );
-  function UserProfileDetails({ selectedUserProfile, chatTexts }) {
+  function UserProfileDetails({ selectedUserProfile }) {
     const [showScrollToBottom, setShowScrollToBottom] = useState(false);
     const [isAboutProfileVisible, setIsAboutProfileVisible] = useState(false);
     const chatEndRef = useRef(null);
     const chatBodyRef = useRef(null);
+    const [fileType, setFileType] = useState("image")
 
     useEffect(() => {
       scrollToBottom();
@@ -773,196 +734,293 @@ export default function Chats() {
       }
     };
 
-    return (
-      <div className="right">
-        {selectedUserProfile ? (
-          <>
-            <div className="chat-header" onClick={() => setIsAboutProfileVisible(true)}>
-              <svg
-                width="18"
-                height="18"
-                viewBox="0 0 16 16"
-                fill="none"
-                onClick={handleRefreshClick}
-              >
-                <path
-                  d="M15 8H1M1 8L8 15M1 8L8 1"
-                  stroke="#101828"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
+    function getSelectedUserProfile() {
+      switch (selectedUserProfile) {
+        case null:
+          return(
+            <div className="chat-body empty-chat-body">
+              <div className="display-container">
+                <Image
+                  src={`/Images/svg-alternatives/empty-chat-svg.png`}
+                  alt="chatimage"
+                  height={211}
+                  width={465}
+                  sizes="(max-width: 100%), (max-height: 70%)"
                 />
-              </svg>
-              <Image
-                src={`/Images/profile/${selectedUserProfile.imageid}`}
-                alt="profile"
-                height={40}
-                width={40}
-              />
-              <h3>{selectedUserProfile.title}</h3>
+                <p>
+                  Pick a person or group from left sidebar chat list, and start
+                  your conversation.
+                </p>
+                <div className="button">
+                  <p>Invite People</p>
+                </div>
+              </div>
             </div>
-            <div className="chat-body" ref={chatBodyRef}>
-              {selectedUserProfile.chat ? (
-                <>
-                  {selectedUserProfile.chat.map((chat, index) => {
-                    return(
-                      <>
-                        {(chat.category.name === "text" ? <ChatText chat={chat} key={index} /> : <></>)}
-                        {(chat.category.name === "timetable" ? <TimetableText chat={chat} key={index} /> : <></>)}
-                      </>
-                    )
-                  })}
-                  <div ref={chatEndRef} />
-                </>
-              ) : (
-                <div className="empty-chat-body">
-                  <div className="display-container">
-                    <Image
-                      src={`/Images/svg-alternatives/empty-chat-svg2.png`}
-                      alt="chatimage"
-                      height={250}
-                      width={250}
-                      sizes="(max-width: 100%), (max-height: 70%)"
+          )
+        default:
+          return(
+            <>
+              <div className="chat-header" onClick={() => setIsAboutProfileVisible(true)}>
+                <svg width="18" height="18" viewBox="0 0 16 16" fill="none" onClick={handleRefreshClick}>
+                  <path d="M15 8H1M1 8L8 15M1 8L8 1" stroke="#101828" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+                <Image src={`/Images/profile/${selectedUserProfile.imageid}`} alt="profile" height={40} width={40}/>
+                <h3>{selectedUserProfile.title}</h3>
+              </div>
+              <div className="chat-body" ref={chatBodyRef}>
+                {getChatBody()}
+                {showScrollToBottom && (
+                  <div className="scroll-to-bottom" onClick={scrollToBottom}>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                      <path d="M12 16L8 12H16L12 16Z" />
+                    </svg>
+                  </div>
+                )}
+              </div>
+              <div className="chat-input-box">
+                <form action="">
+                  <label>
+                    <input
+                      type="text"
+                      placeholder="Start typing..."
+                      name="chat-input"
+                      autoComplete="off"
                     />
-                    <p>
-                      Welcome to {selectedUserProfile.title}
-                      <br />
-                      <br />
-                      Start a chat
-                    </p>
+                  </label>
+                </form>
+              </div>
+            </>
+          );
+      }
+    }
+    
+    function getChatBody() {
+      function getChatTextContent(content) {
+        switch (content.category.name) {
+          case "text":
+            return(
+              <div className="text" style={{
+                alignSelf:
+                  content.sender === selectedUserProfile.title
+                    ? "flex-end"
+                    : "flex-start",
+                backgroundColor:
+                  content.sender === selectedUserProfile.title
+                    ? "#2A52BE"
+                    : "#F2F2F7",
+                color:
+                  content.sender === selectedUserProfile.title
+                    ? "#FEFAFA"
+                    : "",
+              }}
+            >
+              <p>{content.message}</p>
+            </div>
+            )
+          default:
+            break;
+        }
+      }
+      function getChatTimetableContent(content) {
+        function handleAddChatTimetable(){
+          content.events.map((timetableclass)=>{
+            addTask(timetableclass)
+          })
+          handleShowPopupNotification("Timetable Added Successfully", "Events have been added to your Calendar", true)
+        }
+        switch (content.category.name) {
+          case "timetable":
+            return(
+              <div className="chat-timetable" style={{
+                alignSelf:
+                  content.sender === selectedUserProfile.title
+                    ? "flex-end"
+                    : "flex-start",
+                backgroundColor:
+                  content.sender === selectedUserProfile.title
+                    ? "#2A52BE"
+                    : "#F2F2F7",
+                color:
+                  content.sender === selectedUserProfile.title
+                    ? "#FAFBFD"
+                    : "",
+                }}
+              >
+                <div className="highlight">
+                  {/* <h3>{content.category.type === "class" ? "Class " : "Exam "} Timetable</h3> */}
+                </div>
+                <div className="texts">
+                  <h3>{content.title}</h3>
+                  <p>{content.subtitle}</p>
+                </div>
+                <div className="options">
+                  <div className="button">
+                    <p>Edit</p>
+                  </div>
+                  <div className="button" onClick={handleAddChatTimetable}>
+                    <p>Add</p>
                   </div>
                 </div>
-              )}
-              {showScrollToBottom && (
-                <div className="scroll-to-bottom" onClick={scrollToBottom}>
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                    <path d="M12 16L8 12H16L12 16Z" />
-                  </svg>
-                </div>
-              )}
-            </div>
-            <div className="chat-input-box">
-              <form action="">
-                <label>
-                  <input
-                    type="text"
-                    placeholder="Start typing..."
-                    name="chat-input"
-                    autoComplete="off"
-                  />
-                </label>
-              </form>
-            </div>
-          </>
-        ) : (
-          <div className="chat-body empty-chat-body">
-            <div className="display-container">
-              <Image
-                src={`/Images/svg-alternatives/empty-chat-svg.png`}
-                alt="chatimage"
-                height={211}
-                width={465}
-                sizes="(max-width: 100%), (max-height: 70%)"
-              />
-              <p>
-                Pick a person or group from left sidebar chat list, and start
-                your conversation.
-              </p>
-              <div className="button">
-                <p>Invite People</p>
+              </div>
+            )
+            break;
+        
+          default:
+            break;
+        }
+      }
+      switch (selectedUserProfile.chat.length) {
+        case 0:
+          return(
+            <div className="empty-chat-body">
+              <div className="display-container">
+                <Image
+                  src={`/Images/svg-alternatives/empty-chat-svg2.png`}
+                  alt="chatimage"
+                  height={250}
+                  width={250}
+                  sizes="(max-width: 100%), (max-height: 70%)"
+                />
+                <p>
+                  Welcome to {selectedUserProfile.title}
+                  <br />
+                  <br />
+                  Start a chat
+                </p>
               </div>
             </div>
-          </div>
-        )}
-        {isAboutProfileVisible === true ?
-          <ChatAboutProfile /> : <></>
-        }
+          )
+        default:
+          return(
+            <>
+              {selectedUserProfile.chat.map((chat, index) => {
+                return(
+                  <>
+                    {getChatTextContent(chat)}
+                    {getChatTimetableContent(chat)}
+                  </>
+                )
+              })}
+              <div ref={chatEndRef} />
+            </>
+          )
+      }
+    }
+
+    return (
+      <div className="right">
+        {getSelectedUserProfile()}
+        {getChatAboutProfile()}
       </div>
     );
-    function ChatAboutProfile(){
-      const [fileType, setFileType] = useState("image")
-      return(
-          <div className="chat-about-profile">
-            <Image src={`/Images/profile/${selectedUserProfile.imageid}`} alt="profile" height={350} width={300} />
-            <div className="back-arrow-cont">
-              <svg width="18" height="18" viewBox="0 0 16 16" fill="none" onClick={() => setIsAboutProfileVisible(false)} className="back-arrow" >
-                <path d="M15 8H1M1 8L8 15M1 8L8 1" stroke="#101828" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </div>
-            <div className="files">
-              <div className="files-header">
-                <div className="media" style={{color: `${fileType === "image" ? "#2A52BE" : ""}`}} onClick={() => setFileType("image")}>
-                  <p>Media</p>
-                </div>
-                <div className="links" style={{color: `${fileType === "link" ? "#2A52BE" : ""}`}} onClick={() => setFileType("link")}>
-                  <p>Links</p>
-                </div>
-                <div className="docs" style={{color: `${fileType === "document" ? "#2A52BE" : ""}`}} onClick={() => setFileType("document")}>
-                  <p>Docs</p>
-                </div>
+    function getChatAboutProfile(){
+      function getFileTemplate(file, index) {
+        switch (file.type) {
+          case "image":
+            return(
+              <MediaFileTemplate name={file.name} size={file.size} key={index}/>
+            )
+          case "link":
+            return(
+              <LinkFileTemplate name={file.name} url={file.url} key={index}/>
+            )
+          case "document":
+            return(
+              <DocumentFileTemplate name={file.name} size={file.size} key={index}/>
+            )
+          default:
+            break;
+        }
+      }
+      switch (isAboutProfileVisible) {
+        case true:
+          return(
+            <div className="chat-about-profile">
+              <Image src={`/Images/profile/${selectedUserProfile.imageid}`} alt="profile" height={350} width={300} />
+              <div className="back-arrow-cont">
+                <svg width="18" height="18" viewBox="0 0 16 16" fill="none" onClick={() => setIsAboutProfileVisible(false)} className="back-arrow" >
+                  <path d="M15 8H1M1 8L8 15M1 8L8 1" stroke="#101828" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
               </div>
-              {
-                fileData
-                .filter((file) =>{
-                  // switch (fileType) {
-                  //   case "media":
-                  //     return file.type === "image" || file.type === "video";
-                  //   case "links":
-                  //     return file.type === "link";
-                  //   case "docs":
-                  //     return file.type === "document";
-                  //   default:
-                  //     return false;
-                  // }
-                  return file.type === fileType
+              <div className="files">
+                <div className="files-header">
+                  <div className="media" style={{color: `${fileType === "image" ? "#2A52BE" : ""}`}} onClick={() => setFileType("image")}>
+                    <p>Media</p>
+                  </div>
+                  <div className="links" style={{color: `${fileType === "link" ? "#2A52BE" : ""}`}} onClick={() => setFileType("link")}>
+                    <p>Links</p>
+                  </div>
+                  <div className="docs" style={{color: `${fileType === "document" ? "#2A52BE" : ""}`}} onClick={() => setFileType("document")}>
+                    <p>Docs</p>
+                  </div>
+                </div>
+                {
+                  fileData
+                  .filter((file) =>{
+                    // switch (fileType) {
+                    //   case "media":
+                    //     return file.type === "image" || file.type === "video";
+                    //   case "links":
+                    //     return file.type === "link";
+                    //   case "docs":
+                    //     return file.type === "document";
+                    //   default:
+                    //     return false;
+                    // }
+                    return file.type === fileType
+                  }
+                  )
+                  .map((file, index) => (
+                    <>
+                      {getFileTemplate(file, index)}
+                    </>
+                  ))
                 }
-                )
-                .map((file, index) => (
-                  <>
-                    {file.type === "image" ? <MediaFileTemplate name={file.name} size={file.size} key={index}/> : <></>}
-                    {file.type === "link" ? <LinkFileTemplate name={file.name} url={file.url} key={index}/> : <></>}
-                    {file.type === "document" ? <DocumentFileTemplate name={file.name} size={file.size} key={index}/> : <></>}
-                  </>
-                ))
-              }
+              </div>
             </div>
-          </div>
-      )
+          )
+        default:
+          break;
+      }
     }
   }
   function ChatPageLeft() {
-    return (
-      <>
-        <div className="left">
-          <SearchBar />
-          {filteredList.length === 0 ? 
+    function getChatClassificationComponent() {
+      switch (filteredList.length) {
+        case 0:
+          return(
             <div className="chat-classification">
-            <div onClick={handleShowAllChats} className="classification" style={{backgroundColor: `${selectedClassification === null && "#0177fb1a"}`, color: `${selectedClassification === null && "#2A52BE"}`}}>
-              <p>General</p>
+              <div onClick={handleShowAllChats} className="classification" style={{backgroundColor: `${selectedClassification === null && "#0177fb1a"}`, color: `${selectedClassification === null && "#2A52BE"}`}}>
+                <p>General</p>
+              </div>
+              <div
+                onClick={() => handleClassificationClick("Group")}
+                className="classification groups"
+                style={{backgroundColor: `${selectedClassification === "Group" && "#0177fb1a"}`, color: `${selectedClassification === "Group" && "#2A52BE"}`}}
+              >
+                <p>Groups</p>
+              </div>
+              <div
+                onClick={() => handleClassificationClick("Private")}
+                className="classification private"
+                style={{backgroundColor: `${selectedClassification === "Private" && "#0177fb1a"}`, color: `${selectedClassification === "Private" && "#2A52BE"}`}}
+              >
+                <p>Private</p>
+              </div>
             </div>
-            <div
-              onClick={() => handleClassificationClick("Group")}
-              className="classification groups"
-              style={{backgroundColor: `${selectedClassification === "Group" && "#0177fb1a"}`, color: `${selectedClassification === "Group" && "#2A52BE"}`}}
-            >
-              <p>Groups</p>
-            </div>
-            <div
-              onClick={() => handleClassificationClick("Private")}
-              className="classification private"
-              style={{backgroundColor: `${selectedClassification === "Private" && "#0177fb1a"}`, color: `${selectedClassification === "Private" && "#2A52BE"}`}}
-            >
-              <p>Private</p>
-            </div>
-          </div> : <></>
-        }
-          <div className="chat-profiles" style={{ zIndex: `${elementZIndex}` }}>
-            {chatdata && filteredList.length === 0 ? (
-              chatdata
+          )
+        default:
+          break;
+      }
+    }
+    function getChatProfiles() {
+      switch (true) {
+        case (chatdata && searchValue.length === 0):
+          return (
+            <div className="chat-profiles" style={{ zIndex: `${elementZIndex}` }}>
+              {chatdata
                 .filter((chat) =>
-                  selectedClassification
-                    ? chat.type === selectedClassification
-                    : true
+                  selectedClassification ? chat.type === selectedClassification : true
                 )
                 .map((chat, index) => (
                   <CPTemplate
@@ -970,22 +1028,37 @@ export default function Chats() {
                     data={chat}
                     onUserProfileClick={handleUserProfileClick}
                   />
-                ))
-            ) : (
-              <div style={{ display: searchValue === `${[]}` ? "none" : "" }}>
-                {filteredList ? (
-                  filteredList.map((item, index) => (
-                    <CPTemplate
-                      key={index}
-                      data={item}
-                      onUserProfileClick={handleUserProfileClick}
-                    />
-                  ))
-                ) : (
-                  <>{searchDataType} not found</>
-                )}
-              </div>
-            )}
+                ))}
+            </div>
+          );
+        case (((searchValue !== `${[]}`) && (filteredList.length !== 0))):
+          return (
+            <div style={{ display: "" }}>
+              {filteredList.map((item, index) => {
+                return(
+                  <CPTemplate
+                    key={index}
+                    data={item}
+                    onUserProfileClick={handleUserProfileClick}
+                  />
+                )
+              })}
+            </div>
+          );
+        case ((searchValue !== `${[]}`) && (filteredList.length === 0)):
+          return <div className="chat-profiles" style={{ zIndex: `${elementZIndex}` }}>User Profile not found</div>;
+        default:
+          return null; // Handle unexpected cases or empty data
+      }
+    }
+
+    return (
+      <>
+        <div className="left">
+          <SearchBar />
+          {getChatClassificationComponent()}
+          <div className="chat-profiles" style={{ zIndex: `${elementZIndex}` }}>
+            {getChatProfiles()}
             <div className="add-chat-icon" onClick={() => toggleAddChatSlide1()}>
               <div className="cross-vert-line"></div>
               <div className="cross-horiz-line"></div>
@@ -1117,7 +1190,6 @@ export default function Chats() {
             } Chat`}
             onChange={(event) => handleSearchFilter(event.target.value)}
             onClick={handleInputClick}
-            autoFocus={true}
           />
         </div>
       </>
@@ -1125,27 +1197,32 @@ export default function Chats() {
   }
   function MediaFileTemplate({name, size}){
     const [isImageExpanded, setIsImageExpanded] = useState(false)
-    function ImageExpanded(){
-      return(
-        <>
-          <div className="image-expanded">
-            <Image src={`/Images/chatmedia/${name}`} width={400} height={1000} alt=""></Image>
-            <div className="image-expanded-header">
-              <svg width="18" height="18" viewBox="0 0 16 16" onClick={() => setIsImageExpanded(false)} className="back-arrow" >
-                <path d="M15 8H1M1 8L8 15M1 8L8 1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-              <p>{name}</p>
-            </div>
-          </div>
-        </>
-      )
+    function getImageExpanded(){
+      switch (isImageExpanded) {
+        case true:
+          return(
+            <>
+              <div className="image-expanded">
+                <Image src={`/Images/chatmedia/${name}`} width={400} height={1000} alt=""></Image>
+                <div className="image-expanded-header">
+                  <svg width="18" height="18" viewBox="0 0 16 16" onClick={() => setIsImageExpanded(false)} className="back-arrow" >
+                    <path d="M15 8H1M1 8L8 15M1 8L8 1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                  <p>{name}</p>
+                </div>
+              </div>
+            </>
+          )
+        default:
+          break;
+      }
     }
     return(
       <>
         <div className="media-file" onClick={() => setIsImageExpanded(true)}>
           <Image src={`/Images/chatmedia/${name}`} height={100} width={100} alt=""></Image>
         </div>
-        {isImageExpanded ? <ImageExpanded /> : <></>}
+        {getImageExpanded()}
       </>
     )
   }
@@ -1186,75 +1263,4 @@ export default function Chats() {
       <div className="doc-file"></div>
     )
   }
-  function ChatText({chat}){
-    return(
-      <div className="text" style={{
-        alignSelf:
-          chat.sender === selectedUserProfile.title
-            ? "flex-end"
-            : "flex-start",
-        backgroundColor:
-          chat.sender === selectedUserProfile.title
-            ? "#2A52BE"
-            : "#F2F2F7",
-        color:
-          chat.sender === selectedUserProfile.title
-            ? "#FEFAFA"
-            : "",
-      }}
-    >
-      <p>{chat.message}</p>
-    </div>
-    )
-  }
-  function TimetableText({chat}){
-    function handleAddChatTimetable(){
-      chat.events.map((timetableclass)=>{
-        addTask(timetableclass)
-      })
-      handleShowPopupNotification("Timetable Added Successfully", "Events have been added to your Calendar", true)
-    }
-    return(
-      <div className="chat-timetable" style={{
-        alignSelf:
-          chat.sender === selectedUserProfile.title
-            ? "flex-end"
-            : "flex-start",
-        backgroundColor:
-          chat.sender === selectedUserProfile.title
-            ? "#2A52BE"
-            : "#F2F2F7",
-        color:
-          chat.sender === selectedUserProfile.title
-            ? "#FAFBFD"
-            : "",
-        }}
-      >
-        <div className="highlight">
-          {/* <h3>{chat.category.type === "class" ? "Class " : "Exam "} Timetable</h3> */}
-        </div>
-        <div className="texts">
-          <h3>{chat.title}</h3>
-          <p>{chat.subtitle}</p>
-        </div>
-        <div className="options">
-          <div className="button">
-            <p>Edit</p>
-          </div>
-          <div className="button" onClick={handleAddChatTimetable}>
-            <p>Add</p>
-          </div>
-        </div>
-      </div>
-    )
-  }
 }
-
-// sender: "Akin",
-// title: "400L Class Timetable",
-// subtitle: "Mechatronics Engineering",
-// message: "Checkout this Timetable.",
-// category: {
-//   name: "timetable",
-//   type: "class"
-// },
