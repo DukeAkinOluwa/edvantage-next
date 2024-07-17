@@ -13,96 +13,90 @@ import DashboardTimeTable from "@/components/dashboard/DashboardTimeTable";
 import { useState, useEffect, useRef } from "react";
 
 export default function Home() {
-    const [viewportWidth, setViewportWidth] = useState(null);
-    const [topMarginValue, setTopMarginValue] = useState("");
-    const [back, setBack] = useState(true);
-    const [showHeader, setShowHeader] = useState(true);
-    const [lastScrollY, setLastScrollY] = useState(0);
-    const [popupNotificationTitle, setPopupNotificationTitle] = useState("")
-    const [popupNotificationText, setPopupNotificationText] = useState("")
-    const [popupHeight, setPopupHeight] = useState(false)
-    
-    const scrollContainerRef = useRef(null);
+  const [state, setState] = useState({
+    viewportWidth: null,
+    topMarginValue: "",
+    back: true,
+    showHeader: true,
+    lastScrollY: 0,
+    popupNotificationTitle: "",
+    popupNotificationText: "",
+    popupHeight: false
+  });
 
-    useEffect(() => {
-        setViewportWidth(window.innerWidth);
-        if (window.innerWidth > 655 && window.innerWidth < 1001) {
-            setTopMarginValue(60);
-        }
+  const scrollContainerRef = useRef(null);
 
-        const handleResize = () => {
-            setViewportWidth(window.innerWidth);
-        };
+  useEffect(() => {
+    const handleResize = () => {
+      setState(prevState => ({
+        ...prevState,
+        viewportWidth: window.innerWidth
+      }));
+      if (window.innerWidth > 655 && window.innerWidth < 1001) {
+        setState(prevState => ({
+          ...prevState,
+          topMarginValue: "60"
+        }));
+      }
+    };
 
-        window.addEventListener("resize", handleResize);
-        return () => window.removeEventListener("resize", handleResize);
-    }, []);
-    
-    useEffect(() => {
-        const timeout = setTimeout(() => {
-            setPopupHeight(false)
-        }, 4000); // 4 seconds
-    
-        return () => clearTimeout(timeout);
-    }, [popupHeight]);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
-    // useEffect(() => {
-    //     const handleScroll = () => {
-    //         const currentScrollY = window.scrollY;
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setState(prevState => ({
+        ...prevState,
+        popupHeight: false
+      }));
+    }, 4000); // 4 seconds
 
-    //         if (currentScrollY > lastScrollY) {
-    //             // Scrolling down
-    //             setShowHeader(false);
-    //         } else {
-    //             // Scrolling up
-    //             setShowHeader(true);
-    //         }
+    return () => clearTimeout(timeout);
+  }, [state.popupHeight]);
 
-    //         setLastScrollY(currentScrollY);
-    //         console.log("akin")
-    //     };
+  function handleSetBack(booleanValue) {
+    setState(prevState => ({
+      ...prevState,
+      back: booleanValue
+    }));
+  }
 
-    //     const element = scrollContainerRef.current;
-    //     if (element) {
-    //         element.addEventListener('scroll', handleScroll);
-    //     }
+  function handleShowPopupNotification(title, text, pheight) {
+    setState(prevState => ({
+      ...prevState,
+      popupNotificationTitle: title,
+      popupNotificationText: text,
+      popupHeight: pheight
+    }));
+  }
 
-    //     return () => {
-    //         if (element) {
-    //             element.removeEventListener('scroll', handleScroll);
-    //         }
-    //     };
-    // }, [lastScrollY]);
-
-    function handleSetBack(booleanValue) {
-        setBack(booleanValue);
-    }
-    function handleShowPopupNotification(title, text, pheight){
-        setPopupNotificationTitle(title)
-        setPopupNotificationText(text)
-        setPopupHeight(pheight)
-    }
-    // console.log(back)
-
-    return (
-        <>
-            <section ref={scrollContainerRef} className={`dashboard-main-section ${(back && (viewportWidth > 1001)) ? "back" : ""}`}>
-                <GeneralHeader handleSetBack={handleSetBack} />
-                <DashboardAd />
-                <DashboardBoxes />
-                <DashboardCalendar />
-                <DashboardTimeTable handleShowPopupNotification={handleShowPopupNotification} />
-                <DashboardTasksOverview handleShowPopupNotification={handleShowPopupNotification} />
-                <DashboardGroup />
-                {/* {showHeader && <GeneralHeader />} */}
-            </section>
-            {viewportWidth < 1001 ? (
-                <>
-                {back && <BottomNavigation />}
-                </>
-            ) : (<></>
-                // <PageRightHeader page_title={`Dashboard`} userlevel="23" handleSetBack={handleSetBack} topMargin={topMarginValue} />
-            )}<InAppPopupNotification popupNotificationText={popupNotificationText} popupNotificationTitle={popupNotificationTitle} popupHeight={popupHeight} />
-        </>
-    );
+  return (
+    <>
+      <section
+        ref={scrollContainerRef}
+        className={`dashboard-main-section ${
+          state.back && state.viewportWidth > 1001 ? "back" : ""
+        }`}
+      >
+        <GeneralHeader handleSetBack={handleSetBack} />
+        <DashboardAd />
+        <DashboardBoxes />
+        <DashboardCalendar />
+        <DashboardTimeTable handleShowPopupNotification={handleShowPopupNotification} />
+        <DashboardTasksOverview handleShowPopupNotification={handleShowPopupNotification} />
+        <DashboardGroup />
+      </section>
+      {state.viewportWidth < 1001 ? (
+        <>{state.back && <BottomNavigation />}</>
+      ) : (
+        <></>
+      )}
+      <InAppPopupNotification
+        popupNotificationText={state.popupNotificationText}
+        popupNotificationTitle={state.popupNotificationTitle}
+        popupHeight={state.popupHeight}
+      />
+    </>
+  );
 }
