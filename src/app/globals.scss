@@ -924,6 +924,8 @@ input {
     }
 }
 
+
+// Pages - Progress Page
 .progress-page{
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -995,6 +997,33 @@ input {
         padding: 0px 0px 20px 0px;
         border-bottom: solid 1px #D1D1D1;
         color: $text-color;
+    }
+}
+
+// Pages Terms and Conditions
+.t-a-c{
+    @include fd;
+    gap: 10px;
+    width: calc(100% - 40px);
+    padding: 20px;
+    line-height: 30px;
+    text-align: justify;
+    ul{
+        margin: 0px;
+        padding: 0px 0px 0px 30px;
+    }
+    h1, h2, strong{
+        color: $text-color;
+    }
+    h1{
+        font-size: 1.6rem;
+        text-align: left;
+    }
+    h2{
+        font-size: 1.3rem;
+    }
+    strong{
+        font-size: 1.1rem;
     }
 }
 
@@ -2994,6 +3023,12 @@ input[type="file"] {
     // Pages - Profile Page
     .user-profile-page {
         padding: 0px;
+    }
+
+    // Terms and Conditions
+    .t-a-c{
+        width: calc(100% - 30px);
+        padding: 0px 15px 20px;
     }
 
     // Pages - Login and Signup

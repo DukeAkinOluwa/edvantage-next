@@ -968,6 +968,33 @@ input:focus-visible {
   color: #2D2E2E;
 }
 
+.t-a-c {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: calc(100% - 40px);
+  padding: 20px;
+  line-height: 30px;
+  text-align: justify;
+}
+.t-a-c ul {
+  margin: 0px;
+  padding: 0px 0px 0px 30px;
+}
+.t-a-c h1, .t-a-c h2, .t-a-c strong {
+  color: #2D2E2E;
+}
+.t-a-c h1 {
+  font-size: 1.6rem;
+  text-align: left;
+}
+.t-a-c h2 {
+  font-size: 1.3rem;
+}
+.t-a-c strong {
+  font-size: 1.1rem;
+}
+
 input[type=file] {
   display: none;
 }
@@ -2814,6 +2841,10 @@ input[type=file] {
   }
   .user-profile-page {
     padding: 0px;
+  }
+  .t-a-c {
+    width: calc(100% - 30px);
+    padding: 0px 15px 20px;
   }
   .login-signup {
     grid-template-columns: auto;
