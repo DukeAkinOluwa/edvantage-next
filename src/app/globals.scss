@@ -924,6 +924,29 @@ input {
     }
 }
 
+.progress-page{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    width: calc(100% - 20px);
+    .category{
+        @include fda;
+        padding: 10px;
+        border-radius: 10px;
+        background-color: $primary-color2;
+        color: $text-color;
+        border: solid 1px #28282833;
+        box-shadow: 0px 0px 17px 1px rgba(40, 40, 40, 0.2);
+        .header{
+            @include fa;
+            width: 100%;
+            h3{
+                font-weight: 500;
+            }
+        }
+    }
+}
+
 .settings-page,
 .user-profile-page {
     padding: 0px 0px 0px 20px;
