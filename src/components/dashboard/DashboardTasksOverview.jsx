@@ -34,7 +34,9 @@ const DashboardTasksOverview = ({ handleShowPopupNotification }) =>{
         };
     }, []);
 
-    const taskinfo = windowWidth >= 575.98 ? taskdata : taskdata.slice(0, 2);
+    const filteredTasks = assignments.filter(task => (task.type === 'assignment') || (task.type === 'task'))
+
+    const taskinfo = windowWidth >= 575.98 ? filteredTasks : filteredTasks.slice(0, 2);
     
     function handleAddAssignment(){
         if(isAddTaskVisible === false){
@@ -63,7 +65,7 @@ const DashboardTasksOverview = ({ handleShowPopupNotification }) =>{
                     <div className="column column4"><h5>Status</h5></div>
                 </div>
             </div>
-            {assignments.filter(task => (task.type === 'assignment') || (task.type === 'task')).slice(0,10).map((tasks, index) => (
+            {taskinfo.map((tasks, index) => (
                 <DTOTemplate key={index} taskdata={tasks} />
             ))}
             </div>
