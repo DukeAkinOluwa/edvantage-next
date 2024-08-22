@@ -15,8 +15,8 @@ const DashboardTasksOverview = ({ handleShowPopupNotification }) => {
     // Fetch assignments once when the component mounts
     useEffect(() => {
         const fetchAssignments = async () => {
-        const assignmentsFromDB = await getAllTasks();
-        setAssignments(assignmentsFromDB);
+            const assignmentsFromDB = await getAllTasks();
+            setAssignments(assignmentsFromDB);
         };
         fetchAssignments();
     }, []); // Empty dependency array ensures this effect runs only once
@@ -81,35 +81,35 @@ const DashboardTasksOverview = ({ handleShowPopupNotification }) => {
         </div>
         {isAddTaskVisible && (
             <div className="add-item">
-            <div className="invisible-background" onClick={handleAddAssignment}></div>
-            <AddTask
-                handleAddAssignment={handleAddAssignment}
-                handleShowPopupNotification={handleShowPopupNotification}
-                setFocusedInput={setFocusedInput}
-                focusedInput={focusedInput}
-                handleTaskAdded={handleTaskAdded}
-            />
+                <div className="invisible-background" onClick={handleAddAssignment}></div>
+                <AddTask
+                    handleAddAssignment={handleAddAssignment}
+                    handleShowPopupNotification={handleShowPopupNotification}
+                    setFocusedInput={setFocusedInput}
+                    focusedInput={focusedInput}
+                    handleTaskAdded={handleTaskAdded}
+                />
             </div>
         )}
         </div>
     );
-    };
+};
 
-    function DTOTemplate({ taskdata }) {
+function DTOTemplate({ taskdata }) {
     const taskstatus = taskdata.status;
     const backgroungcolour = taskstatus === "Completed" ? "#DEF9DD" : "#F9D6DB";
     const fontcolour = taskstatus === "Completed" ? "#64C55F" : "#CB132E";
 
     return (
         <div className="dashboard-t-o-t-task row">
-        <div className="column column1"><h3 className="pc-hidden">Course name</h3><p>{taskdata.title}</p></div>
-        <div className="column column2"><h3 className="pc-hidden">Title</h3><p>{taskdata.coursecode}</p></div>
-        <div className="column column3"><h3 className="pc-hidden">Date</h3><p>{taskdata.duedate}</p></div>
-        <div className="column column4"><h3 className="pc-hidden">Status</h3>
-            <div className="table-status" style={{ backgroundColor: backgroungcolour }}>
-            <p style={{ color: fontcolour }}>{taskdata.status}</p>
+            <div className="column column1"><h3 className="pc-hidden">Course name</h3><p>{taskdata.title}</p></div>
+            <div className="column column2"><h3 className="pc-hidden">Title</h3><p>{taskdata.coursecode}</p></div>
+            <div className="column column3"><h3 className="pc-hidden">Date</h3><p>{taskdata.duedate}</p></div>
+            <div className="column column4"><h3 className="pc-hidden">Status</h3>
+                <div className="table-status" style={{ backgroundColor: backgroungcolour }}>
+                <p style={{ color: fontcolour }}>{taskdata.status}</p>
+                </div>
             </div>
-        </div>
         </div>
     );
 }
