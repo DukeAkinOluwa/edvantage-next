@@ -96,10 +96,10 @@ export default function Assignments(){
             <div className="assignment-task-overview-table table">
                 <div className="box">
                     <div className="options">
-                        <div className="option" onClick={()=> setSelectedOption("assignments")} style={{backgroundColor: selectedOption === "assignments" ? "rgba(1, 119, 251, 0.1)" : ""}}>
+                        <div className="option" onClick={()=> setSelectedOption("assignments")} style={{backgroundColor: selectedOption === "assignments" ? "rgba(1, 119, 251, 0.1)" : "", color: selectedOption === "assignments" ? "#2A52BE" : ""}}>
                             <h3>Assignment</h3>
                         </div>
-                        <div className="option" onClick={()=> setSelectedOption("others")} style={{backgroundColor: selectedOption === "others" ? "rgba(1, 119, 251, 0.1)" : ""}}>
+                        <div className="option" onClick={()=> setSelectedOption("others")} style={{backgroundColor: selectedOption === "others" ? "rgba(1, 119, 251, 0.1)" : "", color: selectedOption === "others" ? "#2A52BE" : ""}}>
                             <h3>Others</h3>
                         </div>
                     </div>
