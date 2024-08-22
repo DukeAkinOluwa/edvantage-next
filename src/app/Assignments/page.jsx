@@ -107,7 +107,6 @@ export default function Assignments(){
                         <div className="column1"><h5>Course Title</h5></div>
                         <div className="column2"><h5>Status</h5></div>
                         <div className="column3"><h5>Due Date</h5></div>
-                        <div className="column4"><h5>Progress</h5></div>
                         <div className="column5"><h5>Priority</h5></div>
                     </div>
                     {filteredTasks.length > 0 ? (
