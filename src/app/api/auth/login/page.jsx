@@ -5,7 +5,7 @@ import Image from "next/image";
 import { AuthContext } from "@/contexts/BottomNavContext"
 import { useContext, useState, useEffect } from "react"
 import uniData from "@/DB/universitydata.json"
-import { signIn } from 'next-auth/react'
+import { signIn } from "next-auth/react";
 
 export default function Login(){
     
@@ -39,7 +39,7 @@ export default function Login(){
             setLoginError(result.error);
         } else {
             // Redirect or handle successful login
-            window.location.href = "/";  // Or any other page after login
+            window.location.href = "http://localhost:3000/";  // Or any other page after login
         }
     };
 

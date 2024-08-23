@@ -43,6 +43,48 @@ const handler = NextAuth({
     secret: process.env.NEXTAUTH_SECRET,
     pages: {
         signIn: '/api/auth/login',
+        signUp: '/api/auth/signup'
+        // signOut: '/auth/signout',
+        // error: '/auth/error', // Error code passed in query string as ?error=
+        // verifyRequest: '/auth/verify-request', // (used for check email message)
+        // newUser: '/auth/new-user' // New users will be directed here on first sign in (leave the property out if not of interest)
+    },
+    callbacks: {
+        async signIn({ user, account, profile }) {
+            if (account.provider === 'github') {
+                // const response = await fetch('/api/saveUser', {
+                //     method: 'POST',
+                //     headers: { 'Content-Type': 'application/json' },
+                //     body: JSON.stringify({
+                //         name: profile.name,
+                //         email: profile.email,
+                //         githubId: profile.id,
+                //         institution: null // You'll update this after the user submits the custom form
+                //     })
+                // });
+                // return response.ok;
+                console.log(user)
+            }
+            return true;
+        },
+        async jwt({ token, user, account, profile }) {
+            // Append user information to JWT token
+            if (user) {
+                token.id = user.id;
+                token.name = user.name;
+                token.email = user.email;
+            }
+            return token;
+        },
+        async session({ session, token }) {
+            // Make sure the session contains the user data
+            session.user.id = token.id;
+            return session;
+        },
+        async redirect({ url, baseUrl }) {
+            // Handle redirect after login/signup
+            return baseUrl;
+        }
     }
 })
 
