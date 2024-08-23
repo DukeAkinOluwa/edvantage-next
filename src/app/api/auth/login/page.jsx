@@ -39,7 +39,7 @@ export default function Login(){
             setLoginError(result.error);
         } else {
             // Redirect or handle successful login
-            window.location.href = "http://localhost:3000/";  // Or any other page after login
+            window.location.href = "https://edvantage-eosin.vercel.app/";  // Or any other page after login
         }
     };
 
