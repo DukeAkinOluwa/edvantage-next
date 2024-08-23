@@ -377,6 +377,9 @@ div:has(div.page-right):has(div.login-signup){
     top: 0px;
     left: 0px;
     z-index: 10;
+    input[type='checkbox']{
+        height: 20px;
+    }
     .left {
         @include fdja();
         gap: 10px;

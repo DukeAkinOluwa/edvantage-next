@@ -298,6 +298,9 @@ div:has(div.page-right):has(div.login-signup) .general-header {
   left: 0px;
   z-index: 10;
 }
+.login-signup input[type=checkbox] {
+  height: 20px;
+}
 .login-signup .left {
   display: flex;
   flex-direction: column;
