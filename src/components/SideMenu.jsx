@@ -3,6 +3,7 @@
 import { useEffect, useState, useContext } from "react";
 import { AuthContext } from "@/contexts/BottomNavContext"
 import Link from "next/link";
+import { signOut } from 'next-auth/react';
 
 export default function SideMenu() {
   const [activeLink, setActiveLink] = useState(null)
@@ -133,9 +134,7 @@ export default function SideMenu() {
           <p>User Profile</p>
         </Link>
       </nav>
-      <div onClick={handleLogout} className="side-menu-logout">
-        Logout
-      </div>
+      <div onClick={() => signOut()} className="side-menu-logout">Logout</div>
     </div>
   );
 }

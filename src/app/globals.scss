@@ -171,6 +171,12 @@ input {
     }
 }
 
+.githubbtn{
+    a,p{
+        background-color: #24252F;
+    }
+}
+
 .add-item{
     width: 100dvw;
     height: 100dvh;
@@ -356,11 +362,21 @@ input {
 }
 
 // Pages - Login
+div:has(div.page-right):has(div.login-signup){
+    .side-menu,
+    .general-header{
+        display: none;
+    }
+}
 .login-signup {
     display: grid;
     grid-template-columns: repeat(2, 50%);
     height: 100dvh;
     width: 100dvw;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 10;
     .left {
         @include fdja();
         gap: 10px;
