@@ -839,7 +839,6 @@ export default function Chats() {
           setIsEditTimeTable(true)
           handleSetBack(true, 0);
         }
-        console.log(timetableContent)
         switch (content.category.name) {
           case "timetable":
             return(
@@ -1160,7 +1159,15 @@ export default function Chats() {
       timetableContent.events.map((timetableclass)=>{
         addTask(timetableclass)
       })
+      setTimetableContent(null)
+      setIsEditTimeTable(false)
+      setInvisibleBackground2(false)
       handleShowPopupNotification("Timetable Added Successfully", "Events have been added to your Calendar", true)
+    }
+    function handleExitEditTimeTable(){
+      setIsEditTimeTable(false)
+      setTimetableContent(null)
+      setInvisibleBackground2(false)
     }
     return(
       <>
@@ -1182,8 +1189,8 @@ export default function Chats() {
               ))}
             </div>
             <div className="add-events-button">
-              <div className="button button2"><p>Exit</p></div>
-              <div className="button button1"><p>Add</p></div>
+              <div className="button button2" onClick={handleExitEditTimeTable}><p>Exit</p></div>
+              <div className="button button1" onClick={handleAddChatTimetable}><p>Add</p></div>
             </div>
           </div>
         )}
