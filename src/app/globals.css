@@ -89,6 +89,7 @@ input:focus-visible {
   background-color: #fafbfd;
   color: #2A52BE;
   border-radius: 8px;
+  text-align: center;
 }
 
 .githubbtn a, .githubbtn p {
@@ -590,7 +591,7 @@ div:has(div.page-right):has(div.login-signup) .general-header {
   flex-direction: column;
   gap: 10px;
   width: calc(100% - 20px);
-  height: calc(100% - 25px - 30px);
+  height: calc(100% - 25px - 30px - 72px);
   overflow-y: scroll;
 }
 .chat-page .whole-chat-section .edit-chat-timetable .edit-timetable-event {
@@ -604,6 +605,19 @@ div:has(div.page-right):has(div.login-signup) .general-header {
 }
 .chat-page .whole-chat-section .edit-chat-timetable .edit-timetable-event p {
   max-width: 100%;
+}
+.chat-page .whole-chat-section .edit-chat-timetable .add-events-button {
+  display: flex;
+  align-items: center;
+  width: calc(100% - 40px);
+  position: absolute;
+  bottom: 15px;
+}
+.chat-page .whole-chat-section .edit-chat-timetable .add-events-button .button {
+  width: 50%;
+}
+.chat-page .whole-chat-section .edit-chat-timetable .add-events-button .button p {
+  padding: 11px 15px;
 }
 .chat-page .whole-chat-section .left,
 .chat-page .whole-chat-section .right {
@@ -2917,6 +2931,7 @@ input[type=file] {
   }
   .chat-page .whole-chat-section .edit-chat-timetable {
     width: 80dvw;
+    height: 440px;
   }
   .settings-page {
     padding: 0px;

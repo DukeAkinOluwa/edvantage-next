@@ -142,7 +142,6 @@ input {
 
 .button {
     width: max-content;
-
     &:hover {
         cursor: pointer;
     }
@@ -161,13 +160,13 @@ input {
 }
 
 .button2 {
-
     p,
     a {
         padding: 15px;
         background-color: $white;
         color: $primary-color;
         border-radius: 8px;
+        text-align: center;
     }
 }
 
@@ -646,7 +645,7 @@ div:has(div.page-right):has(div.login-signup){
                 @include fd;
                 gap: 10px;
                 width: calc(100% - 20px);
-                height: calc(100% - 25px - 30px);
+                height: calc(100% - 25px - 30px - 72px);
                 overflow-y: scroll;
             }
             .edit-timetable-event{
@@ -657,6 +656,18 @@ div:has(div.page-right):has(div.login-signup){
                 gap: 5px;
                 p{
                     max-width: 100%;
+                }
+            }
+            .add-events-button{
+                @include fa;
+                width: calc(100% - 40px);
+                position: absolute;
+                bottom: 15px;
+                .button{
+                    width: 50%;
+                    p{
+                        padding: 11px 15px;
+                    }
                 }
             }
         }
@@ -3076,6 +3087,7 @@ input[type="file"] {
             }
             .edit-chat-timetable{
                 width: 80dvw;
+                height: 440px;
             }
         }
     }

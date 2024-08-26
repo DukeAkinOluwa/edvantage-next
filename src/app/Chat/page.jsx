@@ -1156,6 +1156,12 @@ export default function Chats() {
     );
   }
   function EditTimeTable(){
+    function handleAddChatTimetable(){
+      timetableContent.events.map((timetableclass)=>{
+        addTask(timetableclass)
+      })
+      handleShowPopupNotification("Timetable Added Successfully", "Events have been added to your Calendar", true)
+    }
     return(
       <>
         {invisibleBackground2 && (
@@ -1174,6 +1180,10 @@ export default function Chats() {
                   <p>{event.startTime} - {event.endTime}</p>
                 </div>
               ))}
+            </div>
+            <div className="add-events-button">
+              <div className="button button2"><p>Exit</p></div>
+              <div className="button button1"><p>Add</p></div>
             </div>
           </div>
         )}
