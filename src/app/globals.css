@@ -553,6 +553,58 @@ div:has(div.page-right):has(div.login-signup) .general-header {
 .chat-page .whole-chat-section .add-new-chat-profile .long-label input {
   height: 70px;
 }
+.chat-page .whole-chat-section .edit-chat-timetable {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0px;
+  position: fixed;
+  align-self: center;
+  justify-self: center;
+  height: 400px;
+  width: 400px;
+  background-color: #fafbfd;
+  border-radius: 20px;
+  box-shadow: 0px 0px 10px #bababa;
+  padding: 0px 15px 15px 15px;
+  z-index: 1;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.chat-page .whole-chat-section .edit-chat-timetable .header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 25px;
+  padding: 10px;
+  width: calc(100% - 20px);
+  background-color: #2A52BE;
+  color: #FAFBFD;
+  position: sticky;
+  top: 0px;
+  border: solid 15px #FAFBFD;
+  border-radius: 25px;
+}
+.chat-page .whole-chat-section .edit-chat-timetable .edit-timetable-events {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: calc(100% - 20px);
+  height: calc(100% - 25px - 30px);
+  overflow-y: scroll;
+}
+.chat-page .whole-chat-section .edit-chat-timetable .edit-timetable-event {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  overflow-x: hidden;
+  min-height: 50px;
+  gap: 5px;
+}
+.chat-page .whole-chat-section .edit-chat-timetable .edit-timetable-event p {
+  max-width: 100%;
+}
 .chat-page .whole-chat-section .left,
 .chat-page .whole-chat-section .right {
   height: calc(100% - 15px);
@@ -2861,6 +2913,9 @@ input[type=file] {
     width: 100dvw;
   }
   .chat-page .whole-chat-section .add-new-chat-profile {
+    width: 80dvw;
+  }
+  .chat-page .whole-chat-section .edit-chat-timetable {
     width: 80dvw;
   }
   .settings-page {

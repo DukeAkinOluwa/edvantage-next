@@ -18,9 +18,12 @@ export default function Chats() {
   const [selectedUserProfile, setSelectedUserProfile] = useState(null);
   const [searchValue, setSearchValue] = useState("");
   const [invisibleReset, setInvisibleReset] = useState(false);
-  const [invisibleBackground, setInvisibleBackground] = useState(false);
+  const [invisibleBackground1, setInvisibleBackground1] = useState(false);
+  const [invisibleBackground2, setInvisibleBackground2] = useState(false);
   const [isChatSlide1Visible, setIsChatSlide1Visible] = useState(false);
   const [isChatSlide2Visible, setIsChatSlide2Visible] = useState(false);
+  const [isEditTimeTable, setIsEditTimeTable] = useState(false)
+  const [timetableContent, setTimetableContent] = useState(null)
   const [filteredList, setFilteredList] = useState([]);
   const [back, setBack] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
@@ -611,11 +614,11 @@ export default function Chats() {
   const toggleAddChatSlide1 = () => {
     if (isChatSlide1Visible) {
       setIsChatSlide1Visible(null);
-      setInvisibleBackground(false);
+      setInvisibleBackground1(false);
       handleSetBack(false, 0);
     } else {
       setIsChatSlide1Visible(true);
-      setInvisibleBackground(true);
+      setInvisibleBackground1(true);
       handleSetBack(true, 0);
     }
   };
@@ -623,7 +626,7 @@ export default function Chats() {
   const toggleAddChatSlide2 = () => {
     setIsChatSlide1Visible(false);
     setIsChatSlide2Visible(!isChatSlide2Visible);
-    setInvisibleBackground(!isChatSlide2Visible);
+    setInvisibleBackground1(!isChatSlide2Visible);
     if (isChatSlide1Visible) {
     } else {
       handleSetBack(false, 0);
@@ -633,7 +636,9 @@ export default function Chats() {
   const handleClearAll = () => {
     setIsChatSlide1Visible(false);
     setIsChatSlide2Visible(false);
-    setInvisibleBackground(false);
+    setInvisibleBackground1(false);
+    setInvisibleBackground2(false);
+    setIsEditTimeTable(false)
   };
 
   const handleRefreshClick = () => {
@@ -668,9 +673,8 @@ export default function Chats() {
       case viewportWidth < 656 && currentPage === 2:
         return (
           <div className="whole-chat-section">
-            <UserProfileDetails
-              selectedUserProfile={selectedUserProfile}
-            />
+            <UserProfileDetails selectedUserProfile={selectedUserProfile} />
+            <EditTimeTable />
           </div>
         );
       case viewportWidth >= 656:
@@ -678,10 +682,9 @@ export default function Chats() {
           <div className="whole-chat-section">
             {getIndividualPageHeader()}
             <ChatPageLeft />
-            <UserProfileDetails
-              selectedUserProfile={selectedUserProfile}
-            />
+            <UserProfileDetails selectedUserProfile={selectedUserProfile} />
             <AddChat />
+            <EditTimeTable />
           </div>
         );
       default:
@@ -828,6 +831,15 @@ export default function Chats() {
           })
           handleShowPopupNotification("Timetable Added Successfully", "Events have been added to your Calendar", true)
         }
+        function handleEditChatTimetable(){
+          if (content.category.name === "timetable") {
+            setTimetableContent(content)
+          }
+          setInvisibleBackground2(true);
+          setIsEditTimeTable(true)
+          handleSetBack(true, 0);
+        }
+        console.log(timetableContent)
         switch (content.category.name) {
           case "timetable":
             return(
@@ -854,7 +866,7 @@ export default function Chats() {
                   <p>{content.subtitle}</p>
                 </div>
                 <div className="options">
-                  <div className="button">
+                  <div className="button" onClick={handleEditChatTimetable}>
                     <p>Edit</p>
                   </div>
                   <div className="button" onClick={handleAddChatTimetable}>
@@ -1067,7 +1079,7 @@ export default function Chats() {
           {/* <div className="left-bottom">
           </div> */}
         </div>
-        {invisibleBackground && (
+        {invisibleBackground1 && (
           <div
             className="invisible-background"
             onClick={() => handleClearAll()}
@@ -1142,6 +1154,31 @@ export default function Chats() {
         )}
       </>
     );
+  }
+  function EditTimeTable(){
+    return(
+      <>
+        {invisibleBackground2 && (
+          <div
+            className="invisible-background"
+            onClick={() => handleClearAll()}
+          />
+        )}
+        {isEditTimeTable && (
+          <div className="edit-chat-timetable">
+            <div className="header"><h3>Timetable Events</h3></div>
+            <div className="edit-timetable-events">
+              {timetableContent !== null && timetableContent.events.map((event, index) => (
+                <div className="edit-timetable-event" key={index}>
+                  <p>{event.title}</p>
+                  <p>{event.startTime} - {event.endTime}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+      </>
+    )
   }
   function IndividualPageHeader(){
 

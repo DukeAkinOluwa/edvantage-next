@@ -615,6 +615,51 @@ div:has(div.page-right):has(div.login-signup){
                 }
             }
         }
+        .edit-chat-timetable{
+            @include fda;
+            gap: 0px;
+            position: fixed;
+            align-self: center;
+            justify-self: center;
+            height: 400px;
+            width: 400px;
+            background-color: $white;
+            border-radius: 20px;
+            box-shadow: 0px 0px 10px #bababa;
+            padding: 0px 15px 15px 15px;
+            z-index: 1;
+            overflow-y: scroll;
+            overflow-x: hidden;
+            .header{
+                @include fja;
+                height: 25px;
+                padding: 10px;
+                width: calc(100% - 20px);
+                background-color: $primary-color;
+                color: $primary-color2;
+                position: sticky;
+                top: 0px;
+                border: solid 15px $primary-color2;
+                border-radius: 25px;
+            }
+            .edit-timetable-events{
+                @include fd;
+                gap: 10px;
+                width: calc(100% - 20px);
+                height: calc(100% - 25px - 30px);
+                overflow-y: scroll;
+            }
+            .edit-timetable-event{
+                @include fdj;
+                width: 100%;
+                overflow-x: hidden;
+                min-height: 50px;
+                gap: 5px;
+                p{
+                    max-width: 100%;
+                }
+            }
+        }
         .left,
         .right{
             height: calc(100% - 15px);
@@ -3026,7 +3071,10 @@ input[type="file"] {
             .right{
                 width: 100dvw;
             }
-            .add-new-chat-profile {
+            .add-new-chat-profile{
+                width: 80dvw;
+            }
+            .edit-chat-timetable{
                 width: 80dvw;
             }
         }
