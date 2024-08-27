@@ -11,6 +11,7 @@ export default function Login(){
     
     const [loginError, setLoginError] = useState("");
     const [isShowLogin, setIsShowLogin] = useState(true)
+    const [isLoggingIn, setIsLoggingIn] = useState(false);
 
     const { login } = useContext(AuthContext);
 
@@ -29,6 +30,8 @@ export default function Login(){
     
 
     const handleLogin = async () => {
+        setLoginError("");
+        setIsLoggingIn(true);
         const result = await signIn('credentials', {
             redirect: false,
             email: userData.email,
@@ -37,8 +40,9 @@ export default function Login(){
 
         if (result.error) {
             setLoginError(result.error);
+            setIsLoggingIn(false);
         } else {
-            // Redirect or handle successful login
+            setLoginError("");
             window.location.href = "https://edvantage-eosin.vercel.app/";  // Or any other page after login
         }
     };
@@ -132,7 +136,9 @@ export default function Login(){
                         <h5>Forgot Password?</h5>
                     </div>
                     {loginError && <div style={{color: "red"}}>{loginError}</div>}
-                    <div className="button1" onClick={() => handleLogin(userData)}><p>Continue</p></div>
+                    {isLoggingIn ?
+                        <div className="button1" style={{opacity: ".4"}}><p>Login in...</p></div> :
+                        <div className="button1" onClick={() => handleLogin(userData)}><p>Continue</p></div>}
                     <div className="or-div">
                         <div className="line"></div>
                         <div className="text">Or</div>
