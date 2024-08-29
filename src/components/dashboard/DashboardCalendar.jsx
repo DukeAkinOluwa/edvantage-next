@@ -8,6 +8,10 @@ const DashboardCalendar = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [calendarViewDate, setCalendarViewDate] = useState(new Date());
 
+  const year = calendarViewDate.getFullYear();
+  const month = calendarViewDate.getMonth();
+  console.log(calendarViewDate.getMonth(), month)
+
   useEffect(() => {
     const fetchTasks = async () => {
         const tasksFromDB = await getAllTasks()
@@ -62,6 +66,7 @@ const DashboardCalendar = () => {
   }, [calendarViewDate]);
 
   const isCurrentDay = useCallback((day) => {
+    console.log(calendarViewDate.getMonth(), month)
     const today = new Date();
     return month === today.getMonth() && year === today.getFullYear() && day === today.getDate();
   }, []);
@@ -69,9 +74,6 @@ const DashboardCalendar = () => {
   const isSelectedDay = useCallback((day) => {
     return month === selectedDate.getMonth() && year === selectedDate.getFullYear() && day === selectedDate.getDate();
   }, [selectedDate]);
-
-  const year = calendarViewDate.getFullYear();
-  const month = calendarViewDate.getMonth();
 
   return (
     <div className="dashboard-calendar">
