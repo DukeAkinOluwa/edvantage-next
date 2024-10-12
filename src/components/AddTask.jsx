@@ -11,6 +11,7 @@ export default function AddTask({ handleTaskAdded, handleShowPopupNotification }
         setTaskData({
             title: '',
             duedate: '',
+            dueTime: '',
             details: '',
             status: 'Pending',
             type: taskType
@@ -38,6 +39,7 @@ export default function AddTask({ handleTaskAdded, handleShowPopupNotification }
         setTaskData({
         title: '',
         duedate: '',
+        dueTime: '',
         details: '',
         status: 'Pending',
         type: taskType,
@@ -75,6 +77,10 @@ export default function AddTask({ handleTaskAdded, handleShowPopupNotification }
                     <input type="date" placeholder="Due date" name="duedate" value={taskData.duedate} onChange={handleInputChange} autoComplete="on" />
                 </label>
                 <label>
+                    <span>Due Time</span>
+                    <input type="time" className="long-input" name="dueTime" value={taskData.dueTime} onChange={handleInputChange} autoComplete="on" />
+                </label>
+                <label>
                     <span>Additional Notes</span>
                     <input type="text" className="long-input" placeholder="Enter assignment details" name="details" value={taskData.details} onChange={handleInputChange} autoComplete="on" />
                 </label>
@@ -90,6 +96,10 @@ export default function AddTask({ handleTaskAdded, handleShowPopupNotification }
                 <label>
                     <span>Due Date</span>
                     <input type="date" placeholder="Due date" name="duedate" value={taskData.duedate} onChange={handleInputChange} autoComplete="on" />
+                </label>
+                <label>
+                    <span>Due Time</span>
+                    <input type="time" className="long-input" name="dueTime" value={taskData.dueTime} onChange={handleInputChange} autoComplete="on" />
                 </label>
                 <label>
                     <span>Additional Notes</span>
@@ -115,8 +125,6 @@ export default function AddTask({ handleTaskAdded, handleShowPopupNotification }
                         </div>
                     </div>
                 )
-                break;
-        
             default:
                 break;
         }

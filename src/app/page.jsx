@@ -10,6 +10,7 @@ import DashboardCalendar from "@/components/dashboard/DashboardCalendar";
 import DashboardGroup from "@/components/dashboard/DashboardGroups";
 import DashboardTasksOverview from "@/components/dashboard/DashboardTasksOverview";
 import DashboardTimeTable from "@/components/dashboard/DashboardTimeTable";
+import DaysSummary from "@/components/dashboard/DaysSummary";
 import { useState, useEffect, useRef } from "react";
 
 export default function Home() {
@@ -85,6 +86,7 @@ export default function Home() {
         <DashboardCalendar />
         <DashboardTimeTable handleShowPopupNotification={handleShowPopupNotification} />
         <DashboardTasksOverview handleShowPopupNotification={handleShowPopupNotification} />
+        <DaysSummary />
         <DashboardGroup />
       </section>
       {state.viewportWidth < 1001 ? (

@@ -2090,6 +2090,7 @@ input[type="file"] {
 .dashboard-calendar,
 .dashboard-time-table,
 .dashboard-task-overview-table,
+.dashboard-today-summary,
 .dashboard-groups{
     box-shadow: 0px 0px 10px rgba(40, 40, 40, 0.15)
 }
@@ -2351,9 +2352,9 @@ input[type="file"] {
 }
 
 // Dashboard Task Overview
-.dashboard-task-overview-table {
+.dashboard-task-overview-table,
+.dashboard-today-summary {
     @include fda();
-    grid-area: dashboardtasks;
     max-height: 100%;
     overflow-x: scroll;
     background-color: $white;
@@ -2382,6 +2383,35 @@ input[type="file"] {
         }
         .dashboard-t-o-t-header {
             background-color: #ECF7F2;
+        }
+    }
+}
+
+.dashboard-task-overview-table{
+    grid-area: dashboardtasks;
+}
+
+.dashboard-today-summary{
+    grid-area: dashboardtodaysummary;
+    .box{
+        gap: 10px;
+        .row{
+            display: flex;
+            flex-direction: row;
+            gap: 15px;
+            height: max-content;
+            min-height: max-content;
+            border: solid 1px rgba(0, 24, 12, 0.2);
+            border-radius: 5px;
+            width: calc(100% - 23px);
+            padding: 10px;
+            // color: $primary-color2;
+            // border: none; // Testing
+                .column{
+                    @include fd;
+                    align-items: flex-start;
+                    justify-content: flex-start;
+                }
         }
     }
 }
@@ -2810,9 +2840,7 @@ input[type="file"] {
     }
 
     .dashboard-task-overview-table{
-        .box{
-            gap: 10px;
-        }
+        display: none;
     }
 
     // Components - Dashboard Groups
@@ -2914,7 +2942,7 @@ input[type="file"] {
     .dashboard-main-section {
         grid-template-areas:
             "dashboardbox"
-            "dashboardtasks"
+            "dashboardtodaysummary"
             "dashboardcalendar"
             // "classandexamschedule"
             // "dashboardgroups"
