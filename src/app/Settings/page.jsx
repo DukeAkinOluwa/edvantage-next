@@ -1,7 +1,7 @@
 'use client'
 import React, { useState, useEffect, useContext } from 'react';
 // import { BottomNavContext, TopNavContext } from "@/contexts/BottomNavContext";
-import SideMenu from "@/components/SideMenu"
+// import SideMenu from "@/components/SideMenu"
 import PageRightHeader from "@/components/PageRightHeader"
 
 export default function Settings(){

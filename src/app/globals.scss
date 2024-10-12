@@ -1091,7 +1091,7 @@ div:has(div.page-right):has(div.login-signup){
     }
     .left {
         @include fd();
-        gap: 40px;
+        gap: 10px;
         grid-area: left;
         align-items: flex-start;
     }
@@ -1106,8 +1106,11 @@ div:has(div.page-right):has(div.login-signup){
     @include fd();
     gap: 10px;
     border-bottom: solid 1px #D1D1D1;
-    padding: 20px 0px;
+    border-radius: 14px;
+    box-shadow: 0px 0px 10px rgba(40, 40, 40, 0.15);
+    padding: 20px 10px;
     min-width: 30svw;
+    max-width: calc(100% - 20px);
     h3 {
         padding: 0px 0px 20px 0px;
         border-bottom: solid 1px #D1D1D1;
@@ -3102,18 +3105,15 @@ input[type="file"] {
         grid-template-areas:
             "top top"
             "left left";
-
         .settings-section {
             flex-wrap: wrap;
             align-content: flex-start;
             width: 100%;
         }
-
         .left {
-            gap: 10px;
             border: none;
+            align-items: center;
         }
-
         h1,
         h2,
         h3,
@@ -3129,15 +3129,12 @@ input[type="file"] {
     .faq-table {
         border: none;
         width: calc(100% - 40px);
-
         .faq-header {
             display: none;
         }
-
         .column {
             gap: 20px;
             justify-content: flex-start;
-
             h3 {
                 font-size: 1rem;
             }
