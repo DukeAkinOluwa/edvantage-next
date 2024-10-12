@@ -6,6 +6,7 @@ import GeneralHeader from "@/components/GeneralHeader";
 import SwDev from "./swDev";
 import NotificationRequest from "@/components/NotificationRequest";
 import ScheduleNotification from "@/components/ScheduleNotification";
+import { Analytics } from '@vercel/analytics/react';
 import "./globals.css";
 // import BottomNavigation from "@/components/BottomNavigation";
 import {
@@ -31,6 +32,7 @@ export default function RootLayout({ children }) {
                   <SwDev />
                   <ScheduleNotification />
                   <NotificationRequest />
+                  <Analytics />
                 </div>
               </body>
             </html>
