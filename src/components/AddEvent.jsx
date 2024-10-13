@@ -28,7 +28,6 @@ export default function AddEvent({ handleEventAdded, handleShowPopupNotification
     };
 
     const handleSubmit = async () => {
-        console.log(eventData)
         if (editingAssignment) {
             await updateTask({ ...editingAssignment, ...assignmentData }).then(setEditingAssignment(null));
             ;

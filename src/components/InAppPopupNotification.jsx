@@ -3,7 +3,6 @@ export default function InAppPopupNotification({ popupNotificationTitle, popupNo
         height: "0px",
         padding: "0px"
     }
-    console.log(popupHeight)
     return(
         <div className="popup-notification" style={( popupHeight === false ) ? style : {}}>
             <h3>{popupNotificationTitle}</h3>
