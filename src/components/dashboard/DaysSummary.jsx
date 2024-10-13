@@ -2,12 +2,14 @@
 
 import task_data from "@/DB/taskdata.json";
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
-import AddTask from "../AddTask";
+import AddEvent from "../AddEvent"
 import { getAllTasks } from "@/utils/indexedDB";
 
 const DaysSummary = ({ handleShowPopupNotification }) => {
     const taskdata = task_data.courses;
     const [windowWidth, setWindowWidth] = useState(null);
+    const [isAddEventVisible, setIsAddEventVisible] = useState(false)
+    const [reloadTimetable, setReloadTimetable] = useState(false)
     const [isAddTaskVisible, setIsAddTaskVisible] = useState(false);
     const [assignments, setAssignments] = useState([]);
     const [focusedInput, setFocusedInput] = useState(null);
@@ -39,6 +41,14 @@ const DaysSummary = ({ handleShowPopupNotification }) => {
     const taskinfo = useMemo(() => {
         return windowWidth >= 575.98 ? filteredTasks : filteredTasks.slice(0, 8);
     }, [windowWidth, filteredTasks]);
+    
+    function handleAddEvent(){
+        setIsAddEventVisible(!isAddEventVisible)
+    }
+    function handleEventAdded(){
+        setIsAddEventVisible(!isAddEventVisible)
+        setReloadTimetable(!reloadTimetable)
+    }
 
     return (
         <div className="dashboard-today-summary pc-hidden">
@@ -46,11 +56,13 @@ const DaysSummary = ({ handleShowPopupNotification }) => {
                 <div className="dashboard-section-header task-header">
                     <div className="dashboard-section-heading">
                         <h3>Todays Events</h3>
+                        <div onClick={handleAddEvent} className="action"><p>Add Event</p></div>
                     </div>
                 </div>
                 {taskinfo.map((tasks, index) => (
                 <DTOTemplate key={index} taskdata={tasks} />
                 ))}
+                {isAddEventVisible === true ? (<div className="add-item"><div className="invisible-background" onClick={handleAddEvent}></div><AddEvent handleEventAdded={handleEventAdded} handleShowPopupNotification={handleShowPopupNotification} setFocusedInput={setFocusedInput} focusedInput={focusedInput} /></div>) : (<></>) }
             </div>
         </div>
     );
