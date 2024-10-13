@@ -9,9 +9,7 @@ const DaysSummary = ({ handleShowPopupNotification }) => {
     const taskdata = task_data.courses;
     const [windowWidth, setWindowWidth] = useState(null);
     const [isAddEventVisible, setIsAddEventVisible] = useState(false)
-    const [isViewEventVisible, setIsViewEventVisible] = useState(false)
     const [reloadTimetable, setReloadTimetable] = useState(false)
-    const [isAddTaskVisible, setIsAddTaskVisible] = useState(false);
     const [assignments, setAssignments] = useState([]);
     const [focusedInput, setFocusedInput] = useState(null);
 
@@ -166,14 +164,6 @@ const DaysSummary = ({ handleShowPopupNotification }) => {
                 setIsEditing(false);
                 setReloadTimetable(!reloadTimetable)
                 handleShowPopupNotification("Update Successful", `${eventData.title} has been updated`)
-        
-                setEventData({
-                    title: '',
-                    date: '',
-                    startTime: '',
-                    endTime: '',
-                })
-    
                 setIsEventDetailsVisible(false)
             }
     
