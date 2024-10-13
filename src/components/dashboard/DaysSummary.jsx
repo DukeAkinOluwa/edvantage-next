@@ -21,7 +21,7 @@ const DaysSummary = ({ handleShowPopupNotification }) => {
             setAssignments(assignmentsFromDB);
         };
         fetchAssignments();
-    }, []); // Empty dependency array ensures this effect runs only once
+    }, [reloadTimetable]); // Empty dependency array ensures this effect runs only once
 
   // Handle window resize events
     useEffect(() => {
