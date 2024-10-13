@@ -38,7 +38,7 @@ const DaysSummary = ({ handleShowPopupNotification }) => {
     }, [assignments]);
 
     const taskinfo = useMemo(() => {
-        return windowWidth >= 575.98 ? filteredTasks : filteredTasks.slice(0, 8);
+        return windowWidth >= 575.98 ? filteredTasks : filteredTasks.slice(0, 6);
     }, [windowWidth, filteredTasks]);
     
     function handleAddEvent(){
@@ -54,7 +54,7 @@ const DaysSummary = ({ handleShowPopupNotification }) => {
             <div className="box">
                 <div className="dashboard-section-header task-header">
                     <div className="dashboard-section-heading">
-                        <h3>Todays Events</h3>
+                        <h3>Todays Schedule</h3>
                         <div onClick={handleAddEvent} className="action"><p>Add Event</p></div>
                     </div>
                 </div>
