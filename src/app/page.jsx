@@ -86,7 +86,7 @@ export default function Home() {
         <DashboardCalendar />
         <DashboardTimeTable handleShowPopupNotification={handleShowPopupNotification} />
         <DashboardTasksOverview handleShowPopupNotification={handleShowPopupNotification} />
-        <DaysSummary />
+        <DaysSummary handleShowPopupNotification={handleShowPopupNotification} />
         <DashboardGroup />
       </section>
       {state.viewportWidth < 1001 ? (
