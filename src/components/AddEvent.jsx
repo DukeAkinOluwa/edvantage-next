@@ -7,6 +7,8 @@ export default function AddEvent({ handleEventAdded, handleShowPopupNotification
     const [eventShowOptions, setEventShowOptions] = useState(false);
     const [eventData, setEventData] = useState({});
     const [focusedInput, handleSetFocusedInput] = useState("");
+    const [errors, setErrors] = useState({});
+    const [isValid, setIsValid] = useState(false);
 
     useEffect(() => {
         setEventData({
@@ -19,17 +21,59 @@ export default function AddEvent({ handleEventAdded, handleShowPopupNotification
         })
     }, [eventType])
 
+    useEffect(() => {
+        validateForm();
+    }, [eventData]);
+
+    // Validation rules
+    const validateInputs = (name, value) => {
+        let errorMsg = '';
+        if (!value.trim()) {
+            errorMsg = `${name} is required`;
+        } else if (name === 'title' && !/^[a-zA-Z0-9\s]+$/.test(value)) {
+            errorMsg = 'Title should contain only alphanumeric characters';
+        } else if (name === 'location' && !/^[a-zA-Z0-9\s]+$/.test(value)) {
+            errorMsg = 'Location should contain only alphanumeric characters';
+        }
+        return errorMsg;
+    };
+
+    const validateForm = () => {
+        const newErrors = {};
+        Object.keys(eventData).forEach((key) => {
+            const error = validateInputs(key, eventData[key]);
+            if (error) newErrors[key] = error;
+        });
+        setErrors(newErrors);
+        setIsValid(Object.keys(newErrors).length === 0); // Form is valid if there are no errors
+    };
+
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setEventData((prevData) => ({
         ...prevData,
         [name]: value,
         }));
+
+        // Validate individual input on change
+        const error = validateInputs(name, value);
+        setErrors((prevErrors) => ({
+            ...prevErrors,
+            [name]: error
+        }));
     };
 
     const handleSubmit = async () => {
+        validateForm()
+        if (!isValid) {
+            // If the form is invalid, prevent submission
+            handleShowPopupNotification("Error", "Please fill out all fields with valid data", true);
+            return;
+        }
+
+        // Come back to check this eventData guy. Was changed from assignmentData
         if (editingAssignment) {
-            await updateTask({ ...editingAssignment, ...assignmentData }).then(setEditingAssignment(null));
+            await updateTask({ ...editingAssignment, ...eventData }).then(setEditingAssignment(null));
             ;
         } else {
             await addTask(eventData);

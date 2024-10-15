@@ -6,6 +6,8 @@ export default function AddTask({ handleTaskAdded, handleShowPopupNotification }
     const [isEditingTask, setIsEditingTask] = useState(null);
     const [taskShowOptions, setTaskShowOptions] = useState(false)
     const [taskData, setTaskData] = useState({});
+    const [errors, setErrors] = useState({});
+    const [isValid, setIsValid] = useState(false);
 
     useEffect(() => {
         setTaskData({
@@ -18,6 +20,33 @@ export default function AddTask({ handleTaskAdded, handleShowPopupNotification }
         })
     }, [taskType])
 
+    useEffect(() => {
+        validateForm();
+    }, [taskData]);
+
+    // Validation rules
+    const validateInputs = (name, value) => {
+        let errorMsg = '';
+        if (!value.trim()) {
+            errorMsg = `${name} is required`;
+        } else if (name === 'title' && !/^[a-zA-Z0-9\s]+$/.test(value)) {
+            errorMsg = 'Title should contain only alphanumeric characters';
+        } else if (name === 'location' && !/^[a-zA-Z0-9\s]+$/.test(value)) {
+            errorMsg = 'Location should contain only alphanumeric characters';
+        }
+        return errorMsg;
+    };
+
+    const validateForm = () => {
+        const newErrors = {};
+        Object.keys(taskData).forEach((key) => {
+            const error = validateInputs(key, taskData[key]);
+            if (error) newErrors[key] = error;
+        });
+        setErrors(newErrors);
+        setIsValid(Object.keys(newErrors).length === 0); // Form is valid if there are no errors
+    };
+
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setTaskData((prevData) => ({
@@ -27,6 +56,13 @@ export default function AddTask({ handleTaskAdded, handleShowPopupNotification }
     };
 
     const handleSubmit = async () => {
+        validateForm()
+        if (!isValid) {
+            // If the form is invalid, prevent submission
+            handleShowPopupNotification("Error", "Please fill out all fields with valid data", true);
+            return;
+        }
+
         if (isEditingTask) {
             await updateTask({ ...isEditingTask, ...taskData }).then(setIsEditingTask(null));
             ;
