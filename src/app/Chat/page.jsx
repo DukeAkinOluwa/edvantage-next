@@ -1266,12 +1266,6 @@ export default function Chats() {
     }
     return(
       <>
-        {invisibleBackground2 && (
-          <div
-            className="invisible-background"
-            onClick={() => handleClearAll()}
-          />
-        )}
         {isAddTimeTable && (
           <div className="edit-chat-timetable">
             <div className="header"><h3>Timetable Events</h3></div>
@@ -1667,18 +1661,20 @@ export default function Chats() {
     switch (true) {
       case isAddEventToTimetableVisible:
         return (
-          <div className="edit-chat-timetable">
-            <div className="header" onClick={handleSetShowOptions}>
-                <h3>{eventType.toUpperCase()}</h3>
+          <div className="add-item">
+            <div className="add">
+              <div className="header" onClick={handleSetShowOptions}>
+                  <h3>{eventType.toUpperCase()}</h3>
+              </div>
+              {getComponentContent()}
+              <div className="button button1" onClick={handleSubmit}>
+                  <p>Done</p>
+              </div>
+              <div className="button button1" onClick={handleTemporarySubmit}>
+                  <p>Next</p>
+              </div>
+              {getOptionComponent()}
             </div>
-            {getComponentContent()}
-            <div className="button button1" onClick={handleSubmit}>
-                <p>Add {eventType}</p>
-            </div>
-            <div className="button button1" onClick={handleTemporarySubmit}>
-                <p>Next {eventType}</p>
-            </div>
-            {getOptionComponent()}
           </div>
       )
       default:
