@@ -907,6 +907,45 @@ div:has(div.page-right):has(div.login-signup){
                         height: 100%;
                     }
                 }
+                .in-chat-icons{
+                    @include fa;
+                    justify-content: space-between;
+                    width: 70px;
+                    .add-attachment-icon{
+                        height: 30px;
+                        width: 30px;
+                        background-color: rgba(1, 119, 251, 0.1);
+                    }
+                }
+                .add-attachment{
+                    display: grid;
+                    grid-template-columns: repeat(4, 1fr);
+                    grid-template-rows: repeat(2, 1fr);
+                    gap: 5px;
+                    align-items: center;
+                    justify-items: center;
+                    position: fixed;
+                    bottom: 60px;
+                    right: 10px;
+                    width: 270px;
+                    height: fit-content;
+                    border-radius: 10px;
+                    padding: 20px 5px;
+                    background-color: $primary-color2;
+                    box-shadow: 0px 0px 17px 1px rgba(40, 40, 40, 0.2);
+                    .chat-attachment-container{
+                        @include fda;
+                        gap: 5px;
+                        height: 100%;
+                        width: 100%;
+                        border-radius: 5px;
+                        .icon{
+                            height: 50px;
+                            width: 50px;
+                            background-color: rgba(1, 119, 251, 0.1);
+                        }
+                    }
+                }
             }
             .scroll-to-bottom{
                 @include fja;
@@ -3092,6 +3131,10 @@ input[type="file"] {
                             width: calc(100% - 20px);
                             padding: 0px 10px;
                         }
+                    }
+                    .add-attachment{
+                        width: calc(100dvw - 30px);
+                        height: 170px;
                     }
                 }
                 .chat-header {

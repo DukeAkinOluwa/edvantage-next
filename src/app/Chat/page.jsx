@@ -23,6 +23,7 @@ export default function Chats() {
   const [isChatSlide1Visible, setIsChatSlide1Visible] = useState(false);
   const [isChatSlide2Visible, setIsChatSlide2Visible] = useState(false);
   const [isEditTimeTable, setIsEditTimeTable] = useState(false)
+  const [isAddTimeTable, setIsAddTimeTable] = useState(false)
   const [timetableContent, setTimetableContent] = useState(null)
   const [filteredList, setFilteredList] = useState([]);
   const [back, setBack] = useState(false);
@@ -32,6 +33,9 @@ export default function Chats() {
   const [popupNotificationText, setPopupNotificationText] = useState("")
   const [popupHeight, setPopupHeight] = useState(false)
   const chatdata = userData && userData.chats;
+  const [eventData, setEventData] = useState({});
+  const [isAddEventToTimetableVisible, setIsAddEventToTimetableVisible] = useState(false)
+  const [errors, setErrors] = useState({});
 
   const chatEndRef = useRef(null);
 
@@ -476,6 +480,10 @@ export default function Chats() {
     { id: 30, type: "document", name: "code.txt", size: 543281 }
   ];
   
+  const [addTimetableContent, setAddTimeTableContent] = useState([])
+  const [eventType, setEventType] = useState("class");
+  const [showAddAttachment, setShowAddAttachment] = useState(false)
+  
 
   useEffect(() => {
     setViewportWidth(window.innerWidth);
@@ -639,6 +647,8 @@ export default function Chats() {
     setInvisibleBackground1(false);
     setInvisibleBackground2(false);
     setIsEditTimeTable(false)
+    setIsAddTimeTable(false)
+    setIsAddEventToTimetableVisible(false)
   };
 
   const handleRefreshClick = () => {
@@ -675,6 +685,8 @@ export default function Chats() {
           <div className="whole-chat-section">
             <UserProfileDetails selectedUserProfile={selectedUserProfile} />
             <EditTimeTable />
+            <AddTimeTable />
+            <AddEventToTimetable />
           </div>
         );
       case viewportWidth >= 656:
@@ -685,13 +697,14 @@ export default function Chats() {
             <UserProfileDetails selectedUserProfile={selectedUserProfile} />
             <AddChat />
             <EditTimeTable />
+            <AddTimeTable />
+            <AddEventToTimetable />
           </div>
         );
       default:
         return null; // Handle unexpected cases
     }
   }
-  
 
   return (
     <>
@@ -738,6 +751,11 @@ export default function Chats() {
     };
 
     function getSelectedUserProfile() {
+      function handleShowAddTimetable(){
+        setIsAddTimeTable(true)
+        setShowAddAttachment(false)
+        setInvisibleBackground2(true)
+      }
       switch (selectedUserProfile) {
         case null:
           return(
@@ -791,6 +809,22 @@ export default function Chats() {
                     />
                   </label>
                 </form>
+                <div className="in-chat-icons">
+                  <div className="add-attachment-icon" onClick={()=> setShowAddAttachment(!showAddAttachment)}>
+                    
+                  </div>
+                </div>
+                {showAddAttachment ? 
+                  <div className="add-attachment">
+                    <div className="chat-attachment-container" onClick={()=> handleShowAddTimetable()}>
+                      <div className="icon">
+
+                      </div>
+                      <p>Timetable</p>
+                    </div>
+                  </div>
+                  : <></>
+                }
               </div>
             </>
           );
@@ -825,6 +859,7 @@ export default function Chats() {
         }
       }
       function getChatTimetableContent(content) {
+        // console.log(content)
         function handleAddChatTimetable(){
           content.events.map((timetableclass)=>{
             addTask(timetableclass)
@@ -1197,6 +1232,76 @@ export default function Chats() {
       </>
     )
   }
+  function AddTimeTable(){
+    function handleAddChatTimetable(){
+      setIsAddEventToTimetableVisible(true)
+      // addTimetableContent.map((timetableclass)=>{
+      //   addTask(timetableclass)
+      // })
+      // setTimetableContent(null)
+      // setIsEditTimeTable(false)
+      // setInvisibleBackground2(false)
+      // handleShowPopupNotification("Timetable Added Successfully", "Events have been added to your Calendar", true)
+    }
+    function handleExitAddTimeTable(){
+      setIsAddTimeTable(false)
+      setTimetableContent(null)
+      setInvisibleBackground2(false)
+    }
+    function handleSendChatTimetable() {
+      selectedUserProfile.chat.push({
+        sender: "Akin",
+        title: "400L Class Timetable",
+        subtitle: "Mechatronics Engineering",
+        message: "Checkout this Timetable.",
+        category: {
+          name: "timetable",
+          type: "class"
+        },
+        events: addTimetableContent})
+        
+      setIsAddTimeTable(false)
+      setAddTimeTableContent([])
+      setInvisibleBackground2(false)
+    }
+    return(
+      <>
+        {invisibleBackground2 && (
+          <div
+            className="invisible-background"
+            onClick={() => handleClearAll()}
+          />
+        )}
+        {isAddTimeTable && (
+          <div className="edit-chat-timetable">
+            <div className="header"><h3>Timetable Events</h3></div>
+            <div className="edit-timetable-events">
+              {addTimetableContent.map((event, index) => (
+                <div className="edit-timetable-event" key={index}>
+                  <p>{event.title}</p>
+                  <p>{event.startTime} - {event.endTime}</p>
+                </div>
+              ))}
+            </div>
+            <div className="add-events-button">
+              {addTimetableContent ? (
+                <>
+                <div className="button button2" onClick={handleExitAddTimeTable}><p>Exit</p></div>
+                <div className="button button2" onClick={handleAddChatTimetable}><p>Add</p></div>
+                <div className="button button1" onClick={handleSendChatTimetable}><p>Send</p></div>
+                </>
+              ) : (
+                <>
+                <div className="button button2" onClick={handleExitAddTimeTable}><p>Close</p></div>
+                <div className="button button1" onClick={handleAddChatTimetable}><p>Add</p></div>
+                </>
+              )}
+            </div>
+          </div>
+        )}
+      </>
+    )
+  }
   function IndividualPageHeader(){
 
     function handleRefreshClick(){
@@ -1316,5 +1421,270 @@ export default function Chats() {
     return(
       <div className="doc-file"></div>
     )
+  }
+  function AddEventToTimetable() {
+    const [eventShowOptions, setEventShowOptions] = useState(false);
+    const [isValid, setIsValid] = useState(false);
+
+    // Validation rules
+    const validateInputs = (name, value) => {
+        let errorMsg = '';
+        if (!value.trim()) {
+            errorMsg = `${name} is required`;
+        } else if (name === 'title' && !/^[a-zA-Z0-9\s]+$/.test(value)) {
+            errorMsg = 'Title should contain only alphanumeric characters';
+        } else if (name === 'location' && !/^[a-zA-Z0-9\s]+$/.test(value)) {
+            errorMsg = 'Location should contain only alphanumeric characters';
+        }
+        return errorMsg;
+    };
+    const validateForm = () => {
+        const newErrors = {};
+        Object.keys(eventData).forEach((key) => {
+            const error = validateInputs(key, eventData[key]);
+            if (error) newErrors[key] = error;
+        });
+        setErrors(newErrors);
+        setIsValid(Object.keys(newErrors).length === 0); // Form is valid if there are no errors
+    };
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setEventData((prevData) => ({
+        ...prevData,
+        [name]: value,
+        }));
+        // Validate individual input on change
+        const error = validateInputs(name, value);
+        setErrors((prevErrors) => ({
+            ...prevErrors,
+            [name]: error
+        }));
+    };
+    const handleSubmit = async () => {
+        validateForm()
+        if (!isValid) {
+            // // If the form is invalid, prevent submission
+            // handleShowPopupNotification("Error", "Please fill out all fields with valid data", true);
+            // return;
+        }
+        
+        addTimetableContent.push(eventData);
+        setIsAddEventToTimetableVisible(false)
+        console.log(eventData)
+        
+        // handleShowPopupNotification("Event Added", `${eventData.title} has Been Successfully Added`, true)
+        // setEventData({
+        //     title: '',
+        //     duedate: '',
+        //     startTime: '',
+        //     endTime: '',
+        //     type: eventType,
+        //     repeat: 'none'
+        // });
+    };
+    const handleTemporarySubmit = async () => {
+      addTimetableContent.push(eventData)
+      setEventData({
+          title: '',
+          duedate: '',
+          startTime: '',
+          endTime: '',
+          type: eventType,
+          repeat: 'none'
+      });
+    }
+    const handleSetShowOptions = () => {
+        setEventShowOptions(!eventShowOptions)
+    };
+    const handleSetOption = (value) => {
+        setEventType(value);
+        setEventShowOptions(false)
+        setEventData({
+            title: '',
+            duedate: '',
+            startTime: '',
+            endTime: '',
+            type: eventType,
+            repeat: 'none'
+        });
+    };
+    
+    function getComponentContent() {
+        switch (eventType) {
+        case "class":
+            return (
+                <>
+                    <label>
+                        <span>Course Title</span>
+                        <input type="text" placeholder="Course Title" name="title" value={eventData.title} onChange={handleInputChange} autoComplete="on" />
+                    </label>
+                    <label>
+                        <span>Start Date</span>
+                        <input type="date" name="date" value={eventData.date} onChange={handleInputChange} autoComplete="on"  />
+                    </label>
+                    <div className="times">
+                        <label>
+                            <span>Start Time</span>
+                            <input type="time" className="long-input" name="startTime" value={eventData.startTime} onChange={handleInputChange} autoComplete="on" />
+                        </label>
+                        <label>
+                            <span>End Time</span>
+                            <input type="time" className="long-input" name="endTime" value={eventData.endTime} onChange={handleInputChange} autoComplete="on" />
+                        </label>
+                    </div>
+                </>
+            );
+        case "exam":
+            return (
+                <>
+                    <label>
+                        <span>Course Title</span>
+                        <input type="text" placeholder="Course Title" name="title" value={eventData.title} onChange={handleInputChange} autoComplete="on" />
+                    </label>
+                    <label>
+                        <span>Date</span>
+                        <input type="date" name="date" value={eventData.date} onChange={handleInputChange} autoComplete="on" />
+                    </label>
+                    <div className="times">
+                        <label>
+                            <span>Start Time</span>
+                            <input type="time" className="long-input" name="startTime" value={eventData.startTime} onChange={handleInputChange} autoComplete="on" />
+                        </label>
+                        <label>
+                            <span>End Time</span>
+                            <input type="time" className="long-input" name="endTime" value={eventData.endTime} onChange={handleInputChange} autoComplete="on" />
+                        </label>
+                    </div>
+                </>
+            );
+            case "outing":
+                return (
+                    <>
+                        <label>
+                            <span>Event</span>
+                            <input type="text" placeholder="Outing" name="title" value={eventData.title} onChange={handleInputChange} autoComplete="on" />
+                        </label>
+                        <label>
+                            <span>Location</span>
+                            <input type="text" placeholder="Location" name="location" value={eventData.location} onChange={handleInputChange} autoComplete="on" />
+                        </label>
+                        <label>
+                            <span>Date</span>
+                            <input type="date" name="date"  value={eventData.date} onChange={handleInputChange} autoComplete="on" />
+                        </label>
+                        <div className="times">
+                            <label>
+                                <span>Start</span>
+                                <input type="time" className="long-input" name="startTime" value={eventData.startTime} onChange={handleInputChange} autoComplete="on" />
+                            </label>
+                            <label>
+                                <span>End</span>
+                                <input type="time" className="long-input" name="endTime" value={eventData.endTime} onChange={handleInputChange} autoComplete="on" />
+                            </label>
+                        </div>
+                        </>
+                );
+        case "meeting":
+            return (
+                <>
+                    <label>
+                        <span>Title</span>
+                        <input type="text" placeholder="Meeting" name="title"  value={eventData.title} onChange={handleInputChange} autoComplete="on" />
+                    </label>
+                    <label>
+                        <span>Location</span>
+                        <input type="text" placeholder="Meeting Location" name="location"  value={eventData.location} onChange={handleInputChange} autoComplete="on" />
+                    </label>
+                    <label>
+                        <span>Date</span>
+                        <input type="date" name="date" value={eventData.date} onChange={handleInputChange} autoComplete="on" />
+                    </label>
+                    <div className="times">
+                        <label>
+                            <span>Start Time</span>
+                            <input type="time" className="long-input" name="startTime" value={eventData.startTime} onChange={handleInputChange} autoComplete="on" />
+                        </label>
+                        <label>
+                            <span>End Time</span>
+                            <input type="time" className="long-input" name="endTime" value={eventData.endTime} onChange={handleInputChange} autoComplete="on" />
+                        </label>
+                    </div>
+                </>
+            );
+            case "other":
+                return (
+                    <>
+                        <label>
+                            <span>Event</span>
+                            <input type="text" placeholder="Event Name" name="title" value={eventData.title} onChange={handleInputChange} autoComplete="on" />
+                        </label>
+                        <label>
+                            <span>Date</span>
+                            <input type="date" placeholder="Event Date" name="date" value={eventData.date} onChange={handleInputChange} autoComplete="on" />
+                        </label>
+                        <label>
+                            <span>Start</span>
+                            <input type="time" className="long-input" name="startTime" value={eventData.startTime} onChange={handleInputChange} autoComplete="on" />
+                        </label>
+                        <label>
+                            <span>End</span>
+                            <input type="time" className="long-input" name="endTime" value={eventData.endTime} onChange={handleInputChange} autoComplete="on" />
+                        </label>
+                    </>
+                );
+        default:
+            return null;
+        }
+    }
+    function getOptionComponent(){
+        switch (eventShowOptions) {
+            case true:
+                return(
+                    <div className="options">
+                        <div className="option" onClick={()=>handleSetOption("class")}>
+                            <p>Class</p>
+                        </div>
+                        <div className="option" onClick={()=>handleSetOption("exam")}>
+                            <p>Exam</p>
+                        </div>
+                        <div className="option" onClick={()=>handleSetOption("meeting")}>
+                            <p>Meeting</p>
+                        </div>
+                        <div className="option" onClick={()=>handleSetOption("outing")}>
+                            <p>Outing</p>
+                        </div>
+                        <div className="option" onClick={()=>handleSetOption("other")}>
+                            <p>Other</p>
+                        </div>
+                    </div>
+                )
+                break;
+        
+            default:
+                break;
+        }
+    }
+    switch (true) {
+      case isAddEventToTimetableVisible:
+        return (
+          <div className="edit-chat-timetable">
+            <div className="header" onClick={handleSetShowOptions}>
+                <h3>{eventType.toUpperCase()}</h3>
+            </div>
+            {getComponentContent()}
+            <div className="button button1" onClick={handleSubmit}>
+                <p>Add {eventType}</p>
+            </div>
+            <div className="button button1" onClick={handleTemporarySubmit}>
+                <p>Next {eventType}</p>
+            </div>
+            {getOptionComponent()}
+          </div>
+      )
+      default:
+        return(
+          <></>
+        );
+    }
   }
 }

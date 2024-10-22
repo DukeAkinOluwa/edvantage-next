@@ -875,6 +875,48 @@ div:has(div.page-right):has(div.login-signup) .general-header {
   padding: 2px 10px 0px 0px;
   height: 100%;
 }
+.chat-page .whole-chat-section .right .chat-input-box .in-chat-icons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 70px;
+}
+.chat-page .whole-chat-section .right .chat-input-box .in-chat-icons .add-attachment-icon {
+  height: 30px;
+  width: 30px;
+  background-color: rgba(1, 119, 251, 0.1);
+}
+.chat-page .whole-chat-section .right .chat-input-box .add-attachment {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 5px;
+  align-items: center;
+  justify-items: center;
+  position: fixed;
+  bottom: 60px;
+  right: 10px;
+  width: 270px;
+  height: fit-content;
+  border-radius: 10px;
+  padding: 20px 5px;
+  background-color: #FAFBFD;
+  box-shadow: 0px 0px 17px 1px rgba(40, 40, 40, 0.2);
+}
+.chat-page .whole-chat-section .right .chat-input-box .add-attachment .chat-attachment-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  height: 100%;
+  width: 100%;
+  border-radius: 5px;
+}
+.chat-page .whole-chat-section .right .chat-input-box .add-attachment .chat-attachment-container .icon {
+  height: 50px;
+  width: 50px;
+  background-color: rgba(1, 119, 251, 0.1);
+}
 .chat-page .whole-chat-section .right .scroll-to-bottom {
   display: flex;
   justify-content: center;
@@ -2947,6 +2989,10 @@ input[type=file] {
   .chat-page .whole-chat-section .right .chat-input-box label input {
     width: calc(100% - 20px);
     padding: 0px 10px;
+  }
+  .chat-page .whole-chat-section .right .chat-input-box .add-attachment {
+    width: calc(100dvw - 30px);
+    height: 170px;
   }
   .chat-page .whole-chat-section .right .chat-header {
     gap: 15px;
