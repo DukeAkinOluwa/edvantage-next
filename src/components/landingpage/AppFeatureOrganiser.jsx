@@ -1,4 +1,4 @@
-import OrganiserImage from "../../Images/landingpage/Organiser.png"
+import Image from "next/image";
 
 export default function AppFeatureOrganiser() {
     return (
@@ -18,7 +18,7 @@ export default function AppFeatureOrganiser() {
                 </div>
             </div>
             <div className="right">
-                <img src={OrganiserImage} alt="OrganiserPhoto" />
+                <Image src={`/Images/landingpage/Organiser.png`} width={400} height={1000} alt="OrganiserPhoto"></Image>
             </div>
         </div>
     )

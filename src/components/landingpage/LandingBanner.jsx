@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
 
 export default function LandingBanner(){
@@ -19,7 +19,7 @@ export default function LandingBanner(){
             <div className="banner-left">
                 <h2>Empower Your Academic Journey</h2>
                 <p>Welcome to the ultimate student companion app. Access all the tools you need to suceed academically</p>
-                <div className="button2"><Link to="/Signup" className="get-started no-button">Sign up</Link></div>
+                <div className="button2"><Link href="/Signup" className="get-started no-button">Sign up</Link></div>
             </div>
             <div className="banner-right phone-hidden">
                 <div className="student-image student-image-1">
@@ -41,10 +41,6 @@ export default function LandingBanner(){
             <div className="banner-right pc-hidden">
                 <div className={`student-image student-image-${currentSlide + 1}`}>
                 </div>
-                {/* <div className={`student-image student-image-${(currentSlide + 1) % 3 + 1}`}>
-                </div>
-                <div className={`student-image student-image-${(currentSlide + 2) % 3 + 1}`}>
-                </div> */}
             </div>
         </div>
     )

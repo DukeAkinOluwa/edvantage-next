@@ -1,4 +1,4 @@
-import LibraryImage from "../../Images/landingpage/Library.png"
+import Image from "next/image";
 
 export default function AppFeatureLibrary(){
     return(
@@ -18,7 +18,7 @@ export default function AppFeatureLibrary(){
                 </div>
             </div>
             <div className="right">
-                <img src={LibraryImage} alt="LibraryPhoto" />
+                <Image src={`/Images/landingpage/Library.png`} width={400} height={1000} alt="LibraryPhoto"></Image>
             </div>
         </div>
     )

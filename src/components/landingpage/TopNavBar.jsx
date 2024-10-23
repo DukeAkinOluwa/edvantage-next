@@ -1,6 +1,7 @@
-import { Link } from "react-router-dom"
-import Logo14Short from "../../Images/Logo14Short.png"
+'use client'
+
 import { useState } from "react";
+import Link from "next/link";
 
 export default function TopNavBar(){
     const [isSideMenuVisible, setIsSideMenuVisible] = useState(false);
@@ -9,13 +10,12 @@ export default function TopNavBar(){
         setIsSideMenuVisible(!isSideMenuVisible);
     };
     return(
-        <div className="top-navbar" style={{position: "relative"}}>
+        <div className="top-navbar" style={{position: "sticky"}}>
             <h3>EDVANTAGE</h3>
             <nav className="top-nav-links">
-                <Link to='/' className="home">Home</Link>
-                <Link to='/About' className="about">About</Link>
-                <Link to='/Contact' className="contact">Contact</Link>
-                <Link to='/Login' className="login">Login</Link>
+                <Link href='/' className="home">Home</Link>
+                <Link href='/About' className="about">About</Link>
+                <Link href='/api/auth/login' className="login">Login</Link>
             </nav>
             <div className="menu-btn pc-hidden" onClick={toggleHeaderSideMenu} style={{position: "absolute", left: `${isSideMenuVisible ? '84dvw' : ''}`, justifyContent: `${isSideMenuVisible ? 'center' : ''}`}}>
                 <div className="line" style={{transform: `${isSideMenuVisible ? 'rotate(45deg)' : ''}`, width: `${isSideMenuVisible ? '39px' : ''}`}}></div>

@@ -1,10 +1,10 @@
-import GroupImage from "../../Images/landingpage/Group.png"
+import Image from "next/image";
 
 export default function AppFeatureGroup(){
     return(
         <div className="app-feature">
             <div className="right">
-                <img src={GroupImage} alt="groupPhoto" />
+                <Image src={`/Images/landingpage/Group.png`} width={400} height={1000} alt="groupPhoto"></Image>
             </div>
             <div className="left">
                 <div className="feature-summary">

@@ -304,7 +304,7 @@ export default function Login(){
                         <h2>Congratulations {userData.fullName}</h2>
                         <p>You&apos;re all set</p>
                         <Image src="/Images/login-signup/Image7.png" alt="Imagee"  width={1000} height={1000} />
-                        <div className="button1" onClick={()=>handleSignup(userData)}><Link href="/">Continue</Link></div>
+                        <div className="button1" onClick={()=>handleSignup(userData)}><Link href="/Dashboard">Continue</Link></div>
                     </div>
                 </>
                 )}

@@ -104,7 +104,7 @@ export default function Login(){
         // Here you can perform actions like sending data to a server or storing it in local storage
         // console.log("Final User Data:", userData);
         login(userData)
-        window.location.href = "/";
+        window.location.href = "/Dashboard";
     };
     
     return(
@@ -323,7 +323,7 @@ export default function Login(){
                         <h2>Congratulations {userData.fullName}</h2>
                         <p>You&apos;re all set</p>
                         <Image src="/Images/login-signup/Image7.png" alt="Imagee"  width={1000} height={1000} />
-                        <div className="button1" onClick={()=>handleSignup(userData)}><Link href="/">Continue</Link></div>
+                        <div className="button1" onClick={()=>handleSignup(userData)}><Link href="/Dashboard">Continue</Link></div>
                     </div>
                 </>
                 )}
