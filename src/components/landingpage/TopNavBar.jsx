@@ -9,10 +9,20 @@ export default function TopNavBar(){
     const toggleHeaderSideMenu = () => {
         setIsSideMenuVisible(!isSideMenuVisible);
     };
+    
+    const style = {
+        left: `${isSideMenuVisible ? "0px" : "-110dvw"}`
+    }
+
     return(
         <div className="top-navbar" style={{position: "sticky"}}>
             <h3>EDVANTAGE</h3>
             <nav className="top-nav-links">
+                <Link href='/' className="home">Home</Link>
+                <Link href='/About' className="about">About</Link>
+                <Link href='/api/auth/login' className="login">Login</Link>
+            </nav>
+            <nav className="side-nav-links" style={style}>
                 <Link href='/' className="home">Home</Link>
                 <Link href='/About' className="about">About</Link>
                 <Link href='/api/auth/login' className="login">Login</Link>

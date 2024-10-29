@@ -1346,11 +1346,17 @@ input[type="file"] {
     width: 100%;
     @include fa();
     justify-content: space-between;
+    h3{
+        display: none;
+    }
     .top-nav-links {
         @include fa();
         justify-content: space-between;
         gap: 30px;
         margin: 0px 40px 0px 0px;
+    }
+    .side-nav-links{
+        display: none;
     }
     a {
         @include fja();
@@ -2621,9 +2627,22 @@ input[type="file"] {
         .top-nav-links {
             display: none;
         }
+        .side-nav-links{
+            @include fd;
+            gap: 10px;
+            background-color: $primary-color2;
+            color: $text-color;
+            position: fixed;
+            top: 0px;
+            width: calc(100dvw - 40px);
+            height: 100dvh;
+            padding: 40px 20px 0px;
+            transition: all .7s ease-in;
+        }
 
         .menu-btn.pc-hidden {
-            display: flex;
+            display: flex;  
+            transition: all .8s ease-in;
         }
 
         &>img {

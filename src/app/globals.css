@@ -1324,12 +1324,18 @@ input[type=file] {
   align-items: center;
   justify-content: space-between;
 }
+.top-navbar h3 {
+  display: none;
+}
 .top-navbar .top-nav-links {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 30px;
   margin: 0px 40px 0px 0px;
+}
+.top-navbar .side-nav-links {
+  display: none;
 }
 .top-navbar a {
   display: flex;
@@ -2591,8 +2597,22 @@ input[type=file] {
   .top-navbar .top-nav-links {
     display: none;
   }
+  .top-navbar .side-nav-links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: #FAFBFD;
+    color: #2D2E2E;
+    position: fixed;
+    top: 0px;
+    width: calc(100dvw - 40px);
+    height: 100dvh;
+    padding: 40px 20px 0px;
+    transition: all 0.7s ease-in;
+  }
   .top-navbar .menu-btn.pc-hidden {
     display: flex;
+    transition: all 0.8s ease-in;
   }
   .top-navbar > img {
     display: none;
