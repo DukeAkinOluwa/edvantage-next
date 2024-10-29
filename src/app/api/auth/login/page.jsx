@@ -43,7 +43,7 @@ export default function Login(){
             setIsLoggingIn(false);
         } else {
             setLoginError("");
-            window.location.href = "https://edvantage.com.ng/";  // Or any other page after login
+            window.location.href = "https://edvantage.com.ng/Dashboard";  // Or any other page after login
         }
     };
 
