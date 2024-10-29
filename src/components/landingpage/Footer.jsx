@@ -1,7 +1,7 @@
 export default function Footer(){
     return(
         <div className="footer">
-            <h1>Dukes Panthera</h1>
+            <h1>Edvantage</h1>
             <p>Contact us</p>
             <p>+234-904-0553-001</p>
             <p>Lagos, Nigeria</p>

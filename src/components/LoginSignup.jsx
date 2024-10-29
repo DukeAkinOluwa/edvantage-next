@@ -253,7 +253,7 @@ export default function Login(){
                 <>
                     <div className="right onboarding-right">
                         <div className="container">
-                            <h2>What&apos;s your main objective in Dukes Panthera? Your choice here won&apos;t limit what you can do</h2>
+                            <h2>What&apos;s your main objective in Edvantage? Your choice here won&apos;t limit what you can do</h2>
                             <label>
                                 <span>What is your institution name?</span>
                                 <input type="text" placeholder="Enter Institution" name="institutionName" onChange={handleInputChange} autoComplete="on" />
