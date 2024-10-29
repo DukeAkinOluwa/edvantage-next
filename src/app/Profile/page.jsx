@@ -2,7 +2,7 @@
 
 import Image from "next/image"
 import Link from "next/link"
-// import { useEffect, useContext } from "react"
+import { signOut } from "next-auth/react"
 // import { BottomNavContext, TopNavContext } from "@/contexts/BottomNavContext";
 
 export default function Profile(){
@@ -17,6 +17,10 @@ export default function Profile(){
     //     setIsBottomNavHidden(true)
     //     setIsTopNavHidden(true)
     // })
+    
+    const handleLogout = async () => {
+      await signOut({ callbackUrl: "https://edvantage.com.ng/LandingPage" });
+    };
 
     return(
         <div className="profile-page">
@@ -31,9 +35,10 @@ export default function Profile(){
                     <p>Mechatronics Engineering | 300L</p>
                 </div>
                 <div className="links">
-                    <Link href="/Settings">Settings</Link>
-                    <Link href="/FAQs">FAQs</Link>
-                    <Link href="/TermsAndConditions">Terms &amp; Conditions</Link>
+                    <Link className="option" href="/Settings">Settings</Link>
+                    <Link className="option" href="/FAQs">FAQs</Link>
+                    <Link className="option" href="/TermsAndConditions">Terms &amp; Conditions</Link>
+                    <div className="option" onClick={handleLogout}>Logout</div>
                 </div>
             </div>
         </div>
