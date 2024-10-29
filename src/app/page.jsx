@@ -8,9 +8,9 @@ export default function LandingPage() {
         const checkSession = async () => {
             const session = await getSession()
             if (session) {
-                window.location.href = "http://edvantage.com.ng/Dashboard"
+                window.location.href = "/Dashboard"
             } else {
-                window.location.href = "http://edvantage.com.ng/LandingPage"
+                window.location.href = "/LandingPage"
             }
         }
         checkSession()

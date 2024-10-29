@@ -19,7 +19,7 @@ export default function Profile(){
     // })
     
     const handleLogout = async () => {
-      await signOut({ callbackUrl: "https://edvantage.com.ng/LandingPage" });
+      await signOut({ callbackUrl: "/LandingPage" });
     };
 
     return(
