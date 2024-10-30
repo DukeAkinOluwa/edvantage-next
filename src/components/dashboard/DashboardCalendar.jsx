@@ -8,6 +8,7 @@ const DashboardCalendar = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [calendarViewDate, setCalendarViewDate] = useState(new Date());
 
+  const today = new Date()
   const year = calendarViewDate.getFullYear();
   const month = calendarViewDate.getMonth();
   // console.log(calendarViewDate.getMonth(), month)
@@ -19,33 +20,36 @@ const DashboardCalendar = () => {
     };
 
     fetchTasks();
-  }, []);
+  }, [selectedDate]);
   
   const filteredTasks = useMemo(() => {
     return tasks.filter((task) => {
-        const taskDate = new Date(task.date);
-        const now = new Date()
-        return (
-            ((taskDate.getFullYear() <= now.getFullYear() && taskDate.getMonth() <= now.getMonth() && taskDate.getDate() < now.getDate()) && (taskDate.getFullYear() === selectedDate.getFullYear() && taskDate.getMonth() === selectedDate.getMonth() && taskDate.getDate() === selectedDate.getDate())) ||
-            (taskDate.getFullYear() === selectedDate.getFullYear() &&
-            taskDate.getMonth() === selectedDate.getMonth() &&
-            taskDate.getDate() === selectedDate.getDate() &&
-            (
-                (task.endTime && (function() {
-                  const timeParts = task.endTime.split(':');
-                  const hours = parseInt(timeParts[0], 10);
-                  const minutes = parseInt(timeParts[1], 10);
-                  return new Date(selectedDate.getFullYear(), selectedDate.getMonth(), selectedDate.getDate(), hours, minutes) > selectedDate;
-                })) || (task.time && (function() {
-                  const timeParts = task.time.split(':');
-                  const hours = parseInt(timeParts[0], 10);
-                  const minutes = parseInt(timeParts[1], 10);
-                  return new Date(selectedDate.getFullYear(), selectedDate.getMonth(), selectedDate.getDate(), hours, minutes) > selectedDate;
-                }))
-            ))
-        );
+      const taskDate = new Date(task.date);
+      const now = new Date()
+      // return (
+        //     ((taskDate.getFullYear() <= now.getFullYear() && taskDate.getMonth() <= now.getMonth() && taskDate.getDate() < now.getDate()) && (taskDate.getFullYear() === selectedDate.getFullYear() && taskDate.getMonth() === selectedDate.getMonth() && taskDate.getDate() === selectedDate.getDate())) ||
+        //     (taskDate.getFullYear() === selectedDate.getFullYear() &&
+        //     taskDate.getMonth() === selectedDate.getMonth() &&
+        //     taskDate.getDate() === selectedDate.getDate() &&
+        //     (
+        //         (task.endTime && (function() {
+        //           const timeParts = task.endTime.split(':');
+        //           const hours = parseInt(timeParts[0], 10);
+        //           const minutes = parseInt(timeParts[1], 10);
+        //           return new Date(selectedDate.getFullYear(), selectedDate.getMonth(), selectedDate.getDate(), hours, minutes) > selectedDate;
+        //         })) || (task.time && (function() {
+        //           const timeParts = task.time.split(':');
+        //           const hours = parseInt(timeParts[0], 10);
+        //           const minutes = parseInt(timeParts[1], 10);
+        //           return new Date(selectedDate.getFullYear(), selectedDate.getMonth(), selectedDate.getDate(), hours, minutes) > selectedDate;
+        //         }))
+        //     ))
+        // );
+      return(
+        ((taskDate.getFullYear() === selectedDate.getFullYear()) && (taskDate.getMonth() === selectedDate.getMonth()) && (taskDate.getDate() === selectedDate.getDate()))
+      )
     });
-  }, [tasks, selectedDate]);  
+  }, [tasks, selectedDate]);
 
   const getMonthData = useMemo(() => {
     const year = calendarViewDate.getFullYear();
@@ -74,6 +78,18 @@ const DashboardCalendar = () => {
   const isSelectedDay = useCallback((day) => {
     return month === selectedDate.getMonth() && year === selectedDate.getFullYear() && day === selectedDate.getDate();
   }, [selectedDate]);
+  
+  function selectedDayTitle() {
+    const dayNumeric = selectedDate.getDay()
+    const monthNumeric = selectedDate.getMonth()
+    const date = selectedDate.getDate()
+    const year = selectedDate.getFullYear()
+    const day = daysOfWeek[dayNumeric]
+    const monthOfYear = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+    const month = monthOfYear[monthNumeric]
+
+    return date + " " + month + ", " + year
+  }
 
   return (
     <div className="dashboard-calendar">
@@ -104,7 +120,7 @@ const DashboardCalendar = () => {
           ))}
         </div>
         <div className="todays-tasks">
-          <h2>Today</h2>
+          {((today.getFullYear() === selectedDate.getFullYear()) && (today.getMonth() === selectedDate.getMonth()) && (today.getDate() === selectedDate.getDate())) ? <h2>Today</h2> : <h2>{selectedDayTitle()}</h2>}
           {filteredTasks.map((task, index) => {
             return(
               <CalTaskTemplate key={index} taskdata={task} />

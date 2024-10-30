@@ -12,6 +12,11 @@ const DaysSummary = ({ handleShowPopupNotification }) => {
     const [reloadTimetable, setReloadTimetable] = useState(false)
     const [assignments, setAssignments] = useState([]);
     const [focusedInput, setFocusedInput] = useState(null);
+    const [calendarViewDate, setCalendarViewDate] = useState(new Date());
+
+    const year = calendarViewDate.getFullYear();
+    const month = calendarViewDate.getMonth();
+    // console.log(calendarViewDate.getMonth(), month)
 
     // Fetch assignments once when the component mounts
     useEffect(() => {
@@ -30,11 +35,15 @@ const DaysSummary = ({ handleShowPopupNotification }) => {
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
     }, []); // Empty dependency array ensures this effect runs only once
-
-    // Memoize filtered tasks based on assignments and windowWidth
+    
     const filteredTasks = useMemo(() => {
-        // return assignments.filter(task => task.type === 'assignment' || task.type === 'task');
-        return assignments;
+        return assignments.filter((task) => {
+            const taskDate = new Date(task.date)
+            const today = new Date()
+            return(
+                ((taskDate.getFullYear() === today.getFullYear()) && (taskDate.getMonth() === today.getMonth()) && (taskDate.getDate() === today.getDate()))
+            )
+        });
     }, [assignments]);
 
     const taskinfo = useMemo(() => {
