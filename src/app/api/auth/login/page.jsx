@@ -43,7 +43,7 @@ export default function Login(){
             setIsLoggingIn(false);
         } else {
             setLoginError("");
-            window.location.href = "/Dashboard";  // Or any other page after login
+            window.location.replace("/Dashboard")  // Or any other page after login
         }
     };
 
@@ -104,7 +104,7 @@ export default function Login(){
         // Here you can perform actions like sending data to a server or storing it in local storage
         // console.log("Final User Data:", userData);
         login(userData)
-        window.location.href = "/Dashboard";
+        window.location.replace("/Dashboard");
     };
     
     return(
