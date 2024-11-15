@@ -19,7 +19,7 @@ export default function LandingBanner(){
             <div className="banner-left">
                 <h2>Empower Your Academic Journey</h2>
                 <p>Welcome to the ultimate student companion app. Access all the tools you need to suceed academically</p>
-                <div className="button2"><Link href="/Signup" className="get-started no-button">Sign up</Link></div>
+                <div className="button2"><Link href="/" className="get-started no-button">Sign up</Link></div>
             </div>
             <div className="banner-right phone-hidden">
                 <div className="student-image student-image-1">
