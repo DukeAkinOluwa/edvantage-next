@@ -15,6 +15,10 @@ export default function RootLayout({ children }) {
   return (
       // <AuthProvider>
             <html lang="en">
+              <head>
+                <link rel="apple-touch-icon" href="/Images/Manifest/Logos/LogoIconBB144.png" />
+                <meta name="apple-mobile-web-app-capable" content="#2A52BE" />
+              </head>
               <body>
                 <div className="pages-wrapper">
                   <Pages>{children}</Pages>
