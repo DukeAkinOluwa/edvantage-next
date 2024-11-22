@@ -33,8 +33,8 @@ export const options = {
     ],
     secret: process.env.NEXTAUTH_SECRET,
     pages: {
-        signIn: '/api/auth/login',
-        signUp: '/api/auth/signup'
+        signIn: '/Login',
+        signUp: '/signup'
     },
     callbacks: {
         async signIn({ user, account, profile }) {
